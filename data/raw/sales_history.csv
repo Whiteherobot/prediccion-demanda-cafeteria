@@ -1,0 +1,1801 @@
+product_id,nombre,fecha_venta,cantidad_vendida,stock_en_momento
+1,Laptop Gamer,2026-04-05,2,316
+2,Monitor 4K,2026-04-05,3,299
+3,Teclado Mecanico,2026-04-05,5,303
+4,Raton Inal.,2026-04-05,6,351
+5,Cable USB-C,2026-04-05,7,330
+6,Adaptador HDMI,2026-04-05,10,349
+7,Webcam HD,2026-04-05,4,252
+8,Auriculares BT,2026-04-05,4,201
+9,Hub USB 3.0,2026-04-05,3,287
+10,Cargador Rapido,2026-04-05,9,357
+1,Laptop Gamer,2026-04-06,6,314
+2,Monitor 4K,2026-04-06,8,296
+3,Teclado Mecanico,2026-04-06,14,298
+4,Raton Inal.,2026-04-06,24,345
+5,Cable USB-C,2026-04-06,43,323
+6,Adaptador HDMI,2026-04-06,21,339
+7,Webcam HD,2026-04-06,11,248
+8,Auriculares BT,2026-04-06,14,197
+9,Hub USB 3.0,2026-04-06,10,284
+10,Cargador Rapido,2026-04-06,28,348
+1,Laptop Gamer,2026-04-07,7,308
+2,Monitor 4K,2026-04-07,9,288
+3,Teclado Mecanico,2026-04-07,11,284
+4,Raton Inal.,2026-04-07,18,321
+5,Cable USB-C,2026-04-07,21,280
+6,Adaptador HDMI,2026-04-07,16,318
+7,Webcam HD,2026-04-07,8,237
+8,Auriculares BT,2026-04-07,13,183
+9,Hub USB 3.0,2026-04-07,8,274
+10,Cargador Rapido,2026-04-07,25,320
+1,Laptop Gamer,2026-04-08,10,301
+2,Monitor 4K,2026-04-08,12,279
+3,Teclado Mecanico,2026-04-08,14,273
+4,Raton Inal.,2026-04-08,21,303
+5,Cable USB-C,2026-04-08,19,259
+6,Adaptador HDMI,2026-04-08,12,302
+7,Webcam HD,2026-04-08,10,229
+8,Auriculares BT,2026-04-08,11,170
+9,Hub USB 3.0,2026-04-08,8,266
+10,Cargador Rapido,2026-04-08,17,295
+1,Laptop Gamer,2026-04-09,5,291
+2,Monitor 4K,2026-04-09,10,267
+3,Teclado Mecanico,2026-04-09,15,259
+4,Raton Inal.,2026-04-09,21,282
+5,Cable USB-C,2026-04-09,27,240
+6,Adaptador HDMI,2026-04-09,19,290
+7,Webcam HD,2026-04-09,8,219
+8,Auriculares BT,2026-04-09,11,159
+9,Hub USB 3.0,2026-04-09,7,258
+10,Cargador Rapido,2026-04-09,25,278
+1,Laptop Gamer,2026-04-10,6,286
+2,Monitor 4K,2026-04-10,9,257
+3,Teclado Mecanico,2026-04-10,17,244
+4,Raton Inal.,2026-04-10,15,261
+5,Cable USB-C,2026-04-10,27,213
+6,Adaptador HDMI,2026-04-10,17,271
+7,Webcam HD,2026-04-10,7,211
+8,Auriculares BT,2026-04-10,12,148
+9,Hub USB 3.0,2026-04-10,12,251
+10,Cargador Rapido,2026-04-10,24,253
+1,Laptop Gamer,2026-04-11,5,280
+2,Monitor 4K,2026-04-11,6,248
+3,Teclado Mecanico,2026-04-11,20,227
+4,Raton Inal.,2026-04-11,12,246
+5,Cable USB-C,2026-04-11,20,186
+6,Adaptador HDMI,2026-04-11,15,254
+7,Webcam HD,2026-04-11,5,204
+8,Auriculares BT,2026-04-11,12,136
+9,Hub USB 3.0,2026-04-11,8,239
+10,Cargador Rapido,2026-04-11,19,229
+1,Laptop Gamer,2026-04-12,3,275
+2,Monitor 4K,2026-04-12,4,242
+3,Teclado Mecanico,2026-04-12,9,207
+4,Raton Inal.,2026-04-12,16,234
+5,Cable USB-C,2026-04-12,21,166
+6,Adaptador HDMI,2026-04-12,14,239
+7,Webcam HD,2026-04-12,7,199
+8,Auriculares BT,2026-04-12,12,124
+9,Hub USB 3.0,2026-04-12,7,231
+10,Cargador Rapido,2026-04-12,20,210
+1,Laptop Gamer,2026-04-13,10,272
+2,Monitor 4K,2026-04-13,12,238
+3,Teclado Mecanico,2026-04-13,15,198
+4,Raton Inal.,2026-04-13,24,218
+5,Cable USB-C,2026-04-13,26,145
+6,Adaptador HDMI,2026-04-13,18,225
+7,Webcam HD,2026-04-13,13,192
+8,Auriculares BT,2026-04-13,14,112
+9,Hub USB 3.0,2026-04-13,7,224
+10,Cargador Rapido,2026-04-13,26,190
+1,Laptop Gamer,2026-04-14,6,262
+2,Monitor 4K,2026-04-14,9,226
+3,Teclado Mecanico,2026-04-14,15,183
+4,Raton Inal.,2026-04-14,18,194
+5,Cable USB-C,2026-04-14,24,119
+6,Adaptador HDMI,2026-04-14,11,207
+7,Webcam HD,2026-04-14,7,179
+8,Auriculares BT,2026-04-14,16,98
+9,Hub USB 3.0,2026-04-14,10,217
+10,Cargador Rapido,2026-04-14,15,164
+1,Laptop Gamer,2026-04-15,5,256
+2,Monitor 4K,2026-04-15,8,217
+3,Teclado Mecanico,2026-04-15,14,168
+4,Raton Inal.,2026-04-15,17,176
+5,Cable USB-C,2026-04-15,21,95
+6,Adaptador HDMI,2026-04-15,17,196
+7,Webcam HD,2026-04-15,10,172
+8,Auriculares BT,2026-04-15,12,82
+9,Hub USB 3.0,2026-04-15,9,207
+10,Cargador Rapido,2026-04-15,19,149
+1,Laptop Gamer,2026-04-16,7,251
+2,Monitor 4K,2026-04-16,10,209
+3,Teclado Mecanico,2026-04-16,23,154
+4,Raton Inal.,2026-04-16,15,159
+5,Cable USB-C,2026-04-16,20,74
+6,Adaptador HDMI,2026-04-16,19,179
+7,Webcam HD,2026-04-16,8,162
+8,Auriculares BT,2026-04-16,16,70
+9,Hub USB 3.0,2026-04-16,13,198
+10,Cargador Rapido,2026-04-16,27,130
+1,Laptop Gamer,2026-04-17,5,244
+2,Monitor 4K,2026-04-17,10,199
+3,Teclado Mecanico,2026-04-17,19,131
+4,Raton Inal.,2026-04-17,22,144
+5,Cable USB-C,2026-04-17,32,54
+6,Adaptador HDMI,2026-04-17,36,160
+7,Webcam HD,2026-04-17,9,154
+8,Auriculares BT,2026-04-17,12,54
+9,Hub USB 3.0,2026-04-17,11,185
+10,Cargador Rapido,2026-04-17,17,103
+1,Laptop Gamer,2026-04-18,4,239
+2,Monitor 4K,2026-04-18,5,189
+3,Teclado Mecanico,2026-04-18,18,112
+4,Raton Inal.,2026-04-18,14,122
+5,Cable USB-C,2026-04-18,20,22
+6,Adaptador HDMI,2026-04-18,13,124
+7,Webcam HD,2026-04-18,6,145
+8,Auriculares BT,2026-04-18,11,42
+9,Hub USB 3.0,2026-04-18,8,174
+10,Cargador Rapido,2026-04-18,21,86
+1,Laptop Gamer,2026-04-19,5,235
+2,Monitor 4K,2026-04-19,10,184
+3,Teclado Mecanico,2026-04-19,10,94
+4,Raton Inal.,2026-04-19,14,108
+5,Cable USB-C,2026-04-19,2,2
+6,Adaptador HDMI,2026-04-19,19,111
+7,Webcam HD,2026-04-19,8,139
+8,Auriculares BT,2026-04-19,8,31
+9,Hub USB 3.0,2026-04-19,8,166
+10,Cargador Rapido,2026-04-19,24,65
+1,Laptop Gamer,2026-04-20,8,230
+2,Monitor 4K,2026-04-20,14,174
+3,Teclado Mecanico,2026-04-20,17,84
+4,Raton Inal.,2026-04-20,17,94
+5,Cable USB-C,2026-04-20,34,200
+6,Adaptador HDMI,2026-04-20,26,92
+7,Webcam HD,2026-04-20,12,131
+8,Auriculares BT,2026-04-20,13,23
+9,Hub USB 3.0,2026-04-20,10,158
+10,Cargador Rapido,2026-04-20,20,41
+1,Laptop Gamer,2026-04-21,7,222
+2,Monitor 4K,2026-04-21,13,160
+3,Teclado Mecanico,2026-04-21,15,67
+4,Raton Inal.,2026-04-21,22,77
+5,Cable USB-C,2026-04-21,20,166
+6,Adaptador HDMI,2026-04-21,17,66
+7,Webcam HD,2026-04-21,7,119
+8,Auriculares BT,2026-04-21,11,210
+9,Hub USB 3.0,2026-04-21,19,148
+10,Cargador Rapido,2026-04-21,20,21
+1,Laptop Gamer,2026-04-22,8,215
+2,Monitor 4K,2026-04-22,11,147
+3,Teclado Mecanico,2026-04-22,22,52
+4,Raton Inal.,2026-04-22,19,55
+5,Cable USB-C,2026-04-22,18,146
+6,Adaptador HDMI,2026-04-22,17,49
+7,Webcam HD,2026-04-22,7,112
+8,Auriculares BT,2026-04-22,15,199
+9,Hub USB 3.0,2026-04-22,16,129
+10,Cargador Rapido,2026-04-22,1,1
+1,Laptop Gamer,2026-04-23,6,207
+2,Monitor 4K,2026-04-23,11,136
+3,Teclado Mecanico,2026-04-23,12,30
+4,Raton Inal.,2026-04-23,21,36
+5,Cable USB-C,2026-04-23,29,128
+6,Adaptador HDMI,2026-04-23,16,32
+7,Webcam HD,2026-04-23,7,105
+8,Auriculares BT,2026-04-23,11,184
+9,Hub USB 3.0,2026-04-23,18,113
+10,Cargador Rapido,2026-04-23,21,200
+1,Laptop Gamer,2026-04-24,7,201
+2,Monitor 4K,2026-04-24,14,125
+3,Teclado Mecanico,2026-04-24,14,18
+4,Raton Inal.,2026-04-24,15,15
+5,Cable USB-C,2026-04-24,45,99
+6,Adaptador HDMI,2026-04-24,16,16
+7,Webcam HD,2026-04-24,11,98
+8,Auriculares BT,2026-04-24,15,173
+9,Hub USB 3.0,2026-04-24,8,95
+10,Cargador Rapido,2026-04-24,27,179
+1,Laptop Gamer,2026-04-25,5,194
+2,Monitor 4K,2026-04-25,5,111
+3,Teclado Mecanico,2026-04-25,11,204
+4,Raton Inal.,2026-04-25,15,200
+5,Cable USB-C,2026-04-25,34,54
+6,Adaptador HDMI,2026-04-25,18,200
+7,Webcam HD,2026-04-25,8,87
+8,Auriculares BT,2026-04-25,10,158
+9,Hub USB 3.0,2026-04-25,9,87
+10,Cargador Rapido,2026-04-25,23,152
+1,Laptop Gamer,2026-04-26,4,189
+2,Monitor 4K,2026-04-26,6,106
+3,Teclado Mecanico,2026-04-26,8,193
+4,Raton Inal.,2026-04-26,11,185
+5,Cable USB-C,2026-04-26,20,20
+6,Adaptador HDMI,2026-04-26,13,182
+7,Webcam HD,2026-04-26,6,79
+8,Auriculares BT,2026-04-26,9,148
+9,Hub USB 3.0,2026-04-26,5,78
+10,Cargador Rapido,2026-04-26,21,129
+1,Laptop Gamer,2026-04-27,7,185
+2,Monitor 4K,2026-04-27,12,100
+3,Teclado Mecanico,2026-04-27,14,185
+4,Raton Inal.,2026-04-27,20,174
+5,Cable USB-C,2026-04-27,0,0
+6,Adaptador HDMI,2026-04-27,21,169
+7,Webcam HD,2026-04-27,12,73
+8,Auriculares BT,2026-04-27,12,139
+9,Hub USB 3.0,2026-04-27,18,73
+10,Cargador Rapido,2026-04-27,35,108
+1,Laptop Gamer,2026-04-28,8,178
+2,Monitor 4K,2026-04-28,12,88
+3,Teclado Mecanico,2026-04-28,14,171
+4,Raton Inal.,2026-04-28,20,154
+5,Cable USB-C,2026-04-28,29,200
+6,Adaptador HDMI,2026-04-28,15,148
+7,Webcam HD,2026-04-28,8,61
+8,Auriculares BT,2026-04-28,9,127
+9,Hub USB 3.0,2026-04-28,9,55
+10,Cargador Rapido,2026-04-28,28,73
+1,Laptop Gamer,2026-04-29,6,170
+2,Monitor 4K,2026-04-29,9,76
+3,Teclado Mecanico,2026-04-29,14,157
+4,Raton Inal.,2026-04-29,14,134
+5,Cable USB-C,2026-04-29,28,171
+6,Adaptador HDMI,2026-04-29,22,133
+7,Webcam HD,2026-04-29,10,53
+8,Auriculares BT,2026-04-29,17,118
+9,Hub USB 3.0,2026-04-29,8,46
+10,Cargador Rapido,2026-04-29,29,45
+1,Laptop Gamer,2026-04-30,6,164
+2,Monitor 4K,2026-04-30,8,67
+3,Teclado Mecanico,2026-04-30,13,143
+4,Raton Inal.,2026-04-30,26,120
+5,Cable USB-C,2026-04-30,24,143
+6,Adaptador HDMI,2026-04-30,14,111
+7,Webcam HD,2026-04-30,7,43
+8,Auriculares BT,2026-04-30,12,101
+9,Hub USB 3.0,2026-04-30,7,38
+10,Cargador Rapido,2026-04-30,16,16
+1,Laptop Gamer,2026-05-01,5,158
+2,Monitor 4K,2026-05-01,7,59
+3,Teclado Mecanico,2026-05-01,8,130
+4,Raton Inal.,2026-05-01,10,94
+5,Cable USB-C,2026-05-01,14,119
+6,Adaptador HDMI,2026-05-01,15,97
+7,Webcam HD,2026-05-01,6,36
+8,Auriculares BT,2026-05-01,9,89
+9,Hub USB 3.0,2026-05-01,5,31
+10,Cargador Rapido,2026-05-01,0,0
+1,Laptop Gamer,2026-05-02,5,153
+2,Monitor 4K,2026-05-02,7,52
+3,Teclado Mecanico,2026-05-02,8,122
+4,Raton Inal.,2026-05-02,19,84
+5,Cable USB-C,2026-05-02,21,105
+6,Adaptador HDMI,2026-05-02,25,82
+7,Webcam HD,2026-05-02,8,30
+8,Auriculares BT,2026-05-02,11,80
+9,Hub USB 3.0,2026-05-02,8,226
+10,Cargador Rapido,2026-05-02,20,200
+1,Laptop Gamer,2026-05-03,4,148
+2,Monitor 4K,2026-05-03,10,45
+3,Teclado Mecanico,2026-05-03,13,114
+4,Raton Inal.,2026-05-03,14,65
+5,Cable USB-C,2026-05-03,21,84
+6,Adaptador HDMI,2026-05-03,16,57
+7,Webcam HD,2026-05-03,8,222
+8,Auriculares BT,2026-05-03,14,69
+9,Hub USB 3.0,2026-05-03,8,218
+10,Cargador Rapido,2026-05-03,23,180
+1,Laptop Gamer,2026-05-04,7,144
+2,Monitor 4K,2026-05-04,15,35
+3,Teclado Mecanico,2026-05-04,19,101
+4,Raton Inal.,2026-05-04,20,51
+5,Cable USB-C,2026-05-04,22,63
+6,Adaptador HDMI,2026-05-04,17,41
+7,Webcam HD,2026-05-04,10,214
+8,Auriculares BT,2026-05-04,20,55
+9,Hub USB 3.0,2026-05-04,17,210
+10,Cargador Rapido,2026-05-04,25,157
+1,Laptop Gamer,2026-05-05,7,137
+2,Monitor 4K,2026-05-05,12,20
+3,Teclado Mecanico,2026-05-05,15,82
+4,Raton Inal.,2026-05-05,23,31
+5,Cable USB-C,2026-05-05,23,41
+6,Adaptador HDMI,2026-05-05,22,24
+7,Webcam HD,2026-05-05,9,204
+8,Auriculares BT,2026-05-05,16,35
+9,Hub USB 3.0,2026-05-05,16,193
+10,Cargador Rapido,2026-05-05,20,132
+1,Laptop Gamer,2026-05-06,10,130
+2,Monitor 4K,2026-05-06,13,208
+3,Teclado Mecanico,2026-05-06,10,67
+4,Raton Inal.,2026-05-06,8,8
+5,Cable USB-C,2026-05-06,18,18
+6,Adaptador HDMI,2026-05-06,2,2
+7,Webcam HD,2026-05-06,21,195
+8,Auriculares BT,2026-05-06,15,19
+9,Hub USB 3.0,2026-05-06,9,177
+10,Cargador Rapido,2026-05-06,22,112
+1,Laptop Gamer,2026-05-07,5,120
+2,Monitor 4K,2026-05-07,15,195
+3,Teclado Mecanico,2026-05-07,14,57
+4,Raton Inal.,2026-05-07,23,200
+5,Cable USB-C,2026-05-07,0,0
+6,Adaptador HDMI,2026-05-07,23,200
+7,Webcam HD,2026-05-07,17,174
+8,Auriculares BT,2026-05-07,14,204
+9,Hub USB 3.0,2026-05-07,12,168
+10,Cargador Rapido,2026-05-07,26,90
+1,Laptop Gamer,2026-05-08,9,115
+2,Monitor 4K,2026-05-08,17,180
+3,Teclado Mecanico,2026-05-08,13,43
+4,Raton Inal.,2026-05-08,25,177
+5,Cable USB-C,2026-05-08,17,200
+6,Adaptador HDMI,2026-05-08,24,177
+7,Webcam HD,2026-05-08,9,157
+8,Auriculares BT,2026-05-08,14,190
+9,Hub USB 3.0,2026-05-08,9,156
+10,Cargador Rapido,2026-05-08,22,64
+1,Laptop Gamer,2026-05-09,5,106
+2,Monitor 4K,2026-05-09,13,163
+3,Teclado Mecanico,2026-05-09,12,30
+4,Raton Inal.,2026-05-09,16,152
+5,Cable USB-C,2026-05-09,33,183
+6,Adaptador HDMI,2026-05-09,14,153
+7,Webcam HD,2026-05-09,6,148
+8,Auriculares BT,2026-05-09,11,176
+9,Hub USB 3.0,2026-05-09,8,147
+10,Cargador Rapido,2026-05-09,24,42
+1,Laptop Gamer,2026-05-10,5,101
+2,Monitor 4K,2026-05-10,7,150
+3,Teclado Mecanico,2026-05-10,17,18
+4,Raton Inal.,2026-05-10,16,136
+5,Cable USB-C,2026-05-10,40,150
+6,Adaptador HDMI,2026-05-10,23,139
+7,Webcam HD,2026-05-10,9,142
+8,Auriculares BT,2026-05-10,15,165
+9,Hub USB 3.0,2026-05-10,7,139
+10,Cargador Rapido,2026-05-10,18,18
+1,Laptop Gamer,2026-05-11,6,96
+2,Monitor 4K,2026-05-11,15,143
+3,Teclado Mecanico,2026-05-11,17,201
+4,Raton Inal.,2026-05-11,18,120
+5,Cable USB-C,2026-05-11,36,110
+6,Adaptador HDMI,2026-05-11,15,116
+7,Webcam HD,2026-05-11,8,133
+8,Auriculares BT,2026-05-11,17,150
+9,Hub USB 3.0,2026-05-11,14,132
+10,Cargador Rapido,2026-05-11,0,0
+1,Laptop Gamer,2026-05-12,8,90
+2,Monitor 4K,2026-05-12,15,128
+3,Teclado Mecanico,2026-05-12,17,184
+4,Raton Inal.,2026-05-12,19,102
+5,Cable USB-C,2026-05-12,25,74
+6,Adaptador HDMI,2026-05-12,17,101
+7,Webcam HD,2026-05-12,10,125
+8,Auriculares BT,2026-05-12,11,133
+9,Hub USB 3.0,2026-05-12,11,118
+10,Cargador Rapido,2026-05-12,22,200
+1,Laptop Gamer,2026-05-13,8,82
+2,Monitor 4K,2026-05-13,12,113
+3,Teclado Mecanico,2026-05-13,9,167
+4,Raton Inal.,2026-05-13,17,83
+5,Cable USB-C,2026-05-13,25,49
+6,Adaptador HDMI,2026-05-13,18,84
+7,Webcam HD,2026-05-13,10,115
+8,Auriculares BT,2026-05-13,14,122
+9,Hub USB 3.0,2026-05-13,14,107
+10,Cargador Rapido,2026-05-13,23,178
+1,Laptop Gamer,2026-05-14,7,74
+2,Monitor 4K,2026-05-14,8,101
+3,Teclado Mecanico,2026-05-14,11,158
+4,Raton Inal.,2026-05-14,22,66
+5,Cable USB-C,2026-05-14,24,24
+6,Adaptador HDMI,2026-05-14,24,66
+7,Webcam HD,2026-05-14,8,105
+8,Auriculares BT,2026-05-14,13,108
+9,Hub USB 3.0,2026-05-14,11,93
+10,Cargador Rapido,2026-05-14,32,155
+1,Laptop Gamer,2026-05-15,7,67
+2,Monitor 4K,2026-05-15,15,93
+3,Teclado Mecanico,2026-05-15,15,147
+4,Raton Inal.,2026-05-15,44,44
+5,Cable USB-C,2026-05-15,0,0
+6,Adaptador HDMI,2026-05-15,18,42
+7,Webcam HD,2026-05-15,8,97
+8,Auriculares BT,2026-05-15,13,95
+9,Hub USB 3.0,2026-05-15,14,82
+10,Cargador Rapido,2026-05-15,26,123
+1,Laptop Gamer,2026-05-16,4,60
+2,Monitor 4K,2026-05-16,6,78
+3,Teclado Mecanico,2026-05-16,8,132
+4,Raton Inal.,2026-05-16,0,0
+5,Cable USB-C,2026-05-16,27,200
+6,Adaptador HDMI,2026-05-16,16,24
+7,Webcam HD,2026-05-16,7,89
+8,Auriculares BT,2026-05-16,7,82
+9,Hub USB 3.0,2026-05-16,7,68
+10,Cargador Rapido,2026-05-16,26,97
+1,Laptop Gamer,2026-05-17,5,56
+2,Monitor 4K,2026-05-17,7,72
+3,Teclado Mecanico,2026-05-17,11,124
+4,Raton Inal.,2026-05-17,0,0
+5,Cable USB-C,2026-05-17,22,173
+6,Adaptador HDMI,2026-05-17,8,8
+7,Webcam HD,2026-05-17,7,82
+8,Auriculares BT,2026-05-17,11,75
+9,Hub USB 3.0,2026-05-17,9,61
+10,Cargador Rapido,2026-05-17,15,71
+1,Laptop Gamer,2026-05-18,8,51
+2,Monitor 4K,2026-05-18,13,65
+3,Teclado Mecanico,2026-05-18,14,113
+4,Raton Inal.,2026-05-18,26,200
+5,Cable USB-C,2026-05-18,33,151
+6,Adaptador HDMI,2026-05-18,20,200
+7,Webcam HD,2026-05-18,17,75
+8,Auriculares BT,2026-05-18,15,64
+9,Hub USB 3.0,2026-05-18,12,52
+10,Cargador Rapido,2026-05-18,23,56
+1,Laptop Gamer,2026-05-19,6,43
+2,Monitor 4K,2026-05-19,10,52
+3,Teclado Mecanico,2026-05-19,11,99
+4,Raton Inal.,2026-05-19,19,174
+5,Cable USB-C,2026-05-19,25,118
+6,Adaptador HDMI,2026-05-19,11,180
+7,Webcam HD,2026-05-19,10,58
+8,Auriculares BT,2026-05-19,14,49
+9,Hub USB 3.0,2026-05-19,12,40
+10,Cargador Rapido,2026-05-19,27,33
+1,Laptop Gamer,2026-05-20,9,37
+2,Monitor 4K,2026-05-20,10,42
+3,Teclado Mecanico,2026-05-20,13,88
+4,Raton Inal.,2026-05-20,22,155
+5,Cable USB-C,2026-05-20,22,93
+6,Adaptador HDMI,2026-05-20,14,169
+7,Webcam HD,2026-05-20,15,48
+8,Auriculares BT,2026-05-20,13,35
+9,Hub USB 3.0,2026-05-20,10,28
+10,Cargador Rapido,2026-05-20,6,6
+1,Laptop Gamer,2026-05-21,9,28
+2,Monitor 4K,2026-05-21,9,32
+3,Teclado Mecanico,2026-05-21,15,75
+4,Raton Inal.,2026-05-21,24,133
+5,Cable USB-C,2026-05-21,20,71
+6,Adaptador HDMI,2026-05-21,18,155
+7,Webcam HD,2026-05-21,13,33
+8,Auriculares BT,2026-05-21,9,22
+9,Hub USB 3.0,2026-05-21,9,18
+10,Cargador Rapido,2026-05-21,18,200
+1,Laptop Gamer,2026-05-22,10,219
+2,Monitor 4K,2026-05-22,11,23
+3,Teclado Mecanico,2026-05-22,12,60
+4,Raton Inal.,2026-05-22,18,109
+5,Cable USB-C,2026-05-22,21,51
+6,Adaptador HDMI,2026-05-22,16,137
+7,Webcam HD,2026-05-22,10,20
+8,Auriculares BT,2026-05-22,16,213
+9,Hub USB 3.0,2026-05-22,13,209
+10,Cargador Rapido,2026-05-22,24,182
+1,Laptop Gamer,2026-05-23,4,209
+2,Monitor 4K,2026-05-23,7,212
+3,Teclado Mecanico,2026-05-23,18,48
+4,Raton Inal.,2026-05-23,19,91
+5,Cable USB-C,2026-05-23,21,30
+6,Adaptador HDMI,2026-05-23,21,121
+7,Webcam HD,2026-05-23,6,210
+8,Auriculares BT,2026-05-23,9,197
+9,Hub USB 3.0,2026-05-23,10,196
+10,Cargador Rapido,2026-05-23,15,158
+1,Laptop Gamer,2026-05-24,1,205
+2,Monitor 4K,2026-05-24,4,205
+3,Teclado Mecanico,2026-05-24,6,30
+4,Raton Inal.,2026-05-24,8,72
+5,Cable USB-C,2026-05-24,9,9
+6,Adaptador HDMI,2026-05-24,8,100
+7,Webcam HD,2026-05-24,3,204
+8,Auriculares BT,2026-05-24,5,188
+9,Hub USB 3.0,2026-05-24,4,186
+10,Cargador Rapido,2026-05-24,10,143
+1,Laptop Gamer,2026-05-25,7,204
+2,Monitor 4K,2026-05-25,12,201
+3,Teclado Mecanico,2026-05-25,11,24
+4,Raton Inal.,2026-05-25,27,64
+5,Cable USB-C,2026-05-25,31,200
+6,Adaptador HDMI,2026-05-25,20,92
+7,Webcam HD,2026-05-25,12,201
+8,Auriculares BT,2026-05-25,26,183
+9,Hub USB 3.0,2026-05-25,11,182
+10,Cargador Rapido,2026-05-25,23,133
+1,Laptop Gamer,2026-05-26,8,197
+2,Monitor 4K,2026-05-26,12,189
+3,Teclado Mecanico,2026-05-26,22,213
+4,Raton Inal.,2026-05-26,27,37
+5,Cable USB-C,2026-05-26,28,169
+6,Adaptador HDMI,2026-05-26,15,72
+7,Webcam HD,2026-05-26,9,189
+8,Auriculares BT,2026-05-26,17,157
+9,Hub USB 3.0,2026-05-26,11,171
+10,Cargador Rapido,2026-05-26,13,110
+1,Laptop Gamer,2026-05-27,7,189
+2,Monitor 4K,2026-05-27,11,177
+3,Teclado Mecanico,2026-05-27,11,191
+4,Raton Inal.,2026-05-27,10,10
+5,Cable USB-C,2026-05-27,19,141
+6,Adaptador HDMI,2026-05-27,18,57
+7,Webcam HD,2026-05-27,17,180
+8,Auriculares BT,2026-05-27,10,140
+9,Hub USB 3.0,2026-05-27,10,160
+10,Cargador Rapido,2026-05-27,19,97
+1,Laptop Gamer,2026-05-28,7,182
+2,Monitor 4K,2026-05-28,13,166
+3,Teclado Mecanico,2026-05-28,18,180
+4,Raton Inal.,2026-05-28,23,200
+5,Cable USB-C,2026-05-28,21,122
+6,Adaptador HDMI,2026-05-28,27,39
+7,Webcam HD,2026-05-28,7,163
+8,Auriculares BT,2026-05-28,11,130
+9,Hub USB 3.0,2026-05-28,11,150
+10,Cargador Rapido,2026-05-28,21,78
+1,Laptop Gamer,2026-05-29,8,175
+2,Monitor 4K,2026-05-29,15,153
+3,Teclado Mecanico,2026-05-29,14,162
+4,Raton Inal.,2026-05-29,20,177
+5,Cable USB-C,2026-05-29,21,101
+6,Adaptador HDMI,2026-05-29,12,12
+7,Webcam HD,2026-05-29,9,156
+8,Auriculares BT,2026-05-29,13,119
+9,Hub USB 3.0,2026-05-29,12,139
+10,Cargador Rapido,2026-05-29,25,57
+1,Laptop Gamer,2026-05-30,5,167
+2,Monitor 4K,2026-05-30,7,138
+3,Teclado Mecanico,2026-05-30,11,148
+4,Raton Inal.,2026-05-30,18,157
+5,Cable USB-C,2026-05-30,21,80
+6,Adaptador HDMI,2026-05-30,20,200
+7,Webcam HD,2026-05-30,6,147
+8,Auriculares BT,2026-05-30,7,106
+9,Hub USB 3.0,2026-05-30,9,127
+10,Cargador Rapido,2026-05-30,16,32
+1,Laptop Gamer,2026-05-31,6,162
+2,Monitor 4K,2026-05-31,7,131
+3,Teclado Mecanico,2026-05-31,11,137
+4,Raton Inal.,2026-05-31,18,139
+5,Cable USB-C,2026-05-31,26,59
+6,Adaptador HDMI,2026-05-31,16,180
+7,Webcam HD,2026-05-31,6,141
+8,Auriculares BT,2026-05-31,11,99
+9,Hub USB 3.0,2026-05-31,8,118
+10,Cargador Rapido,2026-05-31,16,16
+1,Laptop Gamer,2026-06-01,13,156
+2,Monitor 4K,2026-06-01,13,124
+3,Teclado Mecanico,2026-06-01,20,126
+4,Raton Inal.,2026-06-01,31,121
+5,Cable USB-C,2026-06-01,33,33
+6,Adaptador HDMI,2026-06-01,22,164
+7,Webcam HD,2026-06-01,11,135
+8,Auriculares BT,2026-06-01,19,88
+9,Hub USB 3.0,2026-06-01,11,110
+10,Cargador Rapido,2026-06-01,35,200
+1,Laptop Gamer,2026-06-02,11,143
+2,Monitor 4K,2026-06-02,13,111
+3,Teclado Mecanico,2026-06-02,15,106
+4,Raton Inal.,2026-06-02,25,90
+5,Cable USB-C,2026-06-02,0,0
+6,Adaptador HDMI,2026-06-02,16,142
+7,Webcam HD,2026-06-02,10,124
+8,Auriculares BT,2026-06-02,13,69
+9,Hub USB 3.0,2026-06-02,14,99
+10,Cargador Rapido,2026-06-02,41,165
+1,Laptop Gamer,2026-06-03,10,132
+2,Monitor 4K,2026-06-03,15,98
+3,Teclado Mecanico,2026-06-03,12,91
+4,Raton Inal.,2026-06-03,22,65
+5,Cable USB-C,2026-06-03,20,200
+6,Adaptador HDMI,2026-06-03,16,126
+7,Webcam HD,2026-06-03,11,114
+8,Auriculares BT,2026-06-03,17,56
+9,Hub USB 3.0,2026-06-03,10,85
+10,Cargador Rapido,2026-06-03,14,124
+1,Laptop Gamer,2026-06-04,8,122
+2,Monitor 4K,2026-06-04,20,83
+3,Teclado Mecanico,2026-06-04,15,79
+4,Raton Inal.,2026-06-04,21,43
+5,Cable USB-C,2026-06-04,34,180
+6,Adaptador HDMI,2026-06-04,20,110
+7,Webcam HD,2026-06-04,11,103
+8,Auriculares BT,2026-06-04,16,39
+9,Hub USB 3.0,2026-06-04,12,75
+10,Cargador Rapido,2026-06-04,18,110
+1,Laptop Gamer,2026-06-05,6,114
+2,Monitor 4K,2026-06-05,17,63
+3,Teclado Mecanico,2026-06-05,16,64
+4,Raton Inal.,2026-06-05,22,22
+5,Cable USB-C,2026-06-05,24,146
+6,Adaptador HDMI,2026-06-05,20,90
+7,Webcam HD,2026-06-05,17,92
+8,Auriculares BT,2026-06-05,16,23
+9,Hub USB 3.0,2026-06-05,10,63
+10,Cargador Rapido,2026-06-05,21,92
+1,Laptop Gamer,2026-06-06,6,108
+2,Monitor 4K,2026-06-06,7,46
+3,Teclado Mecanico,2026-06-06,14,48
+4,Raton Inal.,2026-06-06,0,0
+5,Cable USB-C,2026-06-06,22,122
+6,Adaptador HDMI,2026-06-06,18,70
+7,Webcam HD,2026-06-06,9,75
+8,Auriculares BT,2026-06-06,10,207
+9,Hub USB 3.0,2026-06-06,6,53
+10,Cargador Rapido,2026-06-06,19,71
+1,Laptop Gamer,2026-06-07,4,102
+2,Monitor 4K,2026-06-07,7,39
+3,Teclado Mecanico,2026-06-07,12,34
+4,Raton Inal.,2026-06-07,13,200
+5,Cable USB-C,2026-06-07,26,100
+6,Adaptador HDMI,2026-06-07,16,52
+7,Webcam HD,2026-06-07,9,66
+8,Auriculares BT,2026-06-07,8,197
+9,Hub USB 3.0,2026-06-07,7,47
+10,Cargador Rapido,2026-06-07,22,52
+1,Laptop Gamer,2026-06-08,8,98
+2,Monitor 4K,2026-06-08,14,32
+3,Teclado Mecanico,2026-06-08,19,22
+4,Raton Inal.,2026-06-08,26,187
+5,Cable USB-C,2026-06-08,26,74
+6,Adaptador HDMI,2026-06-08,22,36
+7,Webcam HD,2026-06-08,11,57
+8,Auriculares BT,2026-06-08,20,189
+9,Hub USB 3.0,2026-06-08,13,40
+10,Cargador Rapido,2026-06-08,26,30
+1,Laptop Gamer,2026-06-09,13,90
+2,Monitor 4K,2026-06-09,10,218
+3,Teclado Mecanico,2026-06-09,20,203
+4,Raton Inal.,2026-06-09,13,161
+5,Cable USB-C,2026-06-09,17,48
+6,Adaptador HDMI,2026-06-09,14,14
+7,Webcam HD,2026-06-09,8,46
+8,Auriculares BT,2026-06-09,15,169
+9,Hub USB 3.0,2026-06-09,12,27
+10,Cargador Rapido,2026-06-09,4,4
+1,Laptop Gamer,2026-06-10,8,77
+2,Monitor 4K,2026-06-10,21,208
+3,Teclado Mecanico,2026-06-10,18,183
+4,Raton Inal.,2026-06-10,17,148
+5,Cable USB-C,2026-06-10,23,31
+6,Adaptador HDMI,2026-06-10,17,200
+7,Webcam HD,2026-06-10,12,38
+8,Auriculares BT,2026-06-10,13,154
+9,Hub USB 3.0,2026-06-10,11,15
+10,Cargador Rapido,2026-06-10,22,200
+1,Laptop Gamer,2026-06-11,7,69
+2,Monitor 4K,2026-06-11,16,187
+3,Teclado Mecanico,2026-06-11,16,165
+4,Raton Inal.,2026-06-11,21,131
+5,Cable USB-C,2026-06-11,8,8
+6,Adaptador HDMI,2026-06-11,14,183
+7,Webcam HD,2026-06-11,10,26
+8,Auriculares BT,2026-06-11,14,141
+9,Hub USB 3.0,2026-06-11,13,204
+10,Cargador Rapido,2026-06-11,18,178
+1,Laptop Gamer,2026-06-12,8,62
+2,Monitor 4K,2026-06-12,20,171
+3,Teclado Mecanico,2026-06-12,21,149
+4,Raton Inal.,2026-06-12,18,110
+5,Cable USB-C,2026-06-12,22,200
+6,Adaptador HDMI,2026-06-12,15,169
+7,Webcam HD,2026-06-12,8,216
+8,Auriculares BT,2026-06-12,20,127
+9,Hub USB 3.0,2026-06-12,9,191
+10,Cargador Rapido,2026-06-12,19,160
+1,Laptop Gamer,2026-06-13,6,54
+2,Monitor 4K,2026-06-13,5,151
+3,Teclado Mecanico,2026-06-13,14,128
+4,Raton Inal.,2026-06-13,13,92
+5,Cable USB-C,2026-06-13,28,178
+6,Adaptador HDMI,2026-06-13,17,154
+7,Webcam HD,2026-06-13,5,208
+8,Auriculares BT,2026-06-13,10,107
+9,Hub USB 3.0,2026-06-13,10,182
+10,Cargador Rapido,2026-06-13,20,141
+1,Laptop Gamer,2026-06-14,5,48
+2,Monitor 4K,2026-06-14,10,146
+3,Teclado Mecanico,2026-06-14,27,114
+4,Raton Inal.,2026-06-14,19,79
+5,Cable USB-C,2026-06-14,20,150
+6,Adaptador HDMI,2026-06-14,15,137
+7,Webcam HD,2026-06-14,6,203
+8,Auriculares BT,2026-06-14,12,97
+9,Hub USB 3.0,2026-06-14,6,172
+10,Cargador Rapido,2026-06-14,22,121
+1,Laptop Gamer,2026-06-15,14,43
+2,Monitor 4K,2026-06-15,17,136
+3,Teclado Mecanico,2026-06-15,25,87
+4,Raton Inal.,2026-06-15,28,60
+5,Cable USB-C,2026-06-15,39,130
+6,Adaptador HDMI,2026-06-15,28,122
+7,Webcam HD,2026-06-15,10,197
+8,Auriculares BT,2026-06-15,19,85
+9,Hub USB 3.0,2026-06-15,25,166
+10,Cargador Rapido,2026-06-15,30,99
+1,Laptop Gamer,2026-06-16,9,29
+2,Monitor 4K,2026-06-16,8,119
+3,Teclado Mecanico,2026-06-16,15,62
+4,Raton Inal.,2026-06-16,22,32
+5,Cable USB-C,2026-06-16,32,91
+6,Adaptador HDMI,2026-06-16,20,94
+7,Webcam HD,2026-06-16,8,187
+8,Auriculares BT,2026-06-16,22,66
+9,Hub USB 3.0,2026-06-16,28,141
+10,Cargador Rapido,2026-06-16,18,69
+1,Laptop Gamer,2026-06-17,9,20
+2,Monitor 4K,2026-06-17,9,111
+3,Teclado Mecanico,2026-06-17,23,47
+4,Raton Inal.,2026-06-17,10,10
+5,Cable USB-C,2026-06-17,42,59
+6,Adaptador HDMI,2026-06-17,18,74
+7,Webcam HD,2026-06-17,12,179
+8,Auriculares BT,2026-06-17,19,44
+9,Hub USB 3.0,2026-06-17,22,113
+10,Cargador Rapido,2026-06-17,19,51
+1,Laptop Gamer,2026-06-18,6,211
+2,Monitor 4K,2026-06-18,15,102
+3,Teclado Mecanico,2026-06-18,15,24
+4,Raton Inal.,2026-06-18,22,200
+5,Cable USB-C,2026-06-18,17,17
+6,Adaptador HDMI,2026-06-18,17,56
+7,Webcam HD,2026-06-18,15,167
+8,Auriculares BT,2026-06-18,25,25
+9,Hub USB 3.0,2026-06-18,9,91
+10,Cargador Rapido,2026-06-18,20,32
+1,Laptop Gamer,2026-06-19,9,205
+2,Monitor 4K,2026-06-19,14,87
+3,Teclado Mecanico,2026-06-19,9,9
+4,Raton Inal.,2026-06-19,25,178
+5,Cable USB-C,2026-06-19,0,0
+6,Adaptador HDMI,2026-06-19,22,39
+7,Webcam HD,2026-06-19,8,152
+8,Auriculares BT,2026-06-19,0,0
+9,Hub USB 3.0,2026-06-19,14,82
+10,Cargador Rapido,2026-06-19,12,12
+1,Laptop Gamer,2026-06-20,6,196
+2,Monitor 4K,2026-06-20,8,73
+3,Teclado Mecanico,2026-06-20,16,200
+4,Raton Inal.,2026-06-20,20,153
+5,Cable USB-C,2026-06-20,21,200
+6,Adaptador HDMI,2026-06-20,17,17
+7,Webcam HD,2026-06-20,6,144
+8,Auriculares BT,2026-06-20,11,200
+9,Hub USB 3.0,2026-06-20,10,68
+10,Cargador Rapido,2026-06-20,21,200
+1,Laptop Gamer,2026-06-21,5,190
+2,Monitor 4K,2026-06-21,7,65
+3,Teclado Mecanico,2026-06-21,15,184
+4,Raton Inal.,2026-06-21,16,133
+5,Cable USB-C,2026-06-21,21,179
+6,Adaptador HDMI,2026-06-21,19,200
+7,Webcam HD,2026-06-21,6,138
+8,Auriculares BT,2026-06-21,12,189
+9,Hub USB 3.0,2026-06-21,7,58
+10,Cargador Rapido,2026-06-21,25,179
+1,Laptop Gamer,2026-06-22,9,185
+2,Monitor 4K,2026-06-22,15,58
+3,Teclado Mecanico,2026-06-22,20,169
+4,Raton Inal.,2026-06-22,18,117
+5,Cable USB-C,2026-06-22,26,158
+6,Adaptador HDMI,2026-06-22,26,181
+7,Webcam HD,2026-06-22,15,132
+8,Auriculares BT,2026-06-22,18,177
+9,Hub USB 3.0,2026-06-22,11,51
+10,Cargador Rapido,2026-06-22,41,154
+1,Laptop Gamer,2026-06-23,9,176
+2,Monitor 4K,2026-06-23,13,43
+3,Teclado Mecanico,2026-06-23,20,149
+4,Raton Inal.,2026-06-23,19,99
+5,Cable USB-C,2026-06-23,23,132
+6,Adaptador HDMI,2026-06-23,11,155
+7,Webcam HD,2026-06-23,13,117
+8,Auriculares BT,2026-06-23,16,159
+9,Hub USB 3.0,2026-06-23,8,40
+10,Cargador Rapido,2026-06-23,22,113
+1,Laptop Gamer,2026-06-24,7,167
+2,Monitor 4K,2026-06-24,15,30
+3,Teclado Mecanico,2026-06-24,15,129
+4,Raton Inal.,2026-06-24,18,80
+5,Cable USB-C,2026-06-24,21,109
+6,Adaptador HDMI,2026-06-24,15,144
+7,Webcam HD,2026-06-24,7,104
+8,Auriculares BT,2026-06-24,12,143
+9,Hub USB 3.0,2026-06-24,10,32
+10,Cargador Rapido,2026-06-24,35,91
+1,Laptop Gamer,2026-06-25,8,160
+2,Monitor 4K,2026-06-25,11,15
+3,Teclado Mecanico,2026-06-25,24,114
+4,Raton Inal.,2026-06-25,19,62
+5,Cable USB-C,2026-06-25,31,88
+6,Adaptador HDMI,2026-06-25,24,129
+7,Webcam HD,2026-06-25,8,97
+8,Auriculares BT,2026-06-25,15,131
+9,Hub USB 3.0,2026-06-25,11,22
+10,Cargador Rapido,2026-06-25,20,56
+1,Laptop Gamer,2026-06-26,9,152
+2,Monitor 4K,2026-06-26,11,204
+3,Teclado Mecanico,2026-06-26,14,90
+4,Raton Inal.,2026-06-26,21,43
+5,Cable USB-C,2026-06-26,24,57
+6,Adaptador HDMI,2026-06-26,15,105
+7,Webcam HD,2026-06-26,12,89
+8,Auriculares BT,2026-06-26,18,116
+9,Hub USB 3.0,2026-06-26,12,211
+10,Cargador Rapido,2026-06-26,21,36
+1,Laptop Gamer,2026-06-27,8,143
+2,Monitor 4K,2026-06-27,7,193
+3,Teclado Mecanico,2026-06-27,19,76
+4,Raton Inal.,2026-06-27,20,22
+5,Cable USB-C,2026-06-27,20,33
+6,Adaptador HDMI,2026-06-27,30,90
+7,Webcam HD,2026-06-27,7,77
+8,Auriculares BT,2026-06-27,13,98
+9,Hub USB 3.0,2026-06-27,9,199
+10,Cargador Rapido,2026-06-27,15,15
+1,Laptop Gamer,2026-06-28,8,135
+2,Monitor 4K,2026-06-28,8,186
+3,Teclado Mecanico,2026-06-28,9,57
+4,Raton Inal.,2026-06-28,2,2
+5,Cable USB-C,2026-06-28,13,13
+6,Adaptador HDMI,2026-06-28,24,60
+7,Webcam HD,2026-06-28,6,70
+8,Auriculares BT,2026-06-28,11,85
+9,Hub USB 3.0,2026-06-28,9,190
+10,Cargador Rapido,2026-06-28,17,200
+1,Laptop Gamer,2026-06-29,5,127
+2,Monitor 4K,2026-06-29,13,178
+3,Teclado Mecanico,2026-06-29,23,48
+4,Raton Inal.,2026-06-29,27,200
+5,Cable USB-C,2026-06-29,39,200
+6,Adaptador HDMI,2026-06-29,18,36
+7,Webcam HD,2026-06-29,9,64
+8,Auriculares BT,2026-06-29,19,74
+9,Hub USB 3.0,2026-06-29,14,181
+10,Cargador Rapido,2026-06-29,28,183
+1,Laptop Gamer,2026-06-30,10,122
+2,Monitor 4K,2026-06-30,14,165
+3,Teclado Mecanico,2026-06-30,17,25
+4,Raton Inal.,2026-06-30,24,173
+5,Cable USB-C,2026-06-30,28,161
+6,Adaptador HDMI,2026-06-30,18,18
+7,Webcam HD,2026-06-30,13,55
+8,Auriculares BT,2026-06-30,20,55
+9,Hub USB 3.0,2026-06-30,10,167
+10,Cargador Rapido,2026-06-30,25,155
+1,Laptop Gamer,2026-07-01,13,112
+2,Monitor 4K,2026-07-01,11,151
+3,Teclado Mecanico,2026-07-01,8,8
+4,Raton Inal.,2026-07-01,25,149
+5,Cable USB-C,2026-07-01,29,133
+6,Adaptador HDMI,2026-07-01,21,200
+7,Webcam HD,2026-07-01,11,42
+8,Auriculares BT,2026-07-01,16,35
+9,Hub USB 3.0,2026-07-01,14,157
+10,Cargador Rapido,2026-07-01,18,130
+1,Laptop Gamer,2026-07-02,14,99
+2,Monitor 4K,2026-07-02,14,140
+3,Teclado Mecanico,2026-07-02,19,200
+4,Raton Inal.,2026-07-02,29,124
+5,Cable USB-C,2026-07-02,36,104
+6,Adaptador HDMI,2026-07-02,20,179
+7,Webcam HD,2026-07-02,12,31
+8,Auriculares BT,2026-07-02,15,19
+9,Hub USB 3.0,2026-07-02,14,143
+10,Cargador Rapido,2026-07-02,24,112
+1,Laptop Gamer,2026-07-03,11,85
+2,Monitor 4K,2026-07-03,10,126
+3,Teclado Mecanico,2026-07-03,17,181
+4,Raton Inal.,2026-07-03,24,95
+5,Cable USB-C,2026-07-03,26,68
+6,Adaptador HDMI,2026-07-03,18,159
+7,Webcam HD,2026-07-03,11,19
+8,Auriculares BT,2026-07-03,16,204
+9,Hub USB 3.0,2026-07-03,9,129
+10,Cargador Rapido,2026-07-03,29,88
+1,Laptop Gamer,2026-07-04,5,74
+2,Monitor 4K,2026-07-04,8,116
+3,Teclado Mecanico,2026-07-04,14,164
+4,Raton Inal.,2026-07-04,16,71
+5,Cable USB-C,2026-07-04,25,42
+6,Adaptador HDMI,2026-07-04,12,141
+7,Webcam HD,2026-07-04,9,208
+8,Auriculares BT,2026-07-04,15,188
+9,Hub USB 3.0,2026-07-04,6,120
+10,Cargador Rapido,2026-07-04,21,59
+1,Laptop Gamer,2026-07-05,4,69
+2,Monitor 4K,2026-07-05,8,108
+3,Teclado Mecanico,2026-07-05,22,150
+4,Raton Inal.,2026-07-05,21,55
+5,Cable USB-C,2026-07-05,17,17
+6,Adaptador HDMI,2026-07-05,23,129
+7,Webcam HD,2026-07-05,8,199
+8,Auriculares BT,2026-07-05,10,173
+9,Hub USB 3.0,2026-07-05,9,114
+10,Cargador Rapido,2026-07-05,25,38
+1,Laptop Gamer,2026-07-06,8,65
+2,Monitor 4K,2026-07-06,22,100
+3,Teclado Mecanico,2026-07-06,35,128
+4,Raton Inal.,2026-07-06,26,34
+5,Cable USB-C,2026-07-06,0,0
+6,Adaptador HDMI,2026-07-06,21,106
+7,Webcam HD,2026-07-06,14,191
+8,Auriculares BT,2026-07-06,18,163
+9,Hub USB 3.0,2026-07-06,18,105
+10,Cargador Rapido,2026-07-06,13,13
+1,Laptop Gamer,2026-07-07,10,57
+2,Monitor 4K,2026-07-07,13,78
+3,Teclado Mecanico,2026-07-07,27,93
+4,Raton Inal.,2026-07-07,8,8
+5,Cable USB-C,2026-07-07,32,200
+6,Adaptador HDMI,2026-07-07,23,85
+7,Webcam HD,2026-07-07,12,177
+8,Auriculares BT,2026-07-07,18,145
+9,Hub USB 3.0,2026-07-07,10,87
+10,Cargador Rapido,2026-07-07,26,200
+1,Laptop Gamer,2026-07-08,11,47
+2,Monitor 4K,2026-07-08,15,65
+3,Teclado Mecanico,2026-07-08,21,66
+4,Raton Inal.,2026-07-08,22,200
+5,Cable USB-C,2026-07-08,30,168
+6,Adaptador HDMI,2026-07-08,17,62
+7,Webcam HD,2026-07-08,9,165
+8,Auriculares BT,2026-07-08,15,127
+9,Hub USB 3.0,2026-07-08,11,77
+10,Cargador Rapido,2026-07-08,24,174
+1,Laptop Gamer,2026-07-09,7,36
+2,Monitor 4K,2026-07-09,15,50
+3,Teclado Mecanico,2026-07-09,15,45
+4,Raton Inal.,2026-07-09,27,178
+5,Cable USB-C,2026-07-09,27,138
+6,Adaptador HDMI,2026-07-09,20,45
+7,Webcam HD,2026-07-09,11,156
+8,Auriculares BT,2026-07-09,14,112
+9,Hub USB 3.0,2026-07-09,20,66
+10,Cargador Rapido,2026-07-09,22,150
+1,Laptop Gamer,2026-07-10,11,29
+2,Monitor 4K,2026-07-10,11,35
+3,Teclado Mecanico,2026-07-10,18,30
+4,Raton Inal.,2026-07-10,25,151
+5,Cable USB-C,2026-07-10,28,111
+6,Adaptador HDMI,2026-07-10,18,25
+7,Webcam HD,2026-07-10,11,145
+8,Auriculares BT,2026-07-10,15,98
+9,Hub USB 3.0,2026-07-10,19,46
+10,Cargador Rapido,2026-07-10,25,128
+1,Laptop Gamer,2026-07-11,6,218
+2,Monitor 4K,2026-07-11,12,24
+3,Teclado Mecanico,2026-07-11,11,12
+4,Raton Inal.,2026-07-11,18,126
+5,Cable USB-C,2026-07-11,25,83
+6,Adaptador HDMI,2026-07-11,7,7
+7,Webcam HD,2026-07-11,8,134
+8,Auriculares BT,2026-07-11,11,83
+9,Hub USB 3.0,2026-07-11,9,27
+10,Cargador Rapido,2026-07-11,19,103
+1,Laptop Gamer,2026-07-12,7,212
+2,Monitor 4K,2026-07-12,9,212
+3,Teclado Mecanico,2026-07-12,12,201
+4,Raton Inal.,2026-07-12,16,108
+5,Cable USB-C,2026-07-12,27,58
+6,Adaptador HDMI,2026-07-12,16,200
+7,Webcam HD,2026-07-12,11,126
+8,Auriculares BT,2026-07-12,13,72
+9,Hub USB 3.0,2026-07-12,9,18
+10,Cargador Rapido,2026-07-12,26,84
+1,Laptop Gamer,2026-07-13,10,205
+2,Monitor 4K,2026-07-13,20,203
+3,Teclado Mecanico,2026-07-13,20,189
+4,Raton Inal.,2026-07-13,32,92
+5,Cable USB-C,2026-07-13,31,31
+6,Adaptador HDMI,2026-07-13,31,184
+7,Webcam HD,2026-07-13,15,115
+8,Auriculares BT,2026-07-13,28,59
+9,Hub USB 3.0,2026-07-13,14,209
+10,Cargador Rapido,2026-07-13,31,58
+1,Laptop Gamer,2026-07-14,7,195
+2,Monitor 4K,2026-07-14,12,183
+3,Teclado Mecanico,2026-07-14,19,169
+4,Raton Inal.,2026-07-14,28,60
+5,Cable USB-C,2026-07-14,0,0
+6,Adaptador HDMI,2026-07-14,20,153
+7,Webcam HD,2026-07-14,10,100
+8,Auriculares BT,2026-07-14,18,31
+9,Hub USB 3.0,2026-07-14,14,195
+10,Cargador Rapido,2026-07-14,27,27
+1,Laptop Gamer,2026-07-15,8,188
+2,Monitor 4K,2026-07-15,14,171
+3,Teclado Mecanico,2026-07-15,21,150
+4,Raton Inal.,2026-07-15,22,32
+5,Cable USB-C,2026-07-15,34,200
+6,Adaptador HDMI,2026-07-15,24,133
+7,Webcam HD,2026-07-15,8,90
+8,Auriculares BT,2026-07-15,13,13
+9,Hub USB 3.0,2026-07-15,13,181
+10,Cargador Rapido,2026-07-15,0,0
+1,Laptop Gamer,2026-07-16,9,180
+2,Monitor 4K,2026-07-16,19,157
+3,Teclado Mecanico,2026-07-16,12,129
+4,Raton Inal.,2026-07-16,10,10
+5,Cable USB-C,2026-07-16,33,166
+6,Adaptador HDMI,2026-07-16,21,109
+7,Webcam HD,2026-07-16,13,82
+8,Auriculares BT,2026-07-16,12,200
+9,Hub USB 3.0,2026-07-16,16,168
+10,Cargador Rapido,2026-07-16,29,200
+1,Laptop Gamer,2026-07-17,10,171
+2,Monitor 4K,2026-07-17,12,138
+3,Teclado Mecanico,2026-07-17,18,117
+4,Raton Inal.,2026-07-17,21,200
+5,Cable USB-C,2026-07-17,21,133
+6,Adaptador HDMI,2026-07-17,20,88
+7,Webcam HD,2026-07-17,11,69
+8,Auriculares BT,2026-07-17,19,188
+9,Hub USB 3.0,2026-07-17,8,152
+10,Cargador Rapido,2026-07-17,26,171
+1,Laptop Gamer,2026-07-18,4,161
+2,Monitor 4K,2026-07-18,9,126
+3,Teclado Mecanico,2026-07-18,14,99
+4,Raton Inal.,2026-07-18,17,179
+5,Cable USB-C,2026-07-18,31,112
+6,Adaptador HDMI,2026-07-18,15,68
+7,Webcam HD,2026-07-18,19,58
+8,Auriculares BT,2026-07-18,11,169
+9,Hub USB 3.0,2026-07-18,7,144
+10,Cargador Rapido,2026-07-18,22,145
+1,Laptop Gamer,2026-07-19,4,157
+2,Monitor 4K,2026-07-19,9,117
+3,Teclado Mecanico,2026-07-19,12,85
+4,Raton Inal.,2026-07-19,22,162
+5,Cable USB-C,2026-07-19,30,81
+6,Adaptador HDMI,2026-07-19,15,53
+7,Webcam HD,2026-07-19,13,39
+8,Auriculares BT,2026-07-19,13,158
+9,Hub USB 3.0,2026-07-19,10,137
+10,Cargador Rapido,2026-07-19,51,123
+1,Laptop Gamer,2026-07-20,14,153
+2,Monitor 4K,2026-07-20,16,108
+3,Teclado Mecanico,2026-07-20,21,73
+4,Raton Inal.,2026-07-20,34,140
+5,Cable USB-C,2026-07-20,32,51
+6,Adaptador HDMI,2026-07-20,26,38
+7,Webcam HD,2026-07-20,13,26
+8,Auriculares BT,2026-07-20,27,145
+9,Hub USB 3.0,2026-07-20,15,127
+10,Cargador Rapido,2026-07-20,47,72
+1,Laptop Gamer,2026-07-21,9,139
+2,Monitor 4K,2026-07-21,11,92
+3,Teclado Mecanico,2026-07-21,16,52
+4,Raton Inal.,2026-07-21,25,106
+5,Cable USB-C,2026-07-21,19,19
+6,Adaptador HDMI,2026-07-21,12,12
+7,Webcam HD,2026-07-21,12,213
+8,Auriculares BT,2026-07-21,27,118
+9,Hub USB 3.0,2026-07-21,12,112
+10,Cargador Rapido,2026-07-21,25,25
+1,Laptop Gamer,2026-07-22,6,130
+2,Monitor 4K,2026-07-22,24,81
+3,Teclado Mecanico,2026-07-22,14,36
+4,Raton Inal.,2026-07-22,24,81
+5,Cable USB-C,2026-07-22,0,0
+6,Adaptador HDMI,2026-07-22,23,200
+7,Webcam HD,2026-07-22,12,201
+8,Auriculares BT,2026-07-22,14,91
+9,Hub USB 3.0,2026-07-22,15,100
+10,Cargador Rapido,2026-07-22,0,0
+1,Laptop Gamer,2026-07-23,10,124
+2,Monitor 4K,2026-07-23,12,57
+3,Teclado Mecanico,2026-07-23,17,22
+4,Raton Inal.,2026-07-23,33,57
+5,Cable USB-C,2026-07-23,34,200
+6,Adaptador HDMI,2026-07-23,22,177
+7,Webcam HD,2026-07-23,11,189
+8,Auriculares BT,2026-07-23,16,77
+9,Hub USB 3.0,2026-07-23,13,85
+10,Cargador Rapido,2026-07-23,28,200
+1,Laptop Gamer,2026-07-24,7,114
+2,Monitor 4K,2026-07-24,16,45
+3,Teclado Mecanico,2026-07-24,14,205
+4,Raton Inal.,2026-07-24,24,24
+5,Cable USB-C,2026-07-24,25,166
+6,Adaptador HDMI,2026-07-24,22,155
+7,Webcam HD,2026-07-24,14,178
+8,Auriculares BT,2026-07-24,15,61
+9,Hub USB 3.0,2026-07-24,13,72
+10,Cargador Rapido,2026-07-24,33,172
+1,Laptop Gamer,2026-07-25,6,107
+2,Monitor 4K,2026-07-25,9,29
+3,Teclado Mecanico,2026-07-25,10,191
+4,Raton Inal.,2026-07-25,0,0
+5,Cable USB-C,2026-07-25,32,141
+6,Adaptador HDMI,2026-07-25,21,133
+7,Webcam HD,2026-07-25,9,164
+8,Auriculares BT,2026-07-25,14,46
+9,Hub USB 3.0,2026-07-25,11,59
+10,Cargador Rapido,2026-07-25,22,139
+1,Laptop Gamer,2026-07-26,6,101
+2,Monitor 4K,2026-07-26,7,20
+3,Teclado Mecanico,2026-07-26,10,181
+4,Raton Inal.,2026-07-26,13,200
+5,Cable USB-C,2026-07-26,23,109
+6,Adaptador HDMI,2026-07-26,25,112
+7,Webcam HD,2026-07-26,6,155
+8,Auriculares BT,2026-07-26,12,32
+9,Hub USB 3.0,2026-07-26,7,48
+10,Cargador Rapido,2026-07-26,21,117
+1,Laptop Gamer,2026-07-27,20,95
+2,Monitor 4K,2026-07-27,14,213
+3,Teclado Mecanico,2026-07-27,25,171
+4,Raton Inal.,2026-07-27,36,187
+5,Cable USB-C,2026-07-27,23,86
+6,Adaptador HDMI,2026-07-27,22,87
+7,Webcam HD,2026-07-27,14,149
+8,Auriculares BT,2026-07-27,20,20
+9,Hub USB 3.0,2026-07-27,14,41
+10,Cargador Rapido,2026-07-27,30,96
+1,Laptop Gamer,2026-07-28,13,75
+2,Monitor 4K,2026-07-28,10,199
+3,Teclado Mecanico,2026-07-28,22,146
+4,Raton Inal.,2026-07-28,16,151
+5,Cable USB-C,2026-07-28,44,63
+6,Adaptador HDMI,2026-07-28,24,65
+7,Webcam HD,2026-07-28,13,135
+8,Auriculares BT,2026-07-28,18,200
+9,Hub USB 3.0,2026-07-28,12,27
+10,Cargador Rapido,2026-07-28,27,66
+1,Laptop Gamer,2026-07-29,16,62
+2,Monitor 4K,2026-07-29,15,189
+3,Teclado Mecanico,2026-07-29,17,124
+4,Raton Inal.,2026-07-29,19,135
+5,Cable USB-C,2026-07-29,19,19
+6,Adaptador HDMI,2026-07-29,17,41
+7,Webcam HD,2026-07-29,14,122
+8,Auriculares BT,2026-07-29,14,182
+9,Hub USB 3.0,2026-07-29,9,15
+10,Cargador Rapido,2026-07-29,27,39
+1,Laptop Gamer,2026-07-30,12,46
+2,Monitor 4K,2026-07-30,16,174
+3,Teclado Mecanico,2026-07-30,15,107
+4,Raton Inal.,2026-07-30,17,116
+5,Cable USB-C,2026-07-30,0,0
+6,Adaptador HDMI,2026-07-30,20,24
+7,Webcam HD,2026-07-30,10,108
+8,Auriculares BT,2026-07-30,17,168
+9,Hub USB 3.0,2026-07-30,18,206
+10,Cargador Rapido,2026-07-30,12,12
+1,Laptop Gamer,2026-07-31,10,34
+2,Monitor 4K,2026-07-31,12,158
+3,Teclado Mecanico,2026-07-31,22,92
+4,Raton Inal.,2026-07-31,22,99
+5,Cable USB-C,2026-07-31,26,200
+6,Adaptador HDMI,2026-07-31,4,4
+7,Webcam HD,2026-07-31,13,98
+8,Auriculares BT,2026-07-31,16,151
+9,Hub USB 3.0,2026-07-31,16,188
+10,Cargador Rapido,2026-07-31,27,200
+1,Laptop Gamer,2026-08-01,5,24
+2,Monitor 4K,2026-08-01,9,146
+3,Teclado Mecanico,2026-08-01,14,70
+4,Raton Inal.,2026-08-01,14,77
+5,Cable USB-C,2026-08-01,32,174
+6,Adaptador HDMI,2026-08-01,18,200
+7,Webcam HD,2026-08-01,8,85
+8,Auriculares BT,2026-08-01,14,135
+9,Hub USB 3.0,2026-08-01,18,172
+10,Cargador Rapido,2026-08-01,20,173
+1,Laptop Gamer,2026-08-02,6,219
+2,Monitor 4K,2026-08-02,7,137
+3,Teclado Mecanico,2026-08-02,18,56
+4,Raton Inal.,2026-08-02,15,63
+5,Cable USB-C,2026-08-02,27,142
+6,Adaptador HDMI,2026-08-02,16,182
+7,Webcam HD,2026-08-02,22,77
+8,Auriculares BT,2026-08-02,9,121
+9,Hub USB 3.0,2026-08-02,10,154
+10,Cargador Rapido,2026-08-02,20,153
+1,Laptop Gamer,2026-08-03,10,213
+2,Monitor 4K,2026-08-03,18,130
+3,Teclado Mecanico,2026-08-03,25,38
+4,Raton Inal.,2026-08-03,36,48
+5,Cable USB-C,2026-08-03,25,115
+6,Adaptador HDMI,2026-08-03,25,166
+7,Webcam HD,2026-08-03,32,55
+8,Auriculares BT,2026-08-03,13,112
+9,Hub USB 3.0,2026-08-03,16,144
+10,Cargador Rapido,2026-08-03,29,133
+1,Laptop Gamer,2026-08-04,10,203
+2,Monitor 4K,2026-08-04,12,112
+3,Teclado Mecanico,2026-08-04,13,13
+4,Raton Inal.,2026-08-04,12,12
+5,Cable USB-C,2026-08-04,34,90
+6,Adaptador HDMI,2026-08-04,25,141
+7,Webcam HD,2026-08-04,12,23
+8,Auriculares BT,2026-08-04,14,99
+9,Hub USB 3.0,2026-08-04,9,128
+10,Cargador Rapido,2026-08-04,27,104
+1,Laptop Gamer,2026-08-05,7,193
+2,Monitor 4K,2026-08-05,12,100
+3,Teclado Mecanico,2026-08-05,15,200
+4,Raton Inal.,2026-08-05,0,0
+5,Cable USB-C,2026-08-05,24,56
+6,Adaptador HDMI,2026-08-05,20,116
+7,Webcam HD,2026-08-05,10,11
+8,Auriculares BT,2026-08-05,18,85
+9,Hub USB 3.0,2026-08-05,15,119
+10,Cargador Rapido,2026-08-05,42,77
+1,Laptop Gamer,2026-08-06,10,186
+2,Monitor 4K,2026-08-06,20,88
+3,Teclado Mecanico,2026-08-06,13,185
+4,Raton Inal.,2026-08-06,30,200
+5,Cable USB-C,2026-08-06,32,32
+6,Adaptador HDMI,2026-08-06,29,96
+7,Webcam HD,2026-08-06,11,201
+8,Auriculares BT,2026-08-06,21,67
+9,Hub USB 3.0,2026-08-06,13,104
+10,Cargador Rapido,2026-08-06,35,35
+1,Laptop Gamer,2026-08-07,8,176
+2,Monitor 4K,2026-08-07,15,68
+3,Teclado Mecanico,2026-08-07,20,172
+4,Raton Inal.,2026-08-07,38,170
+5,Cable USB-C,2026-08-07,0,0
+6,Adaptador HDMI,2026-08-07,19,67
+7,Webcam HD,2026-08-07,15,190
+8,Auriculares BT,2026-08-07,12,46
+9,Hub USB 3.0,2026-08-07,11,91
+10,Cargador Rapido,2026-08-07,0,0
+1,Laptop Gamer,2026-08-08,6,168
+2,Monitor 4K,2026-08-08,10,53
+3,Teclado Mecanico,2026-08-08,19,152
+4,Raton Inal.,2026-08-08,22,132
+5,Cable USB-C,2026-08-08,22,200
+6,Adaptador HDMI,2026-08-08,19,48
+7,Webcam HD,2026-08-08,7,175
+8,Auriculares BT,2026-08-08,13,34
+9,Hub USB 3.0,2026-08-08,10,80
+10,Cargador Rapido,2026-08-08,25,200
+1,Laptop Gamer,2026-08-09,4,162
+2,Monitor 4K,2026-08-09,7,43
+3,Teclado Mecanico,2026-08-09,16,133
+4,Raton Inal.,2026-08-09,29,110
+5,Cable USB-C,2026-08-09,26,178
+6,Adaptador HDMI,2026-08-09,21,29
+7,Webcam HD,2026-08-09,7,168
+8,Auriculares BT,2026-08-09,9,21
+9,Hub USB 3.0,2026-08-09,13,70
+10,Cargador Rapido,2026-08-09,18,175
+1,Laptop Gamer,2026-08-10,7,158
+2,Monitor 4K,2026-08-10,9,36
+3,Teclado Mecanico,2026-08-10,11,117
+4,Raton Inal.,2026-08-10,25,81
+5,Cable USB-C,2026-08-10,17,152
+6,Adaptador HDMI,2026-08-10,8,8
+7,Webcam HD,2026-08-10,7,161
+8,Auriculares BT,2026-08-10,12,212
+9,Hub USB 3.0,2026-08-10,9,57
+10,Cargador Rapido,2026-08-10,17,157
+1,Laptop Gamer,2026-08-11,8,151
+2,Monitor 4K,2026-08-11,13,27
+3,Teclado Mecanico,2026-08-11,13,106
+4,Raton Inal.,2026-08-11,21,56
+5,Cable USB-C,2026-08-11,23,135
+6,Adaptador HDMI,2026-08-11,25,200
+7,Webcam HD,2026-08-11,12,154
+8,Auriculares BT,2026-08-11,16,200
+9,Hub USB 3.0,2026-08-11,12,48
+10,Cargador Rapido,2026-08-11,25,140
+1,Laptop Gamer,2026-08-12,15,143
+2,Monitor 4K,2026-08-12,13,214
+3,Teclado Mecanico,2026-08-12,15,93
+4,Raton Inal.,2026-08-12,35,35
+5,Cable USB-C,2026-08-12,17,112
+6,Adaptador HDMI,2026-08-12,20,175
+7,Webcam HD,2026-08-12,11,142
+8,Auriculares BT,2026-08-12,13,184
+9,Hub USB 3.0,2026-08-12,14,36
+10,Cargador Rapido,2026-08-12,24,115
+1,Laptop Gamer,2026-08-13,7,128
+2,Monitor 4K,2026-08-13,12,201
+3,Teclado Mecanico,2026-08-13,10,78
+4,Raton Inal.,2026-08-13,0,0
+5,Cable USB-C,2026-08-13,29,95
+6,Adaptador HDMI,2026-08-13,17,155
+7,Webcam HD,2026-08-13,13,131
+8,Auriculares BT,2026-08-13,12,171
+9,Hub USB 3.0,2026-08-13,10,22
+10,Cargador Rapido,2026-08-13,26,91
+1,Laptop Gamer,2026-08-14,8,121
+2,Monitor 4K,2026-08-14,14,189
+3,Teclado Mecanico,2026-08-14,15,68
+4,Raton Inal.,2026-08-14,21,200
+5,Cable USB-C,2026-08-14,26,66
+6,Adaptador HDMI,2026-08-14,17,138
+7,Webcam HD,2026-08-14,12,118
+8,Auriculares BT,2026-08-14,14,159
+9,Hub USB 3.0,2026-08-14,12,212
+10,Cargador Rapido,2026-08-14,21,65
+1,Laptop Gamer,2026-08-15,4,113
+2,Monitor 4K,2026-08-15,10,175
+3,Teclado Mecanico,2026-08-15,14,53
+4,Raton Inal.,2026-08-15,27,179
+5,Cable USB-C,2026-08-15,21,40
+6,Adaptador HDMI,2026-08-15,17,121
+7,Webcam HD,2026-08-15,8,106
+8,Auriculares BT,2026-08-15,14,145
+9,Hub USB 3.0,2026-08-15,8,200
+10,Cargador Rapido,2026-08-15,18,44
+1,Laptop Gamer,2026-08-16,7,109
+2,Monitor 4K,2026-08-16,8,165
+3,Teclado Mecanico,2026-08-16,15,39
+4,Raton Inal.,2026-08-16,20,152
+5,Cable USB-C,2026-08-16,19,19
+6,Adaptador HDMI,2026-08-16,17,104
+7,Webcam HD,2026-08-16,8,98
+8,Auriculares BT,2026-08-16,12,131
+9,Hub USB 3.0,2026-08-16,15,192
+10,Cargador Rapido,2026-08-16,19,26
+1,Laptop Gamer,2026-08-17,11,102
+2,Monitor 4K,2026-08-17,13,157
+3,Teclado Mecanico,2026-08-17,17,24
+4,Raton Inal.,2026-08-17,26,132
+5,Cable USB-C,2026-08-17,0,0
+6,Adaptador HDMI,2026-08-17,33,87
+7,Webcam HD,2026-08-17,11,90
+8,Auriculares BT,2026-08-17,18,119
+9,Hub USB 3.0,2026-08-17,26,177
+10,Cargador Rapido,2026-08-17,7,7
+1,Laptop Gamer,2026-08-18,6,91
+2,Monitor 4K,2026-08-18,13,144
+3,Teclado Mecanico,2026-08-18,14,207
+4,Raton Inal.,2026-08-18,15,106
+5,Cable USB-C,2026-08-18,28,200
+6,Adaptador HDMI,2026-08-18,20,54
+7,Webcam HD,2026-08-18,14,79
+8,Auriculares BT,2026-08-18,13,101
+9,Hub USB 3.0,2026-08-18,13,151
+10,Cargador Rapido,2026-08-18,22,200
+1,Laptop Gamer,2026-08-19,9,85
+2,Monitor 4K,2026-08-19,17,131
+3,Teclado Mecanico,2026-08-19,22,193
+4,Raton Inal.,2026-08-19,28,91
+5,Cable USB-C,2026-08-19,28,172
+6,Adaptador HDMI,2026-08-19,22,34
+7,Webcam HD,2026-08-19,10,65
+8,Auriculares BT,2026-08-19,16,88
+9,Hub USB 3.0,2026-08-19,10,138
+10,Cargador Rapido,2026-08-19,24,178
+1,Laptop Gamer,2026-08-20,10,76
+2,Monitor 4K,2026-08-20,19,114
+3,Teclado Mecanico,2026-08-20,16,171
+4,Raton Inal.,2026-08-20,23,63
+5,Cable USB-C,2026-08-20,28,144
+6,Adaptador HDMI,2026-08-20,12,12
+7,Webcam HD,2026-08-20,10,55
+8,Auriculares BT,2026-08-20,20,72
+9,Hub USB 3.0,2026-08-20,10,128
+10,Cargador Rapido,2026-08-20,18,154
+1,Laptop Gamer,2026-08-21,11,66
+2,Monitor 4K,2026-08-21,17,95
+3,Teclado Mecanico,2026-08-21,15,155
+4,Raton Inal.,2026-08-21,21,40
+5,Cable USB-C,2026-08-21,28,116
+6,Adaptador HDMI,2026-08-21,17,200
+7,Webcam HD,2026-08-21,10,45
+8,Auriculares BT,2026-08-21,18,52
+9,Hub USB 3.0,2026-08-21,14,118
+10,Cargador Rapido,2026-08-21,30,136
+1,Laptop Gamer,2026-08-22,4,55
+2,Monitor 4K,2026-08-22,8,78
+3,Teclado Mecanico,2026-08-22,14,140
+4,Raton Inal.,2026-08-22,15,19
+5,Cable USB-C,2026-08-22,28,88
+6,Adaptador HDMI,2026-08-22,22,183
+7,Webcam HD,2026-08-22,7,35
+8,Auriculares BT,2026-08-22,12,34
+9,Hub USB 3.0,2026-08-22,12,104
+10,Cargador Rapido,2026-08-22,30,106
+1,Laptop Gamer,2026-08-23,7,51
+2,Monitor 4K,2026-08-23,10,70
+3,Teclado Mecanico,2026-08-23,11,126
+4,Raton Inal.,2026-08-23,4,4
+5,Cable USB-C,2026-08-23,27,60
+6,Adaptador HDMI,2026-08-23,17,161
+7,Webcam HD,2026-08-23,7,28
+8,Auriculares BT,2026-08-23,9,22
+9,Hub USB 3.0,2026-08-23,6,92
+10,Cargador Rapido,2026-08-23,22,76
+1,Laptop Gamer,2026-08-24,13,44
+2,Monitor 4K,2026-08-24,17,60
+3,Teclado Mecanico,2026-08-24,18,115
+4,Raton Inal.,2026-08-24,25,200
+5,Cable USB-C,2026-08-24,33,33
+6,Adaptador HDMI,2026-08-24,22,144
+7,Webcam HD,2026-08-24,11,221
+8,Auriculares BT,2026-08-24,22,213
+9,Hub USB 3.0,2026-08-24,16,86
+10,Cargador Rapido,2026-08-24,43,54
+1,Laptop Gamer,2026-08-25,11,31
+2,Monitor 4K,2026-08-25,12,43
+3,Teclado Mecanico,2026-08-25,21,97
+4,Raton Inal.,2026-08-25,22,175
+5,Cable USB-C,2026-08-25,0,0
+6,Adaptador HDMI,2026-08-25,22,122
+7,Webcam HD,2026-08-25,9,210
+8,Auriculares BT,2026-08-25,17,191
+9,Hub USB 3.0,2026-08-25,13,70
+10,Cargador Rapido,2026-08-25,11,11
+1,Laptop Gamer,2026-08-26,9,20
+2,Monitor 4K,2026-08-26,24,31
+3,Teclado Mecanico,2026-08-26,20,76
+4,Raton Inal.,2026-08-26,25,153
+5,Cable USB-C,2026-08-26,26,200
+6,Adaptador HDMI,2026-08-26,14,100
+7,Webcam HD,2026-08-26,13,201
+8,Auriculares BT,2026-08-26,18,174
+9,Hub USB 3.0,2026-08-26,19,57
+10,Cargador Rapido,2026-08-26,0,0
+1,Laptop Gamer,2026-08-27,7,211
+2,Monitor 4K,2026-08-27,7,7
+3,Teclado Mecanico,2026-08-27,23,56
+4,Raton Inal.,2026-08-27,25,128
+5,Cable USB-C,2026-08-27,28,174
+6,Adaptador HDMI,2026-08-27,22,86
+7,Webcam HD,2026-08-27,10,188
+8,Auriculares BT,2026-08-27,17,156
+9,Hub USB 3.0,2026-08-27,12,38
+10,Cargador Rapido,2026-08-27,23,200
+1,Laptop Gamer,2026-08-28,17,204
+2,Monitor 4K,2026-08-28,20,200
+3,Teclado Mecanico,2026-08-28,21,33
+4,Raton Inal.,2026-08-28,21,103
+5,Cable USB-C,2026-08-28,27,146
+6,Adaptador HDMI,2026-08-28,14,64
+7,Webcam HD,2026-08-28,13,178
+8,Auriculares BT,2026-08-28,20,139
+9,Hub USB 3.0,2026-08-28,11,26
+10,Cargador Rapido,2026-08-28,19,177
+1,Laptop Gamer,2026-08-29,6,187
+2,Monitor 4K,2026-08-29,11,180
+3,Teclado Mecanico,2026-08-29,12,12
+4,Raton Inal.,2026-08-29,14,82
+5,Cable USB-C,2026-08-29,22,119
+6,Adaptador HDMI,2026-08-29,27,50
+7,Webcam HD,2026-08-29,7,165
+8,Auriculares BT,2026-08-29,8,119
+9,Hub USB 3.0,2026-08-29,10,215
+10,Cargador Rapido,2026-08-29,22,158
+1,Laptop Gamer,2026-08-30,4,181
+2,Monitor 4K,2026-08-30,11,169
+3,Teclado Mecanico,2026-08-30,32,200
+4,Raton Inal.,2026-08-30,15,68
+5,Cable USB-C,2026-08-30,30,97
+6,Adaptador HDMI,2026-08-30,15,23
+7,Webcam HD,2026-08-30,8,158
+8,Auriculares BT,2026-08-30,10,111
+9,Hub USB 3.0,2026-08-30,13,205
+10,Cargador Rapido,2026-08-30,20,136
+1,Laptop Gamer,2026-08-31,12,177
+2,Monitor 4K,2026-08-31,15,158
+3,Teclado Mecanico,2026-08-31,28,168
+4,Raton Inal.,2026-08-31,38,53
+5,Cable USB-C,2026-08-31,41,67
+6,Adaptador HDMI,2026-08-31,8,8
+7,Webcam HD,2026-08-31,12,150
+8,Auriculares BT,2026-08-31,22,101
+9,Hub USB 3.0,2026-08-31,15,192
+10,Cargador Rapido,2026-08-31,34,116
+1,Laptop Gamer,2026-09-01,11,165
+2,Monitor 4K,2026-09-01,20,143
+3,Teclado Mecanico,2026-09-01,19,140
+4,Raton Inal.,2026-09-01,15,15
+5,Cable USB-C,2026-09-01,14,26
+6,Adaptador HDMI,2026-09-01,20,200
+7,Webcam HD,2026-09-01,10,138
+8,Auriculares BT,2026-09-01,12,79
+9,Hub USB 3.0,2026-09-01,10,177
+10,Cargador Rapido,2026-09-01,20,82
+1,Laptop Gamer,2026-09-02,10,154
+2,Monitor 4K,2026-09-02,10,123
+3,Teclado Mecanico,2026-09-02,16,121
+4,Raton Inal.,2026-09-02,0,0
+5,Cable USB-C,2026-09-02,12,12
+6,Adaptador HDMI,2026-09-02,14,180
+7,Webcam HD,2026-09-02,10,128
+8,Auriculares BT,2026-09-02,15,67
+9,Hub USB 3.0,2026-09-02,14,167
+10,Cargador Rapido,2026-09-02,20,62
+1,Laptop Gamer,2026-09-03,11,144
+2,Monitor 4K,2026-09-03,9,113
+3,Teclado Mecanico,2026-09-03,12,105
+4,Raton Inal.,2026-09-03,22,200
+5,Cable USB-C,2026-09-03,18,200
+6,Adaptador HDMI,2026-09-03,14,166
+7,Webcam HD,2026-09-03,10,118
+8,Auriculares BT,2026-09-03,17,52
+9,Hub USB 3.0,2026-09-03,8,153
+10,Cargador Rapido,2026-09-03,22,42
+1,Laptop Gamer,2026-09-04,11,133
+2,Monitor 4K,2026-09-04,13,104
+3,Teclado Mecanico,2026-09-04,15,93
+4,Raton Inal.,2026-09-04,23,178
+5,Cable USB-C,2026-09-04,23,182
+6,Adaptador HDMI,2026-09-04,22,152
+7,Webcam HD,2026-09-04,9,108
+8,Auriculares BT,2026-09-04,14,35
+9,Hub USB 3.0,2026-09-04,12,145
+10,Cargador Rapido,2026-09-04,19,20
+1,Laptop Gamer,2026-09-05,3,122
+2,Monitor 4K,2026-09-05,8,91
+3,Teclado Mecanico,2026-09-05,14,78
+4,Raton Inal.,2026-09-05,19,155
+5,Cable USB-C,2026-09-05,23,159
+6,Adaptador HDMI,2026-09-05,13,130
+7,Webcam HD,2026-09-05,8,99
+8,Auriculares BT,2026-09-05,10,21
+9,Hub USB 3.0,2026-09-05,9,133
+10,Cargador Rapido,2026-09-05,1,1
+1,Laptop Gamer,2026-09-06,8,119
+2,Monitor 4K,2026-09-06,7,83
+3,Teclado Mecanico,2026-09-06,13,64
+4,Raton Inal.,2026-09-06,16,136
+5,Cable USB-C,2026-09-06,19,136
+6,Adaptador HDMI,2026-09-06,13,117
+7,Webcam HD,2026-09-06,7,91
+8,Auriculares BT,2026-09-06,15,211
+9,Hub USB 3.0,2026-09-06,12,124
+10,Cargador Rapido,2026-09-06,19,200
+1,Laptop Gamer,2026-09-07,19,111
+2,Monitor 4K,2026-09-07,13,76
+3,Teclado Mecanico,2026-09-07,13,51
+4,Raton Inal.,2026-09-07,21,120
+5,Cable USB-C,2026-09-07,29,117
+6,Adaptador HDMI,2026-09-07,20,104
+7,Webcam HD,2026-09-07,15,84
+8,Auriculares BT,2026-09-07,18,196
+9,Hub USB 3.0,2026-09-07,21,112
+10,Cargador Rapido,2026-09-07,22,181
+1,Laptop Gamer,2026-09-08,11,92
+2,Monitor 4K,2026-09-08,11,63
+3,Teclado Mecanico,2026-09-08,13,38
+4,Raton Inal.,2026-09-08,23,99
+5,Cable USB-C,2026-09-08,19,88
+6,Adaptador HDMI,2026-09-08,26,84
+7,Webcam HD,2026-09-08,11,69
+8,Auriculares BT,2026-09-08,15,178
+9,Hub USB 3.0,2026-09-08,16,91
+10,Cargador Rapido,2026-09-08,20,159
+1,Laptop Gamer,2026-09-09,8,81
+2,Monitor 4K,2026-09-09,12,52
+3,Teclado Mecanico,2026-09-09,18,25
+4,Raton Inal.,2026-09-09,19,76
+5,Cable USB-C,2026-09-09,29,69
+6,Adaptador HDMI,2026-09-09,28,58
+7,Webcam HD,2026-09-09,10,58
+8,Auriculares BT,2026-09-09,15,163
+9,Hub USB 3.0,2026-09-09,12,75
+10,Cargador Rapido,2026-09-09,29,139
+1,Laptop Gamer,2026-09-10,14,73
+2,Monitor 4K,2026-09-10,11,40
+3,Teclado Mecanico,2026-09-10,12,207
+4,Raton Inal.,2026-09-10,21,57
+5,Cable USB-C,2026-09-10,22,40
+6,Adaptador HDMI,2026-09-10,25,30
+7,Webcam HD,2026-09-10,15,48
+8,Auriculares BT,2026-09-10,12,148
+9,Hub USB 3.0,2026-09-10,10,63
+10,Cargador Rapido,2026-09-10,21,110
+1,Laptop Gamer,2026-09-11,18,59
+2,Monitor 4K,2026-09-11,13,29
+3,Teclado Mecanico,2026-09-11,14,195
+4,Raton Inal.,2026-09-11,21,36
+5,Cable USB-C,2026-09-11,18,18
+6,Adaptador HDMI,2026-09-11,5,5
+7,Webcam HD,2026-09-11,9,33
+8,Auriculares BT,2026-09-11,13,136
+9,Hub USB 3.0,2026-09-11,14,53
+10,Cargador Rapido,2026-09-11,32,89
+1,Laptop Gamer,2026-09-12,6,41
+2,Monitor 4K,2026-09-12,8,16
+3,Teclado Mecanico,2026-09-12,11,181
+4,Raton Inal.,2026-09-12,15,15
+5,Cable USB-C,2026-09-12,0,0
+6,Adaptador HDMI,2026-09-12,15,200
+7,Webcam HD,2026-09-12,8,24
+8,Auriculares BT,2026-09-12,10,123
+9,Hub USB 3.0,2026-09-12,8,39
+10,Cargador Rapido,2026-09-12,40,57
+1,Laptop Gamer,2026-09-13,4,35
+2,Monitor 4K,2026-09-13,8,208
+3,Teclado Mecanico,2026-09-13,15,170
+4,Raton Inal.,2026-09-13,18,200
+5,Cable USB-C,2026-09-13,28,200
+6,Adaptador HDMI,2026-09-13,14,185
+7,Webcam HD,2026-09-13,5,216
+8,Auriculares BT,2026-09-13,12,113
+9,Hub USB 3.0,2026-09-13,9,31
+10,Cargador Rapido,2026-09-13,17,17
+1,Laptop Gamer,2026-09-14,13,31
+2,Monitor 4K,2026-09-14,17,200
+3,Teclado Mecanico,2026-09-14,21,155
+4,Raton Inal.,2026-09-14,24,182
+5,Cable USB-C,2026-09-14,23,172
+6,Adaptador HDMI,2026-09-14,21,171
+7,Webcam HD,2026-09-14,15,211
+8,Auriculares BT,2026-09-14,19,101
+9,Hub USB 3.0,2026-09-14,16,222
+10,Cargador Rapido,2026-09-14,0,0
+1,Laptop Gamer,2026-09-15,9,218
+2,Monitor 4K,2026-09-15,15,183
+3,Teclado Mecanico,2026-09-15,14,134
+4,Raton Inal.,2026-09-15,19,158
+5,Cable USB-C,2026-09-15,25,149
+6,Adaptador HDMI,2026-09-15,20,150
+7,Webcam HD,2026-09-15,10,196
+8,Auriculares BT,2026-09-15,12,82
+9,Hub USB 3.0,2026-09-15,10,206
+10,Cargador Rapido,2026-09-15,22,200
+1,Laptop Gamer,2026-09-16,9,209
+2,Monitor 4K,2026-09-16,14,168
+3,Teclado Mecanico,2026-09-16,17,120
+4,Raton Inal.,2026-09-16,21,139
+5,Cable USB-C,2026-09-16,25,124
+6,Adaptador HDMI,2026-09-16,17,130
+7,Webcam HD,2026-09-16,13,186
+8,Auriculares BT,2026-09-16,19,70
+9,Hub USB 3.0,2026-09-16,9,196
+10,Cargador Rapido,2026-09-16,20,178
+1,Laptop Gamer,2026-09-17,9,200
+2,Monitor 4K,2026-09-17,13,154
+3,Teclado Mecanico,2026-09-17,22,103
+4,Raton Inal.,2026-09-17,22,118
+5,Cable USB-C,2026-09-17,21,99
+6,Adaptador HDMI,2026-09-17,19,113
+7,Webcam HD,2026-09-17,17,173
+8,Auriculares BT,2026-09-17,15,51
+9,Hub USB 3.0,2026-09-17,16,187
+10,Cargador Rapido,2026-09-17,22,158
+1,Laptop Gamer,2026-09-18,9,191
+2,Monitor 4K,2026-09-18,9,141
+3,Teclado Mecanico,2026-09-18,15,81
+4,Raton Inal.,2026-09-18,27,96
+5,Cable USB-C,2026-09-18,24,78
+6,Adaptador HDMI,2026-09-18,19,94
+7,Webcam HD,2026-09-18,15,156
+8,Auriculares BT,2026-09-18,18,36
+9,Hub USB 3.0,2026-09-18,13,171
+10,Cargador Rapido,2026-09-18,18,136
+1,Laptop Gamer,2026-09-19,5,182
+2,Monitor 4K,2026-09-19,7,132
+3,Teclado Mecanico,2026-09-19,11,66
+4,Raton Inal.,2026-09-19,11,69
+5,Cable USB-C,2026-09-19,25,54
+6,Adaptador HDMI,2026-09-19,32,75
+7,Webcam HD,2026-09-19,9,141
+8,Auriculares BT,2026-09-19,14,18
+9,Hub USB 3.0,2026-09-19,8,158
+10,Cargador Rapido,2026-09-19,24,118
+1,Laptop Gamer,2026-09-20,5,177
+2,Monitor 4K,2026-09-20,8,125
+3,Teclado Mecanico,2026-09-20,13,55
+4,Raton Inal.,2026-09-20,14,58
+5,Cable USB-C,2026-09-20,28,29
+6,Adaptador HDMI,2026-09-20,13,43
+7,Webcam HD,2026-09-20,7,132
+8,Auriculares BT,2026-09-20,12,204
+9,Hub USB 3.0,2026-09-20,7,150
+10,Cargador Rapido,2026-09-20,22,94
+1,Laptop Gamer,2026-09-21,14,172
+2,Monitor 4K,2026-09-21,19,117
+3,Teclado Mecanico,2026-09-21,13,42
+4,Raton Inal.,2026-09-21,26,44
+5,Cable USB-C,2026-09-21,1,1
+6,Adaptador HDMI,2026-09-21,16,30
+7,Webcam HD,2026-09-21,15,125
+8,Auriculares BT,2026-09-21,20,192
+9,Hub USB 3.0,2026-09-21,11,143
+10,Cargador Rapido,2026-09-21,29,72
+1,Laptop Gamer,2026-09-22,10,158
+2,Monitor 4K,2026-09-22,15,98
+3,Teclado Mecanico,2026-09-22,13,29
+4,Raton Inal.,2026-09-22,18,18
+5,Cable USB-C,2026-09-22,18,200
+6,Adaptador HDMI,2026-09-22,11,14
+7,Webcam HD,2026-09-22,11,110
+8,Auriculares BT,2026-09-22,18,172
+9,Hub USB 3.0,2026-09-22,12,132
+10,Cargador Rapido,2026-09-22,21,43
+1,Laptop Gamer,2026-09-23,9,148
+2,Monitor 4K,2026-09-23,11,83
+3,Teclado Mecanico,2026-09-23,15,16
+4,Raton Inal.,2026-09-23,0,0
+5,Cable USB-C,2026-09-23,22,182
+6,Adaptador HDMI,2026-09-23,20,203
+7,Webcam HD,2026-09-23,11,99
+8,Auriculares BT,2026-09-23,15,154
+9,Hub USB 3.0,2026-09-23,14,120
+10,Cargador Rapido,2026-09-23,19,22
+1,Laptop Gamer,2026-09-24,10,139
+2,Monitor 4K,2026-09-24,13,72
+3,Teclado Mecanico,2026-09-24,17,201
+4,Raton Inal.,2026-09-24,19,200
+5,Cable USB-C,2026-09-24,21,160
+6,Adaptador HDMI,2026-09-24,18,183
+7,Webcam HD,2026-09-24,8,88
+8,Auriculares BT,2026-09-24,21,139
+9,Hub USB 3.0,2026-09-24,9,106
+10,Cargador Rapido,2026-09-24,3,3
+1,Laptop Gamer,2026-09-25,11,129
+2,Monitor 4K,2026-09-25,11,59
+3,Teclado Mecanico,2026-09-25,17,184
+4,Raton Inal.,2026-09-25,25,181
+5,Cable USB-C,2026-09-25,29,139
+6,Adaptador HDMI,2026-09-25,18,165
+7,Webcam HD,2026-09-25,12,80
+8,Auriculares BT,2026-09-25,20,118
+9,Hub USB 3.0,2026-09-25,12,97
+10,Cargador Rapido,2026-09-25,20,200
+1,Laptop Gamer,2026-09-26,5,118
+2,Monitor 4K,2026-09-26,8,48
+3,Teclado Mecanico,2026-09-26,13,167
+4,Raton Inal.,2026-09-26,20,156
+5,Cable USB-C,2026-09-26,24,110
+6,Adaptador HDMI,2026-09-26,18,147
+7,Webcam HD,2026-09-26,9,68
+8,Auriculares BT,2026-09-26,19,98
+9,Hub USB 3.0,2026-09-26,6,85
+10,Cargador Rapido,2026-09-26,17,180
+1,Laptop Gamer,2026-09-27,7,113
+2,Monitor 4K,2026-09-27,8,40
+3,Teclado Mecanico,2026-09-27,14,154
+4,Raton Inal.,2026-09-27,17,136
+5,Cable USB-C,2026-09-27,33,86
+6,Adaptador HDMI,2026-09-27,13,129
+7,Webcam HD,2026-09-27,10,59
+8,Auriculares BT,2026-09-27,16,79
+9,Hub USB 3.0,2026-09-27,7,79
+10,Cargador Rapido,2026-09-27,23,163
+1,Laptop Gamer,2026-09-28,5,106
+2,Monitor 4K,2026-09-28,9,32
+3,Teclado Mecanico,2026-09-28,10,140
+4,Raton Inal.,2026-09-28,9,119
+5,Cable USB-C,2026-09-28,17,53
+6,Adaptador HDMI,2026-09-28,12,116
+7,Webcam HD,2026-09-28,9,49
+8,Auriculares BT,2026-09-28,10,63
+9,Hub USB 3.0,2026-09-28,11,72
+10,Cargador Rapido,2026-09-28,14,140
+1,Laptop Gamer,2026-09-29,9,101
+2,Monitor 4K,2026-09-29,13,23
+3,Teclado Mecanico,2026-09-29,14,130
+4,Raton Inal.,2026-09-29,14,110
+5,Cable USB-C,2026-09-29,24,36
+6,Adaptador HDMI,2026-09-29,12,104
+7,Webcam HD,2026-09-29,12,40
+8,Auriculares BT,2026-09-29,12,53
+9,Hub USB 3.0,2026-09-29,10,61
+10,Cargador Rapido,2026-09-29,19,126
+1,Laptop Gamer,2026-09-30,9,92
+2,Monitor 4K,2026-09-30,14,210
+3,Teclado Mecanico,2026-09-30,19,116
+4,Raton Inal.,2026-09-30,19,96
+5,Cable USB-C,2026-09-30,12,12
+6,Adaptador HDMI,2026-09-30,29,92
+7,Webcam HD,2026-09-30,12,28
+8,Auriculares BT,2026-09-30,14,41
+9,Hub USB 3.0,2026-09-30,10,51
+10,Cargador Rapido,2026-09-30,21,107
+1,Laptop Gamer,2026-10-01,8,83
+2,Monitor 4K,2026-10-01,14,196
+3,Teclado Mecanico,2026-10-01,16,97
+4,Raton Inal.,2026-10-01,14,77
+5,Cable USB-C,2026-10-01,24,200
+6,Adaptador HDMI,2026-10-01,21,63
+7,Webcam HD,2026-10-01,10,16
+8,Auriculares BT,2026-10-01,13,27
+9,Hub USB 3.0,2026-10-01,9,41
+10,Cargador Rapido,2026-10-01,15,86

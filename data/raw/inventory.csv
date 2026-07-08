@@ -1,0 +1,11 @@
+product_id,nombre,categoria,unidad,stock_actual,fecha_expiracion
+1,Laptop Gamer,Electronica,Unidades,282,2027-10-01
+2,Monitor 4K,Electronica,Unidades,272,2027-10-01
+3,Teclado Mecanico,Accesorios,Unidades,194,2027-10-01
+4,Raton Inal.,Accesorios,Unidades,286,2027-10-01
+5,Cable USB-C,Cables,Unidades,251,2027-10-01
+6,Adaptador HDMI,Cables,Unidades,200,2027-10-01
+7,Webcam HD,Perifericos,Unidades,282,2027-10-01
+8,Auriculares BT,Accesorios,Unidades,301,2027-10-01
+9,Hub USB 3.0,Perifericos,Unidades,254,2027-10-01
+10,Cargador Rapido,Cables,Unidades,267,2027-10-01

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+data/processed/
+models/
+metrics/*.json
+reports/*.md
+jmeter/results/*.jtl
+jmeter/results/report/
+
+.ipynb_checkpoints/
