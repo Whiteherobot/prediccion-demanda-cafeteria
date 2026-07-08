@@ -8,7 +8,6 @@ __pycache__/
 data/processed/
 models/
 metrics/*.json
-reports/*.md
 jmeter/results/*.jtl
 jmeter/results/report/
 
