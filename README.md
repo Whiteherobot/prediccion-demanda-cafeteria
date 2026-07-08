@@ -2,28 +2,32 @@
 
 **Aprendizaje Automático · Michael Franco, Michael Lata, Jordy Romero, Nayeli Barbecho**
 
-Continúa la línea Práctica 2 (LSTM/boosting) → Informe SVM (SVR simple, R²≈0.42) →
-esta práctica: mismo SVR, "producción-lista" (API + docs + CI-ready) y con las
-mejoras concretas pedidas por las empresas en `Material y Reportes/Feedback
-Empresas.pdf` §V (horizontes múltiples, intervalos, alertas, anomalías, métricas de
-negocio, reporte no técnico). Datos sintéticos de la Práctica 2, reutilizados sin
-cambios, mientras llega el Excel real de El Café que te Conté.
+Continúa la línea Práctica 2 (LSTM/boosting, sintético) → Informe SVM (SVR simple,
+sintético) → esta práctica: mismo enfoque SVR, "producción-lista" (API + docs +
+tests), corriendo ahora sobre **ventas reales de El Café que te Conté**
+(2026-04-01 a 2026-07-31, 33 productos), con las mejoras concretas pedidas por las
+empresas en `Material y Reportes/Feedback Empresas.pdf` §V (horizontes múltiples,
+intervalos, alertas, anomalías, métricas de negocio, reporte no técnico).
 
-## Resultados (horizonte t+1, test)
+## Resultados (horizonte t+1, test, datos reales)
 
-| Modelo | RMSE | MAE | R² |
-|---|---|---|---|
-| Práctica 2 (LSTM/boosting) | 7.12 | 5.21 | 0.28 |
-| Informe SVM (12 features) | 5.11 | 3.65 | 0.42 |
-| **Práctica 3 (18 features, seleccionadas de 25 candidatas)** | **5.18** | **3.62** | **0.41** |
+| Métrica | Valor |
+|---|---|
+| RMSE | 10.94 |
+| MAE | 7.75 |
+| R² | **0.46** |
+| Reducción de ingresos en riesgo vs baseline ingenuo (`lag_7`) | **32%** |
 
-Rendimiento equivalente al Informe SVM (dentro del margen de ruido de ~290 filas de
-test) **más**: predicción a `t+3`/`t+7`, intervalos de escenarios, alerta de alta
-demanda, detección de anomalías y ≈44% menos costo estimado que un baseline ingenuo
-(`métricas de negocio`, ver `metrics/metrics.json`). De 25 features candidatas
-(12 originales + 13 nuevas), la selección por `permutation importance` descartó 7
-sin señal real — la mayoría, variables exógenas sintéticas que se recalcularán con
-datos reales.
+De 24 features candidatas (calendario + 3 variables reales nuevas: precio,
+tráfico de clientes, hora de venta), la selección por `permutation importance`
+dejó 9 para el SVR. El SVC de alerta y el `IsolationForest` usan las 24
+candidatas completas — se detectó y corrigió un error metodológico real: reusar
+las features podadas para el SVR en el SVC bajaba su AUC a 0.47 (peor que azar);
+con las 24 candidatas sube a 0.60 (detalle en `docs/01_arquitectura.md`).
+
+Las métricas de la etapa sintética (Práctica 2, Informe SVM) quedan en
+`models/metadata.json` solo como contexto histórico — **no son comparables
+numéricamente** (dataset, escala y productos distintos).
 
 ## Estructura
 
@@ -31,6 +35,7 @@ datos reales.
 docs/           arquitectura, glosario, runbook, api reference
 notebooks/      01_data · 02_procesos · 03_resultados
 src/practica3/  features.py + inference.py (compartidos por notebooks y API)
+data/raw/       ventas.csv (export real, nivel ticket/línea)
 models/         artefactos entrenados (generados por 02_procesos)
 metrics/        metrics.json (generado por 03_resultados)
 reports/        reporte_ejecutivo.md (generado por 03_resultados)
@@ -53,7 +58,7 @@ Detalle completo de instalación y solución de problemas en `docs/03_runbook.md
 
 - [`docs/01_arquitectura.md`](docs/01_arquitectura.md) — flujo de datos y componentes
 - [`docs/02_glosario.md`](docs/02_glosario.md) — términos y decisiones de arquitectura
-- [`docs/03_runbook.md`](docs/03_runbook.md) — setup y troubleshooting
+- [`docs/03_runbook.md`](docs/03_runbook.md) — setup, troubleshooting y cómo actualizar con un nuevo export de ventas
 - [`docs/04_api_reference.md`](docs/04_api_reference.md) — endpoints de la API
 
 ## Qué mejora esta práctica, concretamente
@@ -61,13 +66,22 @@ Detalle completo de instalación y solución de problemas en `docs/03_runbook.md
 Cada punto de `Feedback Empresas.pdf` §V tiene una implementación 1:1: horizontes
 múltiples (`svr_h1/h3/h7`), intervalos de confianza (cuantiles empíricos de
 residuos), importancia de variables (`permutation_importance`), detección de
-anomalías (`IsolationForest`), métricas de negocio (costo de quiebre/sobre-stock),
-reporte automático no técnico (`reports/reporte_ejecutivo.md`) e indicador de
-riesgo fácil de leer (semáforo verde/amarillo/rojo). Detalle en
-`docs/01_arquitectura.md` y `docs/02_glosario.md`.
+anomalías (`IsolationForest`), métricas de negocio con **precio real** (ingresos en
+riesgo por quiebre/sobre-stock, sin márgenes inventados), reporte automático no
+técnico (`reports/reporte_ejecutivo.md`) e indicador de riesgo fácil de leer
+(semáforo verde/amarillo/rojo). Detalle en `docs/01_arquitectura.md` y
+`docs/02_glosario.md`.
+
+## De datos sintéticos a datos reales
+
+Esta práctica arrancó sobre el dataset sintético de la Práctica 2. Con el export
+real de El Café que te Conté (`data/raw/ventas.csv`), se retiraron 3 variables
+sintéticas sin respaldo (`proporcion_stock`, `promocion_activa`, `clima_lluvia`) y
+se agregaron 3 reales (`precio_promedio`, `n_tickets_dia`, `hora_promedio_venta`) —
+sin cambiar la arquitectura del pipeline.
 
 ## Pendiente
 
-- Reemplazar variables sintéticas (`promocion_activa`, `clima_lluvia`, etc.) por
-  datos reales cuando llegue el Excel de la empresa.
 - Correr `make loadtest` (JMeter) contra la API — instalación en `docs/03_runbook.md`.
+- Cuando la cafetería acumule más meses de ventas, actualizar `ventas.csv` y
+  volver a correr `make pipeline` (ver `docs/03_runbook.md`).

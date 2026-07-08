@@ -4,14 +4,14 @@ Un único lugar para construir el dataset diario y sus features, importado tanto
 por los notebooks (`01_data`, `02_procesos`, `03_resultados`) como por la API
 (`practica3.api.main`), para no duplicar la lógica en dos sitios.
 
-Reusa el dataset sintético de la Práctica 2 (`sales_history.csv` / `inventory.csv`)
-y replica sus 12 features originales, ampliándolas con variables de calendario,
-codificación cíclica y variables exógenas sintéticas pedidas en la retroalimentación
-empresarial (`Feedback Empresas.pdf`, sección IV.A): promociones, fechas especiales,
-temporada y clima. Como todavía no hay datos reales de la empresa, estas últimas se
-generan de forma sintética y NO se correlacionan artificialmente con la demanda ya
-generada en la Práctica 2 — así el análisis de importancia de variables (notebook 2)
-reporta honestamente si aportan señal o no, en vez de simular un resultado.
+Fuente de datos: `data/raw/ventas.csv`, la exportación real de ventas de **El Café
+que te Conté** (nivel ticket/línea, 2026-04-01 a 2026-07-31). Reemplaza al dataset
+sintético usado en la primera iteración de esta práctica. Con datos reales ya no se
+fabrican variables sin respaldo: se **retiraron** `proporcion_stock` (no hay
+inventario en este export), `promocion_activa` y `clima_lluvia` (no hay esas
+columnas en el CSV), y se **agregaron** tres variables genuinamente reales que el
+export sí trae: `precio_promedio` (precio unitario real), `n_tickets_dia` (tráfico
+de clientes real, no estimado) y `hora_promedio_venta` (patrón horario real).
 """
 
 from __future__ import annotations
@@ -23,27 +23,32 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
 # ── Features ──────────────────────────────────────────────────────────────────
-# Las 12 originales de la Práctica 2 / Informe SVM.
+# Calendario + historia temporal (heredadas de la iteración sintética; sin
+# `proporcion_stock`, que dependía de un inventario que este export no trae).
 BASE_FEATURES = [
     "cantidad_vendida", "dia_semana", "mes", "es_weekend", "es_feriado",
-    "dias_desde_inicio", "proporcion_stock", "categoria_encoded",
+    "dias_desde_inicio", "categoria_encoded",
     "lag_1", "lag_7", "rolling_mean_7", "rolling_std_7",
 ]
 
-# Nuevas: más historia temporal, codificación cíclica y variables exógenas.
+# Más historia, codificación cíclica y las 3 variables reales nuevas
+# (`precio_promedio`, `n_tickets_dia`, `hora_promedio_venta`) que reemplazan a las
+# sintéticas de la iteración anterior (`promocion_activa`, `clima_lluvia`,
+# `flujo_clientes_estimado`).
 NEW_FEATURES = [
     "lag_2", "lag_14", "rolling_mean_14", "rolling_std_14",
     "dia_semana_sin", "dia_semana_cos", "mes_sin", "mes_cos",
     "es_fecha_especial", "temporada_seca",
-    "promocion_activa", "clima_lluvia", "flujo_clientes_estimado",
+    "precio_promedio", "n_tickets_dia", "hora_promedio_venta",
 ]
 
 FEATURE_COLS = BASE_FEATURES + NEW_FEATURES
 
 HORIZONTES = (1, 3, 7)
 
-# Calendario Ecuador dentro del rango de datos (2026-04-05 a 2026-10-01).
-FERIADOS_NACIONALES = ["2026-05-01", "2026-05-24", "2026-08-10"]
+# Calendario Ecuador dentro del rango real de datos (2026-04-01 a 2026-07-31).
+# Viernes Santo movible (Pascua 2026 = 5 abr), Día del Trabajo, Batalla de Pichincha.
+FERIADOS_NACIONALES = ["2026-04-03", "2026-05-01", "2026-05-24"]
 # Fechas relevantes para un negocio local en Cuenca (café): fundación de la
 # ciudad y día de la madre — no son feriado nacional pero mueven la afluencia.
 FECHAS_ESPECIALES = ["2026-04-12", "2026-05-10"]
@@ -66,7 +71,6 @@ FEATURE_LABELS_NEGOCIO = {
     "es_weekend": "Si es fin de semana",
     "es_feriado": "Si es feriado nacional",
     "dias_desde_inicio": "La tendencia general del negocio en el tiempo",
-    "proporcion_stock": "Cuánto stock hay disponible",
     "categoria_encoded": "La categoría del producto",
     "lag_1": "Cuánto se vendió ayer",
     "lag_2": "Cuánto se vendió hace 2 días",
@@ -76,11 +80,11 @@ FEATURE_LABELS_NEGOCIO = {
     "rolling_std_7": "Qué tan irregulares fueron las ventas la última semana",
     "rolling_mean_14": "El promedio de ventas de las últimas dos semanas",
     "rolling_std_14": "Qué tan irregulares fueron las ventas las últimas dos semanas",
-    "promocion_activa": "Si hay una promoción activa",
-    "clima_lluvia": "Si está lloviendo",
-    "flujo_clientes_estimado": "Cuántos clientes se esperan",
     "es_fecha_especial": "Si es una fecha especial (ej. Día de la Madre)",
     "temporada_seca": "La temporada del año (seca o lluviosa)",
+    "precio_promedio": "El precio promedio del producto ese día",
+    "n_tickets_dia": "Cuántos clientes visitaron la cafetería ese día",
+    "hora_promedio_venta": "A qué hora del día se suele vender",
 }
 
 
@@ -98,54 +102,59 @@ def etiquetas_negocio_top_n(importancia_ordenada, n: int = 5) -> list[str]:
     return vistas
 
 
-def cargar_datos_crudos(data_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Carga inventory.csv y sales_history.csv desde `data_dir`."""
-    inventory = pd.read_csv(data_dir / "inventory.csv")
-    sales = pd.read_csv(data_dir / "sales_history.csv", parse_dates=["fecha_venta"])
-    return inventory, sales
+def cargar_datos_crudos(data_dir: Path) -> pd.DataFrame:
+    """Carga `ventas.csv` (nivel ticket/línea) desde `data_dir`."""
+    ventas = pd.read_csv(data_dir / "ventas.csv")
+    ventas["fecha"] = pd.to_datetime(ventas["fecha_completa"], format="%d/%m/%Y")
+    return ventas
 
 
-def construir_dataset_diario(
-    sales: pd.DataFrame, inventory: pd.DataFrame, seed: int = 42
-) -> pd.DataFrame:
-    """Agrega ventas por (fecha, producto) y calcula todas las features de FEATURE_COLS."""
-    registros = []
-    for (fecha, pid), g in sales.groupby(["fecha_venta", "product_id"]):
-        registros.append({
-            "fecha": fecha,
-            "product_id": pid,
-            "nombre": g["nombre"].iloc[0],
-            "cantidad_vendida": g["cantidad_vendida"].sum(),
-            "stock_promedio": g["stock_en_momento"].mean(),
-        })
-    df = pd.DataFrame(registros).sort_values(["product_id", "fecha"]).reset_index(drop=True)
+def construir_dataset_diario(ventas: pd.DataFrame) -> pd.DataFrame:
+    """Agrega ventas por (fecha, producto) y calcula todas las features de FEATURE_COLS.
 
-    # ── calendario base (idéntico a Práctica 2 / Informe) ──────────────────
+    La granularidad es `producto` (33 items), no `producto + variante_o_sabor`
+    (47 combos): menos disperso por serie temporal, más robusto para el modelo.
+    """
+    agg = (
+        ventas.groupby(["fecha", "producto"])
+        .agg(
+            categoria=("categoria", "first"),
+            cantidad_vendida=("cantidad_vendida", "sum"),
+            precio_promedio=("precio_unitario", "mean"),
+        )
+        .reset_index()
+    )
+
+    # n_tickets_dia: tráfico de clientes REAL (tickets distintos ese día),
+    # a nivel de todo el negocio — mismo valor para todos los productos del día.
+    tickets_dia = ventas.groupby("fecha")["id_ticket"].nunique().rename("n_tickets_dia")
+    agg = agg.merge(tickets_dia, on="fecha", how="left")
+
+    # hora_promedio_venta: hora del día (0-24, fraccionaria) en que se vendió
+    # ese producto, promediada sobre todas sus ventas del día.
+    horas = pd.to_datetime(ventas["hora_exacta"], format="%H:%M")
+    ventas = ventas.assign(hora=horas.dt.hour + horas.dt.minute / 60)
+    hora_prom = ventas.groupby(["fecha", "producto"])["hora"].mean().rename("hora_promedio_venta")
+    agg = agg.merge(hora_prom, on=["fecha", "producto"], how="left")
+
+    # product_id estable: entero asignado por orden alfabético del nombre real.
+    productos_ordenados = sorted(agg["producto"].unique())
+    producto_a_id = {p: i + 1 for i, p in enumerate(productos_ordenados)}
+    agg["product_id"] = agg["producto"].map(producto_a_id)
+    df = agg.rename(columns={"producto": "nombre"}).sort_values(["product_id", "fecha"]).reset_index(drop=True)
+
+    # ── calendario base ──────────────────────────────────────────────────────
     df["dia_semana"] = df["fecha"].dt.weekday
     df["mes"] = df["fecha"].dt.month
     df["es_weekend"] = (df["dia_semana"] >= 5).astype(int)
     df["es_feriado"] = df["fecha"].isin(pd.to_datetime(FERIADOS_NACIONALES)).astype(int)
     df["dias_desde_inicio"] = (df["fecha"] - df["fecha"].min()).dt.days
-    df["proporcion_stock"] = df["stock_promedio"] / (df["stock_promedio"].max() + 1)
-
-    # ── categoría real desde inventory.csv (evita diccionario manual) ──────
-    cat_por_producto = inventory.set_index("product_id")["categoria"]
-    df["categoria"] = df["product_id"].map(cat_por_producto)
     df["categoria_encoded"] = LabelEncoder().fit_transform(df["categoria"])
 
     # ── calendario extendido (Feedback Empresas §IV.A) ──────────────────────
     df["es_fecha_especial"] = df["fecha"].isin(pd.to_datetime(FECHAS_ESPECIALES)).astype(int)
     # Sierra ecuatoriana: jun-sep es la temporada seca ("verano austral").
     df["temporada_seca"] = df["mes"].between(6, 9).astype(int)
-
-    # ── variables exógenas sintéticas (sin Excel real todavía) ─────────────
-    rng = np.random.default_rng(seed)
-    n = len(df)
-    df["promocion_activa"] = (rng.random(n) < 0.08).astype(int)
-    prob_lluvia = np.where(df["temporada_seca"] == 1, 0.15, 0.55)
-    df["clima_lluvia"] = (rng.random(n) < prob_lluvia).astype(int)
-    flujo_base = 40 + 25 * df["es_weekend"] + 10 * df["es_feriado"]
-    df["flujo_clientes_estimado"] = np.clip(flujo_base + rng.normal(0, 8, n), 5, None).round(1)
 
     # ── temporales, con shift(1) para no mirar el futuro ────────────────────
     grp = df.groupby("product_id")["cantidad_vendida"]

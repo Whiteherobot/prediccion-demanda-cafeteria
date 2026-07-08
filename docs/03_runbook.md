@@ -64,11 +64,27 @@ una sola vez. Si se editó una celda fuera de orden en Jupyter, reiniciar el ker
 y "Run All" antes de confiar en el resultado.
 
 **`GridSearchCV` tarda mucho**
-Con ~1500 filas de entrenamiento y grid de 36 combinaciones × `TimeSeriesSplit(5)`
-× 3 horizontes, `02_procesos.ipynb` debería tardar bajo un minuto en cualquier CPU
-moderna. Si tarda más, revisar que `n_jobs=-1` esté activo y que no haya otro
-proceso pesado corriendo (por ejemplo, otro `make pipeline` en paralelo).
+Con ~2800 filas de entrenamiento (33 productos × ~97 días) y grid de 48
+combinaciones × `TimeSeriesSplit(5)` × 3 horizontes, `02_procesos.ipynb` debería
+tardar bajo un minuto en cualquier CPU moderna. Si tarda más, revisar que
+`n_jobs=-1` esté activo y que no haya otro proceso pesado corriendo (por ejemplo,
+otro `make pipeline` en paralelo).
 
 **Los tests de la API fallan con "modelo no encontrado"**
 `tests/test_api.py` necesita que `models/` ya exista — correr `make pipeline`
 (o al menos `make train`) antes de `make test`.
+
+## Actualizar con un nuevo export de ventas
+
+Cuando la cafetería mande un `ventas.csv` más reciente (más meses de historia):
+
+1. Reemplazar `data/raw/ventas.csv` con el nuevo export (mismo esquema: `id_ticket`,
+   `fecha_completa`, `hora_exacta`, `dia_de_la_semana`, `mes`, `categoria`,
+   `producto`, `variante_o_sabor`, `cantidad_vendida`, `precio_unitario`,
+   `total_linea`).
+2. Si el rango de fechas cambia, revisar `FERIADOS_NACIONALES` y
+   `FECHAS_ESPECIALES` en `src/practica3/features.py` — están calculados para
+   2026-04-01 a 2026-07-31; un export con más meses puede necesitar sumar más
+   feriados (ej. 10 de agosto, 9 de octubre, 3 de noviembre, 25 de diciembre).
+3. `make pipeline` — todo se recalcula (features, selección, entrenamiento,
+   métricas, reporte ejecutivo) sin tocar código.

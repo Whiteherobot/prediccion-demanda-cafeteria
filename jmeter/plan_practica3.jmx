@@ -76,7 +76,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{"product_id": ${__Random(1,10,)}, "fecha": "2026-09-01", "horizonte": 1}</stringProp>
+                <stringProp name="Argument.value">{"product_id": ${__Random(1,33,)}, "fecha": "2026-07-15", "horizonte": 1}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>

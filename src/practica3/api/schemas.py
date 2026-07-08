@@ -10,14 +10,15 @@ class HealthResponse(BaseModel):
 
 
 class ModelInfoResponse(BaseModel):
-    features: list[str]
+    features_svr: list[str]
+    features_svc_iso: list[str]
     horizontes_soportados: list[int]
     metricas: dict
     calidad_datos_por_producto: dict[int, bool]
 
 
 class PredictRequest(BaseModel):
-    product_id: int = Field(..., ge=1, description="Identificador del producto (1-10)")
+    product_id: int = Field(..., ge=1, description="Identificador del producto (1-33)")
     fecha: str = Field(..., description="Fecha de referencia YYYY-MM-DD (datos conocidos hasta ese día)")
     horizonte: int = Field(1, description="Días hacia adelante a predecir: 1, 3 o 7")
 

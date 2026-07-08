@@ -18,27 +18,51 @@
 
 ## Variables del dataset (`src/practica3/features.py`)
 
-**Originales (Práctica 2 / Informe SVM):** `cantidad_vendida`, `dia_semana`, `mes`,
-`es_weekend`, `es_feriado`, `dias_desde_inicio`, `proporcion_stock`,
-`categoria_encoded`, `lag_1`, `lag_7`, `rolling_mean_7`, `rolling_std_7`.
+**Calendario e historia temporal:** `cantidad_vendida`, `dia_semana`, `mes`,
+`es_weekend`, `es_feriado`, `dias_desde_inicio`, `categoria_encoded`, `lag_1`,
+`lag_2`, `lag_7`, `lag_14`, `rolling_mean_7/14`, `rolling_std_7/14`,
+`dia_semana_sin/cos`, `mes_sin/cos`, `es_fecha_especial`, `temporada_seca`.
 
-**Nuevas de esta práctica:**
+**Reales, del export de ventas** (reemplazan a las sintéticas de la primera
+iteración de esta práctica):
 
 | Variable | Qué representa |
 |---|---|
-| `lag_2`, `lag_14` | Demanda hace 2 y 14 días — más contexto temporal que solo 1 y 7. |
-| `rolling_mean_14`, `rolling_std_14` | Media y desviación móvil a 14 días. |
-| `dia_semana_sin/cos`, `mes_sin/cos` | Codificación cíclica: para un kernel RBF, el lunes (0) y el domingo (6) deberían estar "cerca", no en extremos opuestos como con un entero crudo. |
-| `es_fecha_especial` | Fundación de Cuenca, Día de la Madre — relevantes para un negocio local, no son feriado nacional. |
-| `temporada_seca` | Jun-sep, temporada seca en la sierra ecuatoriana. |
-| `promocion_activa`, `clima_lluvia`, `flujo_clientes_estimado` | **Sintéticas.** Pedidas en `Feedback Empresas.pdf` §IV.A. No hay Excel real todavía, así que se simulan de forma independiente de la demanda ya generada (sin correlación forzada) — su importancia real se mide honestamente con permutation importance en el notebook 2. |
+| `precio_promedio` | Precio unitario real promedio del producto ese día (varía si se vendió a distintos precios por variante). |
+| `n_tickets_dia` | Tráfico real de clientes: número de tickets distintos ese día (todo el negocio, no por producto). |
+| `hora_promedio_venta` | Hora promedio (0-24) en que se vendió el producto ese día — útil para diferenciar ítems de desayuno vs media tarde. |
 
-## Costos unitarios ilustrativos (notebook 3, métricas de negocio)
+**Retiradas** (tenía la iteración sintética, no hay respaldo real en `ventas.csv`):
+`proporcion_stock` (no hay inventario en el export), `promocion_activa` y
+`clima_lluvia` (no hay esas columnas — si la cafetería empieza a registrar
+promociones o el clima, se pueden reincorporar).
 
-`COSTO_QUIEBRE_POR_UNIDAD` y `COSTO_SOBRESTOCK_POR_UNIDAD` (por categoría) son
-**valores de ejemplo**, no datos reales de ninguna empresa — sirven para demostrar
-que el pipeline puede traducir error de predicción a impacto económico. Cuando
-llegue el Excel real se reemplazan por costos/márgenes reales por producto.
+## `feature_cols_svr` vs `feature_cols_svc_iso`
+
+El notebook 2 guarda **dos** listas de features en `metadata.json`, no una:
+
+- `feature_cols_svr`: subconjunto podado por `permutation_importance` sobre el
+  SVR — las que sí ayudan a predecir la cantidad exacta.
+- `feature_cols_svc_iso`: las 24 candidatas completas, usadas por el SVC de
+  alerta y el `IsolationForest`. Se comprobó que reusar `feature_cols_svr` para
+  el SVC bajaba su AUC a 0.47 (peor que azar) — la poda optimizada para
+  regresión no sirve para clasificación (ver `docs/01_arquitectura.md`).
+
+`src/practica3/inference.py` arma un vector de entrada distinto para cada modelo
+según corresponda — no es un detalle interno ignorable, es la diferencia entre una
+alerta de alta demanda que funciona y una que no.
+
+## Ingresos en riesgo (notebook 3, métricas de negocio)
+
+A diferencia de la primera iteración (que usaba costos de ejemplo inventados por
+categoría), ahora hay `precio_unitario` **real** por producto. La métrica de
+negocio es directa, sin inventar márgenes: `error de predicción × precio real`.
+Cuando el modelo predice **menos** de lo que realmente se vendió, se interpreta
+como demanda no atendida (ingreso perdido); cuando predice **de más**, como
+producto preparado de más (riesgo de merma — relevante para los productos
+perecederos de la cafetería, ver `Feedback Empresas.pdf` §III.A). No se distingue
+margen de costo, se usa el precio de venta como proxy único — es una
+simplificación declarada, no un cálculo contable exacto.
 
 ## Por qué estas decisiones de arquitectura
 
