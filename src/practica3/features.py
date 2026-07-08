@@ -50,6 +50,53 @@ FECHAS_ESPECIALES = ["2026-04-12", "2026-05-10"]
 
 MIN_DIAS_HISTORICOS = 30  # umbral de calidad de datos por producto
 
+# Traducción a lenguaje de negocio para reportes no técnicos (Feedback Empresas
+# §V.6/V.7). Varias columnas técnicas describen el mismo concepto de negocio
+# (ej. `dia_semana`, `dia_semana_sin`, `dia_semana_cos` son 3 formas de codificar
+# "qué día de la semana es") — el reporte debe deduplicar por concepto, no listar
+# las 3 variantes como si fueran factores distintos.
+FEATURE_LABELS_NEGOCIO = {
+    "cantidad_vendida": "Cuánto se vendió hoy",
+    "dia_semana": "Qué día de la semana es",
+    "dia_semana_sin": "Qué día de la semana es",
+    "dia_semana_cos": "Qué día de la semana es",
+    "mes": "El mes del año",
+    "mes_sin": "El mes del año",
+    "mes_cos": "El mes del año",
+    "es_weekend": "Si es fin de semana",
+    "es_feriado": "Si es feriado nacional",
+    "dias_desde_inicio": "La tendencia general del negocio en el tiempo",
+    "proporcion_stock": "Cuánto stock hay disponible",
+    "categoria_encoded": "La categoría del producto",
+    "lag_1": "Cuánto se vendió ayer",
+    "lag_2": "Cuánto se vendió hace 2 días",
+    "lag_7": "Cuánto se vendió hace una semana",
+    "lag_14": "Cuánto se vendió hace dos semanas",
+    "rolling_mean_7": "El promedio de ventas de la última semana",
+    "rolling_std_7": "Qué tan irregulares fueron las ventas la última semana",
+    "rolling_mean_14": "El promedio de ventas de las últimas dos semanas",
+    "rolling_std_14": "Qué tan irregulares fueron las ventas las últimas dos semanas",
+    "promocion_activa": "Si hay una promoción activa",
+    "clima_lluvia": "Si está lloviendo",
+    "flujo_clientes_estimado": "Cuántos clientes se esperan",
+    "es_fecha_especial": "Si es una fecha especial (ej. Día de la Madre)",
+    "temporada_seca": "La temporada del año (seca o lluviosa)",
+}
+
+
+def etiquetas_negocio_top_n(importancia_ordenada, n: int = 5) -> list[str]:
+    """Traduce un ranking de features (más importante primero) a `n` conceptos de
+    negocio únicos, saltando duplicados (ej. las 3 variantes de día de la semana
+    cuentan como un solo concepto)."""
+    vistas: list[str] = []
+    for nombre in importancia_ordenada.index:
+        etiqueta = FEATURE_LABELS_NEGOCIO.get(nombre, nombre)
+        if etiqueta not in vistas:
+            vistas.append(etiqueta)
+        if len(vistas) == n:
+            break
+    return vistas
+
 
 def cargar_datos_crudos(data_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Carga inventory.csv y sales_history.csv desde `data_dir`."""
