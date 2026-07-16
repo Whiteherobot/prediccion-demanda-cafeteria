@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
+
+/* Tokens de marca ECQTC como colores Tailwind → bg-brand-primary, text-brand-secondary, ... */
+@theme {
+  --color-brand-primary: #b2a0b0;
+  --color-brand-secondary: #070007;
+  --color-brand-accent: #304429;
+  --color-brand-bg: #f5f2f4;
+}
+
+/* Input de formulario reutilizable */
+@layer components {
+  .ecqtc-input {
+    @apply w-full rounded-xl border border-brand-primary/30 bg-white px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary;
+  }
+}

@@ -45,7 +45,7 @@ en un sistema de ML real.
 | `src/practica3/api/` | FastAPI: expone `inference.py` por HTTP. Sin lógica de negocio propia — es una capa delgada. |
 | `notebooks/01_data.ipynb` | Datos: carga, EDA, features, calidad de datos, targets. |
 | `notebooks/02_procesos.ipynb` | Entrenamiento: selección de features, SVR multi-horizonte, SVC, anomalías, intervalos. |
-| `notebooks/03_resultados.ipynb` | Resultados: métricas técnicas y de negocio (con precio real), gráficos, reportes. |
+| `notebooks/03_resultados.ipynb` | Resultados: métricas técnicas y de negocio (con precio real), gráficos, XAI (SHAP) y reportes. |
 | `jmeter/plan_practica3.jmx` | Simula usuarios concurrentes contra `/health` y `/predict`. |
 
 ## De datos sintéticos a datos reales
@@ -95,6 +95,26 @@ Predecir `t+3` o `t+7` encadenando 3-7 veces un modelo de `t+1` (forecast
 recursivo) acumula error en cada paso. Entrenar un SVR independiente por horizonte
 (mismo set de features, target distinto) es más simple, más rápido de auditar y
 evita esa acumulación.
+
+## XAI — por qué Kernel SHAP y no permutation importance a secas
+
+La sección 7 del notebook 3 (`permutation_importance`) responde "¿qué variable
+importa en promedio?" — es información **global**, no explica una predicción
+puntual. La guía de práctica pide justificar predicciones individuales "hacia
+atrás hasta la data original", así que el notebook agrega un proceso de **Kernel
+SHAP** (`shap.KernelExplainer`) sobre el pipeline `StandardScaler + SVR`:
+
+- Se eligió Kernel SHAP (no `LinearExplainer` ni `TreeExplainer`) porque el SVR
+  con kernel RBF no es lineal ni basado en árboles — Kernel SHAP es
+  model-agnostic, solo necesita `predict()`.
+- El costo es cómputo: cada instancia explicada corre ~200 evaluaciones del
+  modelo contra una muestra de referencia (`background`, 50 filas del train).
+  Con 9 features y 4 instancias de ejemplo, toma segundos — no escalaría a
+  explicar todo el dataset de test así, pero no hace falta para la guía.
+- El proceso completo (6 pasos) queda documentado en la sección 8 del
+  notebook, y aplicado a 2 pares de productos contrastantes (perecible/no
+  perecible, popular fin de semana/canasta básica) en la sección 9, con
+  trazabilidad hasta los tickets crudos de `ventas.csv`.
 
 ## Decisiones de infraestructura
 

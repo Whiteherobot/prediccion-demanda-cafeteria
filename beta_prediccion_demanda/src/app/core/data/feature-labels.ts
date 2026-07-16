@@ -1,0 +1,28 @@
+/** Espejo de `FEATURE_LABELS_NEGOCIO` en `src/practica3/features.py` — traducción a
+ * lenguaje de negocio de las columnas técnicas, para mostrar en la UI. */
+export const FEATURE_LABELS: Record<string, string> = {
+  cantidad_vendida: 'Cuánto se vendió hoy',
+  dia_semana: 'Qué día de la semana es',
+  dia_semana_sin: 'Qué día de la semana es',
+  dia_semana_cos: 'Qué día de la semana es',
+  mes: 'El mes del año',
+  mes_sin: 'El mes del año',
+  mes_cos: 'El mes del año',
+  es_weekend: 'Si es fin de semana',
+  es_feriado: 'Si es feriado nacional',
+  dias_desde_inicio: 'La tendencia general del negocio en el tiempo',
+  categoria_encoded: 'La categoría del producto',
+  lag_1: 'Cuánto se vendió ayer',
+  lag_2: 'Cuánto se vendió hace 2 días',
+  lag_7: 'Cuánto se vendió hace una semana',
+  lag_14: 'Cuánto se vendió hace dos semanas',
+  rolling_mean_7: 'El promedio de ventas de la última semana',
+  rolling_std_7: 'Qué tan irregulares fueron las ventas la última semana',
+  rolling_mean_14: 'El promedio de ventas de las últimas dos semanas',
+  rolling_std_14: 'Qué tan irregulares fueron las ventas las últimas dos semanas',
+  es_fecha_especial: 'Si es una fecha especial (ej. Día de la Madre)',
+  temporada_seca: 'La temporada del año (seca o lluviosa)',
+  precio_promedio: 'El precio promedio del producto ese día',
+  n_tickets_dia: 'Cuántos clientes visitaron la cafetería ese día',
+  hora_promedio_venta: 'A qué hora del día se suele vender',
+};

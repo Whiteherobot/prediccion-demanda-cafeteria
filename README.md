@@ -29,6 +29,15 @@ Las métricas de la etapa sintética (Práctica 2, Informe SVM) quedan en
 `models/metadata.json` solo como contexto histórico — **no son comparables
 numéricamente** (dataset, escala y productos distintos).
 
+## XAI
+
+`notebooks/03_resultados.ipynb` (secciones 8-9) explica predicciones puntuales
+con **Kernel SHAP** — no solo qué variable importa en promedio, sino por qué el
+modelo predijo ese número para un producto y fecha concretos, trazable hasta los
+tickets de venta crudos. Aplicado a 2 pares contrastantes: producto perecible vs.
+no perecible, y producto popular en fin de semana vs. de consumo diario
+constante. Detalle del proceso en `docs/01_arquitectura.md`.
+
 ## Estructura
 
 ```

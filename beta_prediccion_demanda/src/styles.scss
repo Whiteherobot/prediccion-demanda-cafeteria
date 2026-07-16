@@ -1,0 +1,30 @@
+/* ── Iconos PrimeNG ───────────────────────────────────────────── */
+@use 'primeicons/primeicons.css';
+
+/* ── Design tokens de marca — ECQTC (misma estética que el POS/ERP real) ─ */
+:root {
+  --brand-primary: #b2a0b0;
+  --brand-secondary: #070007;
+  --brand-accent: #304429;
+  --brand-bg-soft: #f5f2f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  color: var(--brand-secondary);
+  background: var(--brand-bg-soft);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
