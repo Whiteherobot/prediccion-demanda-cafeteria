@@ -8,8 +8,11 @@ Arranque: `make api` o `uv run uvicorn practica3.api.main:app --reload`.
 
 from __future__ import annotations
 
+import json
 import logging
+import secrets
 from contextlib import asynccontextmanager
+from datetime import datetime
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -32,9 +35,37 @@ from .schemas import (
     ReporteDemandaResponse,
 )
 
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 logger = logging.getLogger("practica3.api")
 
 _state: dict[str, DemandPredictor | None] = {"predictor": None}
+
+_SEPARADOR = "=" * 78
+
+
+def _nuevo_lote_id() -> str:
+    return f"LOTE-{secrets.token_hex(4).upper()}"
+
+
+def _log_paso(lote_id: str, paso: int, total_pasos: int, evento: str, mensaje: str, data: dict) -> None:
+    """Log narrado paso a paso (mensaje en criollo + evento + payload JSON completo)
+    para poder seguir en vivo qué está haciendo el backend con cada request."""
+    texto = f"{lote_id} | PASO {paso}/{total_pasos} | {mensaje}"
+    payload = {
+        "timestamp": datetime.now().astimezone().isoformat(),
+        "level": "info",
+        "event": evento,
+        "message": texto,
+        "data": {"lote_id": lote_id, "paso": paso, "total_pasos": total_pasos, **data},
+    }
+    logger.info(
+        "\n%s\nMENSAJE: %s\nEVENTO: %s\nJSON:\n%s\n%s",
+        _SEPARADOR,
+        texto,
+        evento,
+        json.dumps(payload, indent=2, ensure_ascii=False),
+        _SEPARADOR,
+    )
 
 
 @asynccontextmanager
@@ -95,13 +126,68 @@ def predict(req: PredictRequest) -> PredictResponse:
 
 @app.post("/predict/batch", response_model=BatchPredictResponse)
 def predict_batch(req: BatchPredictRequest) -> BatchPredictResponse:
+    lote_id = _nuevo_lote_id()
+    total_pasos = 4
+    fechas = sorted({item.fecha for item in req.items})
+
+    _log_paso(
+        lote_id,
+        1,
+        total_pasos,
+        "prediction.batch_received",
+        f"Solicitud recibida para calcular {len(req.items)} producto(s) hasta el {fechas[-1]}.",
+        {"productos_solicitados": len(req.items), "fechas_pedidas": fechas},
+    )
+
     predictor = _predictor()
+    _log_paso(
+        lote_id,
+        2,
+        total_pasos,
+        "prediction.batch_model_ready",
+        "Los modelos SVR (por horizonte) ya están cargados en memoria y listos para procesar el lote.",
+        {"horizontes_soportados": predictor.info_modelo()["horizontes_soportados"]},
+    )
+
     resultados = []
     for item in req.items:
         try:
             resultados.append(predictor.predecir(item.product_id, item.fecha, item.horizonte))
         except ValueError as exc:
+            _log_paso(
+                lote_id,
+                3,
+                total_pasos,
+                "prediction.batch_item_error",
+                f"Falló el producto {item.product_id}: {exc}",
+                {"product_id": item.product_id, "fecha": item.fecha, "horizonte": item.horizonte},
+            )
             raise HTTPException(status_code=400, detail=f"product_id={item.product_id}: {exc}") from exc
+
+    _log_paso(
+        lote_id,
+        3,
+        total_pasos,
+        "prediction.batch_computed",
+        f"Se calcularon las {len(resultados)} predicciones pedidas sin errores.",
+        {"product_ids": [r["product_id"] for r in resultados]},
+    )
+
+    top = max(resultados, key=lambda r: r["prediccion_esperada"]) if resultados else None
+    _log_paso(
+        lote_id,
+        4,
+        total_pasos,
+        "prediction.batch_done",
+        (
+            f"Lote resuelto. Mayor demanda esperada: producto {top['product_id']} con "
+            f"{top['prediccion_esperada']:.1f} u."
+            if top
+            else "Lote resuelto sin resultados."
+        ),
+        {"top_product_id": top["product_id"] if top else None},
+    )
+
     return BatchPredictResponse(resultados=resultados)
 
 

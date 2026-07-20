@@ -1,4 +1,4 @@
-.PHONY: setup data train results pipeline api test loadtest lint clean precommit
+.PHONY: setup data train results pipeline api test loadtest lint clean precommit export-onnx
 
 NB_TIMEOUT := --ExecutePreprocessor.timeout=600
 
@@ -17,6 +17,9 @@ results:
 	uv run jupyter nbconvert --to notebook --execute --inplace $(NB_TIMEOUT) notebooks/03_resultados.ipynb
 
 pipeline: data train results
+
+export-onnx:
+	uv run python -m practica3.export_onnx
 
 api:
 	uv run uvicorn practica3.api.main:app --reload --port 8000

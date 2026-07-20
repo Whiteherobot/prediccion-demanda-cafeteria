@@ -81,6 +81,14 @@ export class App implements OnInit, OnDestroy {
   readonly explainLoading = signal(false);
   readonly explainError = signal<string | null>(null);
 
+  /** Sección aparte para probar solo productos puntuales — no toca `resultados()`
+   * ni el resto de la pantalla (sugerencias, insumos, reporte, gráfico). */
+  readonly productos = PRODUCTS;
+  readonly productosSeleccionados = signal<Set<number>>(new Set());
+  readonly pruebaLoading = signal(false);
+  readonly pruebaError = signal<string | null>(null);
+  readonly pruebaResultados = signal<PredictResponse[]>([]);
+
   readonly nombrePorId = new Map(PRODUCTS.map((p) => [p.id, p.nombre]));
 
   readonly ordenados = computed(() =>
@@ -284,6 +292,52 @@ export class App implements OnInit, OnDestroy {
     this.playing.set(false);
   }
 
+  toggleProductoPrueba(productId: number): void {
+    const set = new Set(this.productosSeleccionados());
+    if (set.has(productId)) {
+      set.delete(productId);
+    } else {
+      set.add(productId);
+    }
+    this.productosSeleccionados.set(set);
+  }
+
+  limpiarSeleccionPrueba(): void {
+    this.productosSeleccionados.set(new Set());
+    this.pruebaResultados.set([]);
+    this.pruebaError.set(null);
+  }
+
+  /** Predice SOLO los productos marcados en esta sección, con la fecha/horizonte
+   * actuales. No toca `resultados()` ni ninguna otra parte de la pantalla. */
+  probarSeleccionados(): void {
+    const ids = [...this.productosSeleccionados()];
+    if (ids.length === 0) return;
+
+    this.pruebaLoading.set(true);
+    this.pruebaError.set(null);
+    const items = ids.map((id) => ({
+      product_id: id,
+      fecha: this.fecha(),
+      horizonte: this.horizonte(),
+    }));
+    this.api.predictBatch(items).subscribe({
+      next: (res) => {
+        this.pruebaResultados.set(res.resultados);
+        this.pruebaLoading.set(false);
+      },
+      error: (err) => {
+        this.pruebaLoading.set(false);
+        this.pruebaResultados.set([]);
+        this.pruebaError.set(
+          err.status === 0
+            ? 'No se pudo conectar con la API.'
+            : `Error ${err.status}: ${err.error?.detail ?? 'no se pudo predecir estos productos.'}`,
+        );
+      },
+    });
+  }
+
   toggleConfirmado(productId: number): void {
     const set = new Set(this.confirmados());
     const yaEstaba = set.has(productId);
@@ -329,13 +383,12 @@ export class App implements OnInit, OnDestroy {
     this.selectedProduct.set(null);
   }
 
-  abs(n: number): number {
-    return Math.abs(n);
-  }
-
-  maxAbsShap(): number {
+  /** Cuánto pesó cada factor en el resultado, como % del total (suman ~100%) —
+   * más fácil de entender para el cliente que el valor SHAP crudo. */
+  factorPercent(factor: { shap: number }): number {
     const factores = this.explainData()?.factores ?? [];
-    return Math.max(1, ...factores.map((f) => Math.abs(f.shap)));
+    const total = factores.reduce((acc, f) => acc + Math.abs(f.shap), 0);
+    return total > 0 ? (Math.abs(factor.shap) / total) * 100 : 0;
   }
 
   riesgoClase(nivel: string): string {
@@ -348,6 +401,44 @@ export class App implements OnInit, OnDestroy {
 
   nombre(id: number): string {
     return this.nombrePorId.get(id) ?? `Producto #${id}`;
+  }
+
+  /** Exporta la tabla completa (todos los productos, orden actual) a CSV, para
+   * llevarla a Excel/Sheets. Client-side, no pega al backend. BOM al inicio
+   * para que Excel muestre bien las tildes de los nombres reales del catálogo. */
+  exportarTablaCsv(): void {
+    const filas = this.ordenados();
+    if (filas.length === 0) return;
+
+    const encabezado = [
+      'Producto',
+      'Prediccion esperada (u.)',
+      'Escenario conservador',
+      'Escenario optimista',
+      'Nivel de riesgo',
+      'Alta demanda',
+      'Fuera de lo comun',
+    ];
+    const lineas = filas.map((r) => [
+      this.nombre(r.product_id),
+      r.prediccion_esperada.toFixed(1),
+      r.escenario_conservador.toFixed(1),
+      r.escenario_optimista.toFixed(1),
+      r.nivel_riesgo,
+      r.alerta_alta_demanda ? 'si' : 'no',
+      r.alerta_anomalia ? 'si' : 'no',
+    ]);
+    const csv = [encabezado, ...lineas]
+      .map((fila) => fila.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(','))
+      .join('\n');
+
+    const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `prediccion_${this.fecha()}_${this.horizonteLabel().replace(/\s+/g, '_')}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   formatInsumo(cantidad: number, unidad: string): string {

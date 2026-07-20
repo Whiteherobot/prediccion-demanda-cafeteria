@@ -45,7 +45,7 @@ docs/           arquitectura, glosario, runbook, api reference
 notebooks/      01_data · 02_procesos · 03_resultados
 src/practica3/  features.py + inference.py (compartidos por notebooks y API)
 data/raw/       ventas.csv (export real, nivel ticket/línea)
-models/         artefactos entrenados (generados por 02_procesos)
+models/         artefactos entrenados (.joblib, generados por 02_procesos) + .onnx (`make export-onnx`)
 metrics/        metrics.json (generado por 03_resultados)
 reports/        reporte_ejecutivo.md (generado por 03_resultados)
 jmeter/         plan_practica3.jmx
@@ -69,6 +69,9 @@ Detalle completo de instalación y solución de problemas en `docs/03_runbook.md
 - [`docs/02_glosario.md`](docs/02_glosario.md) — términos y decisiones de arquitectura
 - [`docs/03_runbook.md`](docs/03_runbook.md) — setup, troubleshooting y cómo actualizar con un nuevo export de ventas
 - [`docs/04_api_reference.md`](docs/04_api_reference.md) — endpoints de la API
+
+## 🎥 Video demo
+[Ver video (1 min)](https://drive.google.com/file/d/1Czsoc6Qy0FZf6Afn7Mvh4-pwxvy2_ocg/view?usp=sharing) — front + backend en paralelo: horizontes, autoplay, XAI, tabla + export CSV, reentrenamiento.
 
 ## Qué mejora esta práctica, concretamente
 

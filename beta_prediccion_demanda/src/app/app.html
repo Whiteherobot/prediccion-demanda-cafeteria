@@ -123,6 +123,69 @@
     </p>
   </div>
 
+  <!-- Probar productos específicos: sección aparte, no afecta el resto de la pantalla -->
+  <div class="mb-5 rounded-2xl border border-brand-primary/20 bg-white p-4 shadow-sm">
+    <div class="mb-1 flex flex-wrap items-center justify-between gap-2">
+      <h3 class="font-bold text-brand-secondary">Probar productos específicos</h3>
+      @if (productosSeleccionados().size > 0) {
+        <button class="text-xs font-semibold text-gray-400 hover:text-gray-600" (click)="limpiarSeleccionPrueba()">
+          Limpiar selección
+        </button>
+      }
+    </div>
+    <p class="mb-3 text-xs text-gray-400">
+      Elegí uno o varios productos puntuales y predecí solo esos, para {{ horizonteLabel() }} — sin
+      afectar el resto de la vista.
+    </p>
+    <div class="mb-3 grid max-h-40 gap-x-3 gap-y-1 overflow-y-auto rounded-xl bg-brand-bg p-3 sm:grid-cols-2 lg:grid-cols-3">
+      @for (p of productos; track p.id) {
+        <label class="flex cursor-pointer items-center gap-2 text-sm text-gray-600">
+          <input
+            type="checkbox"
+            class="rounded"
+            [checked]="productosSeleccionados().has(p.id)"
+            (change)="toggleProductoPrueba(p.id)"
+          />
+          {{ p.nombre }}
+        </label>
+      }
+    </div>
+    <button
+      class="rounded-xl bg-brand-secondary px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-50"
+      [disabled]="productosSeleccionados().size === 0 || pruebaLoading()"
+      (click)="probarSeleccionados()"
+    >
+      <i class="pi" [class.pi-spin]="pruebaLoading()" [class.pi-spinner]="pruebaLoading()" [class.pi-search]="!pruebaLoading()"></i>
+      Predecir {{ productosSeleccionados().size || '' }} seleccionado(s)
+    </button>
+
+    @if (pruebaError(); as msg) {
+      <p class="mt-3 text-xs text-red-600">{{ msg }}</p>
+    }
+    @if (pruebaResultados().length > 0) {
+      <p class="mb-2 mt-3 text-xs text-gray-400">click en un resultado para ver por qué</p>
+      <div class="space-y-2">
+        @for (r of pruebaResultados(); track r.product_id) {
+          <div
+            class="flex cursor-pointer items-center justify-between rounded-xl bg-brand-bg px-3 py-2 transition hover:bg-brand-primary/15"
+            (click)="openExplain(r)"
+          >
+            <span class="text-sm font-medium text-gray-600">{{ nombre(r.product_id) }}</span>
+            <div class="flex items-center gap-2 text-xs">
+              <span class="rounded-full px-2 py-0.5 font-semibold" [class]="riesgoClase(r.nivel_riesgo)">
+                riesgo {{ r.nivel_riesgo }}
+              </span>
+              <span class="text-gray-400">
+                rango {{ r.escenario_conservador | number: '1.0-0' }}–{{ r.escenario_optimista | number: '1.0-0' }}
+              </span>
+              <span class="font-bold text-brand-secondary">{{ r.prediccion_esperada | number: '1.0-1' }} u.</span>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
   @if (error(); as msg) {
     <div class="mb-5 rounded-2xl border-2 border-dashed border-red-300 bg-red-50 p-4 text-sm text-red-700">
       {{ msg }}
@@ -201,6 +264,76 @@
           </div>
         }
       </div>
+    </div>
+
+    <!-- Tabla completa: todos los productos, con exportación -->
+    <div class="mb-5 rounded-2xl border border-brand-primary/20 bg-white p-5 shadow-sm">
+      <div class="mb-1 flex flex-wrap items-center justify-between gap-2">
+        <h3 class="font-bold text-brand-secondary">Tabla completa — predicción para {{ horizonteLabel() }}</h3>
+        <button
+          class="rounded-xl border border-brand-primary/40 px-3 py-1.5 text-xs font-semibold text-brand-secondary transition hover:bg-brand-bg disabled:opacity-50"
+          [disabled]="ordenados().length === 0"
+          (click)="exportarTablaCsv()"
+        >
+          <i class="pi pi-download"></i> Exportar CSV
+        </button>
+      </div>
+      <p class="mb-3 text-xs text-gray-400">
+        Todos los productos, de mayor a menor demanda esperada. Click en una fila para ver por qué el
+        sistema predijo ese número.
+      </p>
+      @if (loading()) {
+        <div class="flex h-24 items-center justify-center text-sm text-gray-400">Calculando…</div>
+      } @else {
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="border-b border-brand-primary/10 text-xs uppercase tracking-wide text-gray-400">
+                <th class="py-2 pr-2 font-semibold">Producto</th>
+                <th class="py-2 pr-2 font-semibold">Predicción</th>
+                <th class="py-2 pr-2 font-semibold">Rango</th>
+                <th class="py-2 pr-2 font-semibold">Riesgo</th>
+                <th class="py-2 pr-2 font-semibold">Alertas</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (r of ordenados(); track r.product_id) {
+                <tr
+                  class="cursor-pointer border-b border-brand-primary/5 transition hover:bg-brand-bg"
+                  (click)="openExplain(r)"
+                >
+                  <td class="py-2 pr-2 font-medium text-gray-600">{{ nombre(r.product_id) }}</td>
+                  <td class="py-2 pr-2 font-bold text-brand-secondary">
+                    {{ r.prediccion_esperada | number: '1.0-1' }} u.
+                  </td>
+                  <td class="py-2 pr-2 text-gray-400">
+                    {{ r.escenario_conservador | number: '1.0-0' }}–{{ r.escenario_optimista | number: '1.0-0' }}
+                  </td>
+                  <td class="py-2 pr-2">
+                    <span class="rounded-full px-2 py-0.5 text-xs font-semibold" [class]="riesgoClase(r.nivel_riesgo)">
+                      {{ r.nivel_riesgo }}
+                    </span>
+                  </td>
+                  <td class="py-2 pr-2">
+                    <div class="flex flex-wrap gap-1">
+                      @if (r.alerta_alta_demanda) {
+                        <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-700">
+                          alta demanda
+                        </span>
+                      }
+                      @if (r.alerta_anomalia) {
+                        <span class="rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-700">
+                          fuera de lo común
+                        </span>
+                      }
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
     </div>
 
     <!-- Reporte conciso: qué producto va a necesitar más preparación -->
@@ -307,8 +440,8 @@
             <span class="text-xl font-bold text-brand-secondary">{{ data.prediccion_h | number: '1.0-1' }} u.</span>
           </div>
           <p class="text-xs text-gray-400">
-            Lo normal para este producto: {{ data.base_value | number: '1.0-1' }} u. — cada factor de abajo lo
-            sube o lo baja hasta llegar a la predicción final.
+            Lo normal para este producto es {{ data.base_value | number: '1.0-1' }} u. Estos son los motivos que
+            explican el resultado de arriba, ordenados de más a menos peso:
           </p>
           <div class="space-y-2.5">
             @for (f of data.factores; track f.concepto_negocio) {
@@ -316,19 +449,23 @@
                 <div class="mb-1 flex items-center justify-between text-xs">
                   <span class="font-medium text-gray-600">{{ f.concepto_negocio }}</span>
                   <span class="font-bold" [class]="f.shap >= 0 ? 'text-brand-accent' : 'text-red-600'">
-                    {{ f.shap >= 0 ? '+' : '' }}{{ f.shap | number: '1.1-1' }}
+                    {{ f.shap >= 0 ? 'sube' : 'baja' }} {{ factorPercent(f) | number: '1.0-0' }}%
                   </span>
                 </div>
                 <div class="h-2 w-full overflow-hidden rounded-full bg-brand-bg">
                   <div
                     class="h-full rounded-full transition-all duration-500"
                     [class]="f.shap >= 0 ? 'bg-brand-accent' : 'bg-red-400'"
-                    [style.width.%]="(abs(f.shap) / maxAbsShap()) * 100"
+                    [style.width.%]="factorPercent(f)"
                   ></div>
                 </div>
               </div>
             }
           </div>
+          <p class="text-xs text-gray-400">
+            <i class="pi pi-info-circle" style="font-size: 0.7rem"></i> El porcentaje muestra cuánto pesó cada
+            motivo en el resultado final — no son unidades, son la "importancia relativa" de cada uno.
+          </p>
         }
       </div>
     </div>
