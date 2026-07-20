@@ -135,7 +135,7 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
     auc = roc_auc_score(y_test_clf, svc_alerta.predict_proba(X_test_clf)[:, 1])
     dump(svc_alerta, MODELS_DIR / "svc_alerta.joblib")
 
-    isolation_forest = IsolationForest(n_estimators=200, contamination=0.05, random_state=RNG, n_jobs=-1)
+    isolation_forest = IsolationForest(n_estimators=200, contamination=0.05, random_state=RNG, n_jobs=1)
     isolation_forest.fit(X_train_clf)
     n_anomalias = int((isolation_forest.predict(X_test_clf) == -1).sum())
     dump(isolation_forest, MODELS_DIR / "isolation_forest.joblib")
@@ -159,7 +159,7 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
     # notebook original para que el reentrenamiento siga siendo rápido)
     imp = permutation_importance(
         pipe_h1, test_h1[feature_cols_svr].values, test_h1["target_h1"].values,
-        n_repeats=10, random_state=RNG, n_jobs=-1,
+        n_repeats=10, random_state=RNG, n_jobs=1,
     )
     importancia = pd.Series(imp.importances_mean, index=feature_cols_svr).sort_values(ascending=False)
 
