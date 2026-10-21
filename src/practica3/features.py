@@ -109,6 +109,32 @@ def cargar_datos_crudos(data_dir: Path) -> pd.DataFrame:
     return ventas
 
 
+def _completar_calendario(agg: pd.DataFrame, tickets_dia: pd.Series) -> pd.DataFrame:
+    """Una fila por (día, producto) en todo el rango, con demanda 0 si no se vendió.
+
+    El export del POS solo trae los días con venta. Sin esta grilla, `shift(1)` es
+    "la venta anterior" y no "ayer", `target_h7` cae 7 ventas después y no 7 días
+    después, y el modelo nunca ve los días en cero.
+    """
+    fechas = pd.date_range(agg["fecha"].min(), agg["fecha"].max(), freq="D")
+    grilla = pd.MultiIndex.from_product([fechas, agg["producto"].unique()], names=["fecha", "producto"])
+    completo = agg.set_index(["fecha", "producto"]).reindex(grilla).reset_index()
+
+    completo["cantidad_vendida"] = completo["cantidad_vendida"].fillna(0)
+    por_producto = completo.groupby("producto")
+    completo["categoria"] = por_producto["categoria"].transform(lambda s: s.ffill().bfill())
+    # Precio de carta vigente: el último cobrado (o el siguiente, al inicio del rango).
+    completo["precio_promedio"] = por_producto["precio_promedio"].transform(
+        lambda s: s.ffill().bfill()
+    )
+    # Sin ventas no hay hora: se usa la hora típica del producto.
+    completo["hora_promedio_venta"] = por_producto["hora_promedio_venta"].transform(
+        lambda s: s.fillna(s.median())
+    )
+    completo["n_tickets_dia"] = completo["fecha"].map(tickets_dia).fillna(0).astype(int)
+    return completo
+
+
 def construir_dataset_diario(ventas: pd.DataFrame) -> pd.DataFrame:
     """Agrega ventas por (fecha, producto) y calcula todas las features de FEATURE_COLS.
 
@@ -136,6 +162,8 @@ def construir_dataset_diario(ventas: pd.DataFrame) -> pd.DataFrame:
     ventas = ventas.assign(hora=horas.dt.hour + horas.dt.minute / 60)
     hora_prom = ventas.groupby(["fecha", "producto"])["hora"].mean().rename("hora_promedio_venta")
     agg = agg.merge(hora_prom, on=["fecha", "producto"], how="left")
+
+    agg = _completar_calendario(agg, tickets_dia)
 
     # product_id estable: entero asignado por orden alfabético del nombre real.
     productos_ordenados = sorted(agg["producto"].unique())
@@ -188,8 +216,11 @@ def calidad_datos_por_producto(
     df: pd.DataFrame, minimo: int = MIN_DIAS_HISTORICOS
 ) -> pd.DataFrame:
     """Resumen de disponibilidad histórica por producto (Feedback Empresas §IV.C)."""
+    # Cuenta días CON venta: la grilla de calendario tiene todos los días para
+    # todos los productos, así que contar filas ya no mide historia real.
+    con_venta = df[df["cantidad_vendida"] > 0]
     resumen = (
-        df.groupby("product_id")
+        con_venta.groupby("product_id")
         .agg(
             nombre=("nombre", "first"),
             n_dias=("fecha", "nunique"),

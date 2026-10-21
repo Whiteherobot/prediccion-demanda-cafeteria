@@ -87,3 +87,27 @@ def test_calidad_datos_marca_historico_insuficiente(ventas):
 
     resumen_bajo = calidad_datos_por_producto(df, minimo=1)
     assert resumen_bajo["calidad_suficiente"].all()
+
+
+def test_dia_sin_venta_es_cero_y_no_corre_los_lags(ventas):
+    # Se borra la Torta del 2026-01-10: ese día no aparece en el export del POS.
+    hueco = pd.Timestamp("2026-01-10")
+    ventas = ventas[~((ventas["fecha"] == hueco) & (ventas["producto"] == "Torta"))]
+    df = agregar_targets(construir_dataset_diario(ventas), HORIZONTES)
+    torta = df[df["nombre"] == "Torta"].set_index("fecha")
+
+    assert len(torta) == 40  # una fila por día del calendario
+    assert torta.loc[hueco, "cantidad_vendida"] == 0
+    assert torta.loc[hueco + pd.Timedelta(days=1), "lag_1"] == 0
+    assert torta.loc[hueco - pd.Timedelta(days=7), "target_h7"] == 0
+    assert torta.loc[hueco, "precio_promedio"] == 4.5
+    assert torta.loc[hueco, "n_tickets_dia"] == 2  # el café sí vendió ese día
+
+
+def test_calidad_cuenta_solo_dias_con_venta(ventas):
+    ventas = ventas[~((ventas["producto"] == "Torta") & (ventas["fecha"] >= "2026-01-21"))]
+    df = construir_dataset_diario(ventas)
+    resumen = calidad_datos_por_producto(df, minimo=30).set_index("nombre")
+    assert resumen.loc["Torta", "n_dias"] == 20
+    assert not resumen.loc["Torta", "calidad_suficiente"]
+    assert resumen.loc["Café", "calidad_suficiente"]
