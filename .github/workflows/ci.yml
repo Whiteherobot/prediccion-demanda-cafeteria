@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  modelo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync
+      - name: Lint
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+      - name: Pipeline completo (datos, entrenamiento, resultados)
+        run: make pipeline
+      - name: Pruebas (con los modelos recién entrenados)
+        run: uv run pytest -v
+      - name: Export a ONNX
+        run: make export-onnx
+
+  beta:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: beta_prediccion_demanda
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: beta_prediccion_demanda/package-lock.json
+      - run: npm ci
+      - run: npx ng build
+      - run: npx ng test --watch=false
