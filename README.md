@@ -1,99 +1,85 @@
-# Práctica 3 — Predicción de demanda (SVR multi-horizonte)
+# Predicción de demanda para una cafetería
 
-**Aprendizaje Automático · Michael Franco, Michael Lata, Jordy Romero, Nayeli Barbecho**
+[![CI](https://github.com/Whiteherobot/prediccion-demanda-cafeteria/actions/workflows/ci.yml/badge.svg)](https://github.com/Whiteherobot/prediccion-demanda-cafeteria/actions/workflows/ci.yml)
 
-Continúa la línea Práctica 2 (LSTM/boosting, sintético) → Informe SVM (SVR simple,
-sintético) → esta práctica: mismo enfoque SVR, "producción-lista" (API + docs +
-tests), corriendo ahora sobre **ventas reales de El Café que te Conté**
-(2026-04-01 a 2026-07-31, 33 productos), con las mejoras concretas pedidas por las
-empresas en `Material y Reportes/Feedback Empresas.pdf` §V (horizontes múltiples,
-intervalos, alertas, anomalías, métricas de negocio, reporte no técnico).
+Predice cuántas unidades de cada producto va a vender **El Café que te Conté** (Cuenca) a 1, 3
+y 7 días, con un rango de escenarios, una alerta de día de alta demanda y un aviso cuando el
+contexto se sale de lo normal. Se entrena con el export real del POS (ticket por línea, del
+1 de abril al 31 de julio de 2026, 33 productos) y se sirve con una API FastAPI y una beta en
+Angular.
 
-## Resultados (horizonte t+1, test, datos reales)
+Práctica 3 de Aprendizaje Automático (UPS, 2026), hecha por Michael Lata, Michael Franco,
+Jordy Romero y Nayeli Barbecho.
 
-| Métrica | Valor |
-|---|---|
-| RMSE | 10.94 |
-| MAE | 7.75 |
-| R² | **0.46** |
-| Reducción de ingresos en riesgo vs baseline ingenuo (`lag_7`) | **32%** |
+## Resultados (test, últimos días del rango)
 
-De 24 features candidatas (calendario + 3 variables reales nuevas: precio,
-tráfico de clientes, hora de venta), la selección por `permutation importance`
-dejó 9 para el SVR. El SVC de alerta y el `IsolationForest` usan las 24
-candidatas completas — se detectó y corrigió un error metodológico real: reusar
-las features podadas para el SVR en el SVC bajaba su AUC a 0.47 (peor que azar);
-con las 24 candidatas sube a 0.60 (detalle en `docs/01_arquitectura.md`).
+| Horizonte | RMSE | MAE | R² |
+|---|---|---|---|
+| t+1 | 11.27 | 7.99 | 0.43 |
+| t+3 | 11.12 | 7.90 | 0.45 |
+| t+7 | 11.03 | 7.67 | 0.45 |
 
-Las métricas de la etapa sintética (Práctica 2, Informe SVM) quedan en
-`models/metadata.json` solo como contexto histórico — **no son comparables
-numéricamente** (dataset, escala y productos distintos).
+Contra el baseline ingenuo (vender lo mismo que hace una semana), el modelo reduce un **30 %**
+el dinero en riesgo por quiebre o sobrante, calculado con el precio real de cada producto.
 
-## XAI
+- **Modelo:** un SVR (kernel RBF) por horizonte. De 24 variables candidatas (calendario,
+  historia de ventas, precio, tickets del día y hora típica de venta), `permutation_importance`
+  deja 10.
+- **Alerta de alta demanda:** un SVC con las 24 candidatas (AUC 0.62). Con las 10 del SVR
+  baja a 0.57: la selección hecha para regresión no sirve para clasificar.
+- **Anomalías:** `IsolationForest`. **Escenarios:** cuantiles empíricos de los residuos.
+- **Explicación:** Kernel SHAP por predicción (notebook 3 y `POST /predict/explain`).
 
-`notebooks/03_resultados.ipynb` (secciones 8-9) explica predicciones puntuales
-con **Kernel SHAP** — no solo qué variable importa en promedio, sino por qué el
-modelo predijo ese número para un producto y fecha concretos, trazable hasta los
-tickets de venta crudos. Aplicado a 2 pares contrastantes: producto perecible vs.
-no perecible, y producto popular en fin de semana vs. de consumo diario
-constante. Detalle del proceso en `docs/01_arquitectura.md`.
+## Uso
+
+```bash
+make setup        # uv sync + nbstripout
+make pipeline     # 01_data -> 02_procesos -> 03_resultados (unos 2 minutos)
+make test
+make api          # http://localhost:8000/docs
+```
+
+La beta (`beta_prediccion_demanda/`) corre con `npm ci && npm start` en
+http://localhost:4200, con la API levantada. La carga de ventas nuevas reentrena los modelos y
+reescribe `data/raw/ventas.csv`, así que solo funciona si la API se arranca con una clave:
+
+```bash
+PRACTICA3_ADMIN_TOKEN=una-clave-larga make api
+```
+
+Detalle de instalación, actualización con un export nuevo y problemas comunes en
+[`docs/03_runbook.md`](docs/03_runbook.md). Video de la beta (1 min):
+[Drive](https://drive.google.com/file/d/1Czsoc6Qy0FZf6Afn7Mvh4-pwxvy2_ocg/view?usp=sharing).
 
 ## Estructura
 
 ```
-docs/           arquitectura, glosario, runbook, api reference
-notebooks/      01_data · 02_procesos · 03_resultados
-src/practica3/  features.py + inference.py (compartidos por notebooks y API)
-data/raw/       ventas.csv (export real, nivel ticket/línea)
-models/         artefactos entrenados (.joblib, generados por 02_procesos) + .onnx (`make export-onnx`)
-metrics/        metrics.json (generado por 03_resultados)
-reports/        reporte_ejecutivo.md (generado por 03_resultados)
-jmeter/         plan_practica3.jmx
+src/practica3/   features.py e inference.py (los usan los notebooks y la API), training.py, api/
+notebooks/       01_data, 02_procesos, 03_resultados (se entregan ejecutados)
+data/raw/        ventas.csv
+docs/            arquitectura, glosario, runbook, referencia de la API
+reports/         reporte ejecutivo para la cafetería (lo genera el notebook 3)
+beta_prediccion_demanda/   front en Angular + PrimeNG
+jmeter/          plan de carga de la API
 ```
 
-## Quickstart
+## Historia
 
-```bash
-sudo pacman -S uv          # o: curl -LsSf https://astral.sh/uv/install.sh | sh
-make setup                 # uv sync + kernel de Jupyter + nbstripout
-make pipeline               # 01_data -> 02_procesos -> 03_resultados
-make api                    # http://localhost:8000/docs
-make test
-```
+- **Práctica 2:** LSTM y boosting sobre un dataset sintético.
+- **Informe SVM:** el mismo problema con un SVR simple, todavía sintético.
+- **Práctica 3 (julio 2026):** SVR multi-horizonte, API y documentación. A mitad de la práctica
+  la cafetería entregó sus ventas reales: se quitaron las variables inventadas (stock, promoción,
+  lluvia) y entraron las reales (precio, tickets del día, hora de venta). Las mejoras (escenarios,
+  alertas, anomalías, métricas en dólares y reporte no técnico) salen de la retroalimentación
+  que dio la cafetería.
+- **Revisión de octubre 2026:**
+  - El export solo trae los días con venta, así que los lags y los objetivos se corrían por
+    filas en lugar de por días. Ahora hay una grilla de calendario completa y un día sin venta
+    cuenta como 0; el R² t+1 pasó de 0.46 a 0.43.
+  - El reentrenamiento escribía `ventas.csv` antes de validar el CSV. Ahora valida todo
+    primero, escribe de forma atómica y pide una clave.
+  - Se agregaron CI y la licencia, y se sacaron del repo los zips de entrega.
 
-Detalle completo de instalación y solución de problemas en `docs/03_runbook.md`.
+## Licencia
 
-## Documentación
-
-- [`docs/01_arquitectura.md`](docs/01_arquitectura.md) — flujo de datos y componentes
-- [`docs/02_glosario.md`](docs/02_glosario.md) — términos y decisiones de arquitectura
-- [`docs/03_runbook.md`](docs/03_runbook.md) — setup, troubleshooting y cómo actualizar con un nuevo export de ventas
-- [`docs/04_api_reference.md`](docs/04_api_reference.md) — endpoints de la API
-
-## 🎥 Video demo
-[Ver video (1 min)](https://drive.google.com/file/d/1Czsoc6Qy0FZf6Afn7Mvh4-pwxvy2_ocg/view?usp=sharing) — front + backend en paralelo: horizontes, autoplay, XAI, tabla + export CSV, reentrenamiento.
-
-## Qué mejora esta práctica, concretamente
-
-Cada punto de `Feedback Empresas.pdf` §V tiene una implementación 1:1: horizontes
-múltiples (`svr_h1/h3/h7`), intervalos de confianza (cuantiles empíricos de
-residuos), importancia de variables (`permutation_importance`), detección de
-anomalías (`IsolationForest`), métricas de negocio con **precio real** (ingresos en
-riesgo por quiebre/sobre-stock, sin márgenes inventados), reporte automático no
-técnico (`reports/reporte_ejecutivo.md`) e indicador de riesgo fácil de leer
-(semáforo verde/amarillo/rojo). Detalle en `docs/01_arquitectura.md` y
-`docs/02_glosario.md`.
-
-## De datos sintéticos a datos reales
-
-Esta práctica arrancó sobre el dataset sintético de la Práctica 2. Con el export
-real de El Café que te Conté (`data/raw/ventas.csv`), se retiraron 3 variables
-sintéticas sin respaldo (`proporcion_stock`, `promocion_activa`, `clima_lluvia`) y
-se agregaron 3 reales (`precio_promedio`, `n_tickets_dia`, `hora_promedio_venta`) —
-sin cambiar la arquitectura del pipeline.
-
-## Pendiente
-
-- Correr `make loadtest` (JMeter) contra la API — instalación en `docs/03_runbook.md`.
-- Cuando la cafetería acumule más meses de ventas, actualizar `ventas.csv` y
-  volver a correr `make pipeline` (ver `docs/03_runbook.md`).
+MIT. Ver [LICENSE](LICENSE).
