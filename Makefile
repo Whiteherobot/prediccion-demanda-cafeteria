@@ -1,6 +1,11 @@
 .PHONY: setup data train results pipeline api test loadtest lint clean precommit export-onnx
 
-NB_TIMEOUT := --ExecutePreprocessor.timeout=600
+# Los notebooks dependen uno del otro: nunca en paralelo, aunque MAKEFLAGS traiga -j.
+.NOTPARALLEL:
+
+# Kernel python3 del propio venv: no depende de un kernel registrado a mano
+# (ese guarda la ruta absoluta y se rompe si se mueve la carpeta).
+NB_TIMEOUT := --ExecutePreprocessor.timeout=600 --ExecutePreprocessor.kernel_name=python3
 
 setup:
 	uv sync
@@ -16,7 +21,10 @@ train:
 results:
 	uv run jupyter nbconvert --to notebook --execute --inplace $(NB_TIMEOUT) notebooks/03_resultados.ipynb
 
-pipeline: data train results
+pipeline:
+	$(MAKE) data
+	$(MAKE) train
+	$(MAKE) results
 
 export-onnx:
 	uv run python -m practica3.export_onnx
