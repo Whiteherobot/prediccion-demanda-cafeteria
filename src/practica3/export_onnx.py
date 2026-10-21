@@ -40,7 +40,9 @@ def exportar(horizonte: str, feature_cols: list[str]) -> Path:
 
     max_diff = float(np.max(np.abs(pred_sklearn - pred_onnx)))
     if max_diff > TOL:
-        raise RuntimeError(f"svr_{horizonte}: ONNX difiere de sklearn (max_diff={max_diff:.6f} > {TOL})")
+        raise RuntimeError(
+            f"svr_{horizonte}: ONNX difiere de sklearn (max_diff={max_diff:.6f} > {TOL})"
+        )
 
     out_path = MODELS_DIR / f"svr_{horizonte}.onnx"
     out_path.write_bytes(onnx_model.SerializeToString())

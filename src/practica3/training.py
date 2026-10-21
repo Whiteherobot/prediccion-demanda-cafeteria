@@ -38,9 +38,17 @@ METRICS_PATH = ROOT_DIR / "metrics" / "metrics.json"
 VENTAS_PATH = DATA_RAW_DIR / "ventas.csv"
 
 COLUMNAS_VENTAS = [
-    "id_ticket", "fecha_completa", "hora_exacta", "dia_de_la_semana", "mes",
-    "categoria", "producto", "variante_o_sabor", "cantidad_vendida",
-    "precio_unitario", "total_linea",
+    "id_ticket",
+    "fecha_completa",
+    "hora_exacta",
+    "dia_de_la_semana",
+    "mes",
+    "categoria",
+    "producto",
+    "variante_o_sabor",
+    "cantidad_vendida",
+    "precio_unitario",
+    "total_linea",
 ]
 
 RNG = 42
@@ -67,16 +75,25 @@ def _cargar_y_validar_csv(contenido_csv: bytes) -> pd.DataFrame:
 
     # Todo lo que después se parsea se valida acá, antes de tocar el histórico:
     # un error a mitad del reentrenamiento dejaba ventas.csv ya sobrescrito.
-    _exigir(nuevas, pd.to_datetime(nuevas["fecha_completa"], format="%d/%m/%Y", errors="coerce").notna(),
-            "fecha_completa no tiene el formato dd/mm/aaaa")
-    _exigir(nuevas, pd.to_datetime(nuevas["hora_exacta"], format="%H:%M", errors="coerce").notna(),
-            "hora_exacta no tiene el formato hh:mm")
+    _exigir(
+        nuevas,
+        pd.to_datetime(nuevas["fecha_completa"], format="%d/%m/%Y", errors="coerce").notna(),
+        "fecha_completa no tiene el formato dd/mm/aaaa",
+    )
+    _exigir(
+        nuevas,
+        pd.to_datetime(nuevas["hora_exacta"], format="%H:%M", errors="coerce").notna(),
+        "hora_exacta no tiene el formato hh:mm",
+    )
     cantidad = pd.to_numeric(nuevas["cantidad_vendida"], errors="coerce")
     precio = pd.to_numeric(nuevas["precio_unitario"], errors="coerce")
     _exigir(nuevas, cantidad > 0, "cantidad_vendida debe ser un número mayor que 0")
     _exigir(nuevas, precio >= 0, "precio_unitario debe ser un número no negativo")
-    _exigir(nuevas, nuevas["producto"].notna() & nuevas["categoria"].notna(),
-            "producto y categoria no pueden estar vacíos")
+    _exigir(
+        nuevas,
+        nuevas["producto"].notna() & nuevas["categoria"].notna(),
+        "producto y categoria no pueden estar vacíos",
+    )
     return nuevas
 
 
@@ -97,7 +114,9 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
     actuales = pd.read_csv(VENTAS_PATH)
 
     combinado = pd.concat([actuales, nuevas], ignore_index=True)
-    combinado = combinado.drop_duplicates(subset=["id_ticket", "producto", "variante_o_sabor"], keep="first")
+    combinado = combinado.drop_duplicates(
+        subset=["id_ticket", "producto", "variante_o_sabor"], keep="first"
+    )
     filas_nuevas = len(combinado) - len(actuales)
     if filas_nuevas <= 0:
         raise ReentrenamientoError(
@@ -125,10 +144,20 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
         X_test, y_test = test[feature_cols_svr].values, test[f"target_h{h}"].values
 
         p = hparams[str(h)]
-        pipe = Pipeline([
-            ("sc", StandardScaler()),
-            ("svr", SVR(kernel=p["svr__kernel"], C=p["svr__C"], gamma=p["svr__gamma"], epsilon=p["svr__epsilon"])),
-        ])
+        pipe = Pipeline(
+            [
+                ("sc", StandardScaler()),
+                (
+                    "svr",
+                    SVR(
+                        kernel=p["svr__kernel"],
+                        C=p["svr__C"],
+                        gamma=p["svr__gamma"],
+                        epsilon=p["svr__epsilon"],
+                    ),
+                ),
+            ]
+        )
         pipe.fit(X_train, y_train)
         pred_test = pipe.predict(X_test)
 
@@ -138,7 +167,11 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
             "r2": round(float(r2_score(y_test, pred_test)), 4),
         }
         p10, p50, p90 = np.quantile(y_test - pred_test, [0.10, 0.50, 0.90])
-        residuales[str(h)] = {"p10": round(float(p10), 3), "p50": round(float(p50), 3), "p90": round(float(p90), 3)}
+        residuales[str(h)] = {
+            "p10": round(float(p10), 3),
+            "p50": round(float(p50), 3),
+            "p90": round(float(p90), 3),
+        }
 
         artefactos[f"svr_h{h}.joblib"] = pipe
         if h == 1:
@@ -149,20 +182,38 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
     # SVC de alerta de alta demanda + IsolationForest (t+1), mismo diseño del notebook 2
     train_clf, test_clf, _ = split_temporal(df, "target_h1", feature_cols_svc_iso)
     umbral = train_clf.groupby("product_id")["target_h1"].quantile(0.75)
-    y_train_clf = (train_clf["target_h1"].values > train_clf["product_id"].map(umbral).values).astype(int)
-    y_test_clf = (test_clf["target_h1"].values > test_clf["product_id"].map(umbral).values).astype(int)
+    y_train_clf = (
+        train_clf["target_h1"].values > train_clf["product_id"].map(umbral).values
+    ).astype(int)
+    y_test_clf = (test_clf["target_h1"].values > test_clf["product_id"].map(umbral).values).astype(
+        int
+    )
     X_train_clf = train_clf[feature_cols_svc_iso].values
     X_test_clf = test_clf[feature_cols_svc_iso].values
 
-    svc_alerta = Pipeline([
-        ("sc", StandardScaler()),
-        ("svc", SVC(kernel="rbf", C=10, gamma="scale", class_weight="balanced", probability=True, random_state=RNG)),
-    ])
+    svc_alerta = Pipeline(
+        [
+            ("sc", StandardScaler()),
+            (
+                "svc",
+                SVC(
+                    kernel="rbf",
+                    C=10,
+                    gamma="scale",
+                    class_weight="balanced",
+                    probability=True,
+                    random_state=RNG,
+                ),
+            ),
+        ]
+    )
     svc_alerta.fit(X_train_clf, y_train_clf)
     auc = roc_auc_score(y_test_clf, svc_alerta.predict_proba(X_test_clf)[:, 1])
     artefactos["svc_alerta.joblib"] = svc_alerta
 
-    isolation_forest = IsolationForest(n_estimators=200, contamination=0.05, random_state=RNG, n_jobs=1)
+    isolation_forest = IsolationForest(
+        n_estimators=200, contamination=0.05, random_state=RNG, n_jobs=1
+    )
     isolation_forest.fit(X_train_clf)
     n_anomalias = int((isolation_forest.predict(X_test_clf) == -1).sum())
     artefactos["isolation_forest.joblib"] = isolation_forest
@@ -185,10 +236,16 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
     # Importancia de variables (permutation, recalculada con menos repeticiones que el
     # notebook original para que el reentrenamiento siga siendo rápido)
     imp = permutation_importance(
-        pipe_h1, test_h1[feature_cols_svr].values, test_h1["target_h1"].values,
-        n_repeats=10, random_state=RNG, n_jobs=1,
+        pipe_h1,
+        test_h1[feature_cols_svr].values,
+        test_h1["target_h1"].values,
+        n_repeats=10,
+        random_state=RNG,
+        n_jobs=1,
     )
-    importancia = pd.Series(imp.importances_mean, index=feature_cols_svr).sort_values(ascending=False)
+    importancia = pd.Series(imp.importances_mean, index=feature_cols_svr).sort_values(
+        ascending=False
+    )
 
     ahora = datetime.now()
     rango_fechas = f"{df['fecha'].min().date()} a {df['fecha'].max().date()}"
@@ -202,7 +259,9 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
         "timestamp": ahora.isoformat(timespec="seconds"),
         "filas_nuevas_agregadas": int(filas_nuevas),
         "filas_totales_ventas": int(len(combinado)),
-        "nota": "Hiperparámetros reutilizados de la búsqueda original (GridSearchCV) — no re-buscados.",
+        "nota": (
+            "Hiperparámetros reutilizados de la búsqueda original (GridSearchCV) — no re-buscados."
+        ),
     }
 
     metrics_json = json.loads(METRICS_PATH.read_text())
@@ -233,7 +292,9 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
         tmp = MODELS_DIR / f"{nombre}.tmp"
         dump(modelo, tmp)
         os.replace(tmp, MODELS_DIR / nombre)
-    _escribir_atomico(MODELS_DIR / "metadata.json", json.dumps(metadata, indent=2, ensure_ascii=False))
+    _escribir_atomico(
+        MODELS_DIR / "metadata.json", json.dumps(metadata, indent=2, ensure_ascii=False)
+    )
     _escribir_atomico(MODELS_DIR / "residuales.json", json.dumps(residuales, indent=2))
     _escribir_atomico(METRICS_PATH, json.dumps(metrics_json, indent=2, ensure_ascii=False))
 
@@ -244,5 +305,8 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
         "metricas": metricas,
         "reduccion_pct_ingresos_riesgo": reduccion_pct,
         "backup_creado": backup_path.name,
-        "nota": "Hiperparámetros reutilizados (no re-buscados) — reentrenamiento rápido sobre datos actualizados.",
+        "nota": (
+            "Hiperparámetros reutilizados (no re-buscados) — reentrenamiento rápido sobre "
+            "datos actualizados."
+        ),
     }

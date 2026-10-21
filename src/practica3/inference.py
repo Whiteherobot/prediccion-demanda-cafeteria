@@ -61,9 +61,7 @@ class DemandPredictor:
         ventas = cargar_datos_crudos(data_raw_dir)
         self.df = construir_dataset_diario(ventas)
         calidad = calidad_datos_por_producto(self.df)
-        self.calidad_por_producto = dict(
-            zip(calidad["product_id"], calidad["calidad_suficiente"])
-        )
+        self.calidad_por_producto = dict(zip(calidad["product_id"], calidad["calidad_suficiente"]))
 
         # Explicadores SHAP: caros de construir (background + kernel), se arman una
         # sola vez por horizonte, la primera vez que se piden (no en el arranque).
@@ -211,7 +209,9 @@ class DemandPredictor:
             )
 
         con_proyeccion = [i for i in items if i["proyeccion_7dias"] is not None]
-        top_semana = max(con_proyeccion, key=lambda i: i["proyeccion_7dias"]) if con_proyeccion else None
+        top_semana = (
+            max(con_proyeccion, key=lambda i: i["proyeccion_7dias"]) if con_proyeccion else None
+        )
         top_mes = max(items, key=lambda i: i["historico_30dias"])
 
         return {

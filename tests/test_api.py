@@ -48,7 +48,9 @@ def test_predict_producto_valido(client):
     assert r.status_code == 200
     body = r.json()
     assert body["product_id"] == 1
-    assert body["escenario_conservador"] <= body["prediccion_esperada"] <= body["escenario_optimista"]
+    assert (
+        body["escenario_conservador"] <= body["prediccion_esperada"] <= body["escenario_optimista"]
+    )
     assert body["nivel_riesgo"] in {"verde", "amarillo", "rojo"}
 
 
@@ -60,10 +62,15 @@ def test_predict_horizonte_invalido(client):
 
 @requiere_modelos
 def test_predict_batch(client):
-    r = client.post("/predict/batch", json={"items": [
-        {"product_id": 1, "fecha": "2026-07-15", "horizonte": 1},
-        {"product_id": 2, "fecha": "2026-07-15", "horizonte": 3},
-    ]})
+    r = client.post(
+        "/predict/batch",
+        json={
+            "items": [
+                {"product_id": 1, "fecha": "2026-07-15", "horizonte": 1},
+                {"product_id": 2, "fecha": "2026-07-15", "horizonte": 3},
+            ]
+        },
+    )
     assert r.status_code == 200
     assert len(r.json()["resultados"]) == 2
 

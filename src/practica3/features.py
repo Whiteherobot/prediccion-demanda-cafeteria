@@ -26,9 +26,17 @@ from sklearn.preprocessing import LabelEncoder
 # Calendario + historia temporal (heredadas de la iteración sintética; sin
 # `proporcion_stock`, que dependía de un inventario que este export no trae).
 BASE_FEATURES = [
-    "cantidad_vendida", "dia_semana", "mes", "es_weekend", "es_feriado",
-    "dias_desde_inicio", "categoria_encoded",
-    "lag_1", "lag_7", "rolling_mean_7", "rolling_std_7",
+    "cantidad_vendida",
+    "dia_semana",
+    "mes",
+    "es_weekend",
+    "es_feriado",
+    "dias_desde_inicio",
+    "categoria_encoded",
+    "lag_1",
+    "lag_7",
+    "rolling_mean_7",
+    "rolling_std_7",
 ]
 
 # Más historia, codificación cíclica y las 3 variables reales nuevas
@@ -36,10 +44,19 @@ BASE_FEATURES = [
 # sintéticas de la iteración anterior (`promocion_activa`, `clima_lluvia`,
 # `flujo_clientes_estimado`).
 NEW_FEATURES = [
-    "lag_2", "lag_14", "rolling_mean_14", "rolling_std_14",
-    "dia_semana_sin", "dia_semana_cos", "mes_sin", "mes_cos",
-    "es_fecha_especial", "temporada_seca",
-    "precio_promedio", "n_tickets_dia", "hora_promedio_venta",
+    "lag_2",
+    "lag_14",
+    "rolling_mean_14",
+    "rolling_std_14",
+    "dia_semana_sin",
+    "dia_semana_cos",
+    "mes_sin",
+    "mes_cos",
+    "es_fecha_especial",
+    "temporada_seca",
+    "precio_promedio",
+    "n_tickets_dia",
+    "hora_promedio_venta",
 ]
 
 FEATURE_COLS = BASE_FEATURES + NEW_FEATURES
@@ -117,7 +134,9 @@ def _completar_calendario(agg: pd.DataFrame, tickets_dia: pd.Series) -> pd.DataF
     después, y el modelo nunca ve los días en cero.
     """
     fechas = pd.date_range(agg["fecha"].min(), agg["fecha"].max(), freq="D")
-    grilla = pd.MultiIndex.from_product([fechas, agg["producto"].unique()], names=["fecha", "producto"])
+    grilla = pd.MultiIndex.from_product(
+        [fechas, agg["producto"].unique()], names=["fecha", "producto"]
+    )
     completo = agg.set_index(["fecha", "producto"]).reindex(grilla).reset_index()
 
     completo["cantidad_vendida"] = completo["cantidad_vendida"].fillna(0)
@@ -169,7 +188,11 @@ def construir_dataset_diario(ventas: pd.DataFrame) -> pd.DataFrame:
     productos_ordenados = sorted(agg["producto"].unique())
     producto_a_id = {p: i + 1 for i, p in enumerate(productos_ordenados)}
     agg["product_id"] = agg["producto"].map(producto_a_id)
-    df = agg.rename(columns={"producto": "nombre"}).sort_values(["product_id", "fecha"]).reset_index(drop=True)
+    df = (
+        agg.rename(columns={"producto": "nombre"})
+        .sort_values(["product_id", "fecha"])
+        .reset_index(drop=True)
+    )
 
     # ── calendario base ──────────────────────────────────────────────────────
     df["dia_semana"] = df["fecha"].dt.weekday
@@ -212,9 +235,7 @@ def agregar_targets(df: pd.DataFrame, horizontes: tuple[int, ...] = HORIZONTES) 
     return df
 
 
-def calidad_datos_por_producto(
-    df: pd.DataFrame, minimo: int = MIN_DIAS_HISTORICOS
-) -> pd.DataFrame:
+def calidad_datos_por_producto(df: pd.DataFrame, minimo: int = MIN_DIAS_HISTORICOS) -> pd.DataFrame:
     """Resumen de disponibilidad histórica por producto (Feedback Empresas §IV.C)."""
     # Cuenta días CON venta: la grilla de calendario tiene todos los días para
     # todos los productos, así que contar filas ya no mide historia real.

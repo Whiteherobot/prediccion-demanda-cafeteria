@@ -26,7 +26,9 @@ class ModelInfoResponse(BaseModel):
 
 class PredictRequest(BaseModel):
     product_id: int = Field(..., ge=1, description="Identificador del producto (1-33)")
-    fecha: str = Field(..., description="Fecha de referencia YYYY-MM-DD (datos conocidos hasta ese día)")
+    fecha: str = Field(
+        ..., description="Fecha de referencia YYYY-MM-DD (datos conocidos hasta ese día)"
+    )
     horizonte: int = Field(1, description="Días hacia adelante a predecir: 1, 3 o 7")
 
 

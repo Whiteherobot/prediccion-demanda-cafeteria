@@ -28,18 +28,20 @@ def ventas():
         for hora in ["09:00", "14:30"]:
             ticket_id += 1
             for producto, categoria in productos.items():
-                filas.append({
-                    "id_ticket": f"T{ticket_id:05d}",
-                    "fecha_completa": fecha.strftime("%d/%m/%Y"),
-                    "hora_exacta": hora,
-                    "dia_de_la_semana": fecha.day_name(),
-                    "mes": fecha.month,
-                    "categoria": categoria,
-                    "producto": producto,
-                    "variante_o_sabor": "N/A",
-                    "cantidad_vendida": int(rng.integers(1, 20)),
-                    "precio_unitario": 3.5 if producto == "Café" else 4.5,
-                })
+                filas.append(
+                    {
+                        "id_ticket": f"T{ticket_id:05d}",
+                        "fecha_completa": fecha.strftime("%d/%m/%Y"),
+                        "hora_exacta": hora,
+                        "dia_de_la_semana": fecha.day_name(),
+                        "mes": fecha.month,
+                        "categoria": categoria,
+                        "producto": producto,
+                        "variante_o_sabor": "N/A",
+                        "cantidad_vendida": int(rng.integers(1, 20)),
+                        "precio_unitario": 3.5 if producto == "Café" else 4.5,
+                    }
+                )
     df = pd.DataFrame(filas)
     df["total_linea"] = df["cantidad_vendida"] * df["precio_unitario"]
     df["fecha"] = pd.to_datetime(df["fecha_completa"], format="%d/%m/%Y")

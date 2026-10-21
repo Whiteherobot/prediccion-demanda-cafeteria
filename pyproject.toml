@@ -45,6 +45,8 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+# Los notebooks se entregan ejecutados tal cual; el lint cubre src/ y tests/.
+extend-exclude = ["notebooks", "beta_prediccion_demanda"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP"]

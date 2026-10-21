@@ -48,7 +48,9 @@ def _nuevo_lote_id() -> str:
     return f"LOTE-{secrets.token_hex(4).upper()}"
 
 
-def _log_paso(lote_id: str, paso: int, total_pasos: int, evento: str, mensaje: str, data: dict) -> None:
+def _log_paso(
+    lote_id: str, paso: int, total_pasos: int, evento: str, mensaje: str, data: dict
+) -> None:
     """Log narrado paso a paso (mensaje en criollo + evento + payload JSON completo)
     para poder seguir en vivo qué está haciendo el backend con cada request."""
     texto = f"{lote_id} | PASO {paso}/{total_pasos} | {mensaje}"
@@ -83,7 +85,9 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Práctica 3 — API de predicción de demanda",
-    description="SVR multi-horizonte con escenarios, alerta de alta demanda y detección de anomalías.",
+    description=(
+        "SVR multi-horizonte con escenarios, alerta de alta demanda y detección de anomalías."
+    ),
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -101,7 +105,10 @@ def _predictor() -> DemandPredictor:
     if predictor is None:
         raise HTTPException(
             status_code=503,
-            detail="Modelo no entrenado todavía. Correr `make train` (o `make pipeline`) y reiniciar la API.",
+            detail=(
+                "Modelo no entrenado todavía. Correr `make train` (o `make pipeline`) y "
+                "reiniciar la API."
+            ),
         )
     return predictor
 
@@ -146,7 +153,10 @@ def predict_batch(req: BatchPredictRequest) -> BatchPredictResponse:
         2,
         total_pasos,
         "prediction.batch_model_ready",
-        "Los modelos SVR (por horizonte) ya están cargados en memoria y listos para procesar el lote.",
+        (
+            "Los modelos SVR (por horizonte) ya están cargados en memoria y listos "
+            "para procesar el lote."
+        ),
         {"horizontes_soportados": predictor.info_modelo()["horizontes_soportados"]},
     )
 
@@ -163,7 +173,9 @@ def predict_batch(req: BatchPredictRequest) -> BatchPredictResponse:
                 f"Falló el producto {item.product_id}: {exc}",
                 {"product_id": item.product_id, "fecha": item.fecha, "horizonte": item.horizonte},
             )
-            raise HTTPException(status_code=400, detail=f"product_id={item.product_id}: {exc}") from exc
+            raise HTTPException(
+                status_code=400, detail=f"product_id={item.product_id}: {exc}"
+            ) from exc
 
     _log_paso(
         lote_id,
@@ -233,7 +245,9 @@ def _exigir_admin(token: str | None) -> None:
     if not esperado:
         raise HTTPException(
             status_code=403,
-            detail="Reentrenamiento deshabilitado: definir PRACTICA3_ADMIN_TOKEN al arrancar la API.",
+            detail=(
+                "Reentrenamiento deshabilitado: definir PRACTICA3_ADMIN_TOKEN al arrancar la API."
+            ),
         )
     if not token or not secrets.compare_digest(token, esperado):
         raise HTTPException(status_code=401, detail="Clave de administrador incorrecta.")
@@ -258,5 +272,7 @@ async def reentrenar(
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
     _state["predictor"] = DemandPredictor()
-    logger.info("Modelos reentrenados y recargados (%s filas nuevas)", resumen["filas_nuevas_agregadas"])
+    logger.info(
+        "Modelos reentrenados y recargados (%s filas nuevas)", resumen["filas_nuevas_agregadas"]
+    )
     return ReentrenarResponse(**resumen)
