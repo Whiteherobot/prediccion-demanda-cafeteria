@@ -16,6 +16,8 @@ make pipeline
 
 # 4. Levantar la API
 make api                                # http://localhost:8000/docs
+# Para habilitar la carga de ventas nuevas desde la beta:
+# PRACTICA3_ADMIN_TOKEN=una-clave-larga make api
 
 # 5. (opcional) Probar carga con JMeter
 sudo pacman -S --needed jdk-openjdk     # o: yay -S jmeter (instala java como dependencia)

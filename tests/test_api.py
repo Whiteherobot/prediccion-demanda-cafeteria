@@ -74,3 +74,20 @@ def test_predict_alerta(client):
     assert r.status_code == 200
     body = r.json()
     assert 0.0 <= body["probabilidad"] <= 1.0
+
+
+def test_reentrenar_apagado_sin_clave_configurada(client, monkeypatch):
+    monkeypatch.delenv("PRACTICA3_ADMIN_TOKEN", raising=False)
+    r = client.post("/admin/reentrenar", files={"file": ("v.csv", b"a,b\n1,2\n")})
+    assert r.status_code == 403
+
+
+def test_reentrenar_rechaza_clave_incorrecta(client, monkeypatch):
+    monkeypatch.setenv("PRACTICA3_ADMIN_TOKEN", "correcta")
+    archivo = {"file": ("v.csv", b"a,b\n1,2\n")}
+    assert client.post("/admin/reentrenar", files=archivo).status_code == 401
+    r = client.post("/admin/reentrenar", files=archivo, headers={"X-Admin-Token": "otra"})
+    assert r.status_code == 401
+    # Con la clave correcta pasa al validador del CSV (que rechaza este esquema).
+    r = client.post("/admin/reentrenar", files=archivo, headers={"X-Admin-Token": "correcta"})
+    assert r.status_code == 400

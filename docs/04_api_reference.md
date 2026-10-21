@@ -123,11 +123,35 @@ curl -X POST http://localhost:8000/predict/alerta \
 }
 ```
 
+## Otros endpoints de la beta
+
+- `GET /metrics/negocio`: ingresos en riesgo (modelo vs. baseline `lag_7`) y las 5 variables más importantes.
+- `POST /predict/explain`: explicación Kernel SHAP de una predicción (`product_id`, `fecha`, `horizonte`).
+- `GET /reportes/demanda-periodo?fecha=YYYY-MM-DD`: proyección t+7 y ventas reales de los últimos 30 días por producto.
+
+## `POST /admin/reentrenar`
+
+Recibe un CSV (`multipart/form-data`, campo `file`) con el mismo esquema de `ventas.csv`,
+agrega las filas nuevas al histórico y reajusta los modelos con los hiperparámetros ya
+encontrados. Reescribe `data/raw/ventas.csv` (dejando un `ventas_backup_*.csv`), así que
+exige una clave:
+
+```bash
+PRACTICA3_ADMIN_TOKEN=una-clave-larga make api
+curl -F file=@ventas_agosto.csv -H "X-Admin-Token: una-clave-larga" \
+     http://localhost:8000/admin/reentrenar
+```
+
+Sin `PRACTICA3_ADMIN_TOKEN` el endpoint responde `403`; con una clave incorrecta, `401`.
+El CSV se valida completo (formato de fecha y hora, cantidades y precios) antes de tocar
+nada: si falla, responde `400` con las filas problemáticas y el histórico queda igual.
+
 ## Códigos de estado
 
 | Código | Cuándo |
 |---|---|
 | `200` | OK |
-| `400` | Horizonte no soportado o sin histórico suficiente para la fecha/producto pedidos |
+| `400` | Horizonte no soportado, sin histórico suficiente o CSV de reentrenamiento inválido |
+| `401` / `403` | Reentrenamiento con clave incorrecta / sin clave configurada |
 | `422` | Payload inválido (validación de Pydantic — tipos, campos faltantes) |
 | `503` | Modelos no entrenados todavía (`models/` vacío) |

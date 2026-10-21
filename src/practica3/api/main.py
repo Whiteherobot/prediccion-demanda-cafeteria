@@ -10,11 +10,12 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import secrets
 from contextlib import asynccontextmanager
 from datetime import datetime
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, Header, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 from ..inference import DemandPredictor
@@ -223,14 +224,33 @@ def reporte_demanda_periodo(fecha: str) -> ReporteDemandaResponse:
     return ReporteDemandaResponse(**resultado)
 
 
+def _exigir_admin(token: str | None) -> None:
+    """El reentrenamiento reescribe ventas.csv y los modelos: solo con clave.
+
+    Sin `PRACTICA3_ADMIN_TOKEN` definido el endpoint queda apagado.
+    """
+    esperado = os.environ.get("PRACTICA3_ADMIN_TOKEN")
+    if not esperado:
+        raise HTTPException(
+            status_code=403,
+            detail="Reentrenamiento deshabilitado: definir PRACTICA3_ADMIN_TOKEN al arrancar la API.",
+        )
+    if not token or not secrets.compare_digest(token, esperado):
+        raise HTTPException(status_code=401, detail="Clave de administrador incorrecta.")
+
+
 @app.post("/admin/reentrenar", response_model=ReentrenarResponse)
-async def reentrenar(file: UploadFile = File(...)) -> ReentrenarResponse:
+async def reentrenar(
+    file: UploadFile = File(...),
+    x_admin_token: str | None = Header(default=None),
+) -> ReentrenarResponse:
     """Sube ventas nuevas (mismo esquema de `ventas.csv`) y reentrena los modelos.
 
     Reutiliza los hiperparámetros ya encontrados por GridSearchCV en el notebook 2
     (no repite la búsqueda) — reentrenamiento rápido, pensado para correr on-demand
     desde la beta, no una re-ejecución completa del pipeline de investigación.
     """
+    _exigir_admin(x_admin_token)
     contenido = await file.read()
     try:
         resumen = reentrenar_con_csv(contenido)
