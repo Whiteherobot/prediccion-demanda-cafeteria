@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import io
 import json
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -60,7 +61,35 @@ def _cargar_y_validar_csv(contenido_csv: bytes) -> pd.DataFrame:
         raise ReentrenamientoError(
             f"El CSV no tiene el esquema de ventas.csv — faltan columnas: {faltantes}"
         )
-    return nuevas[COLUMNAS_VENTAS]
+    nuevas = nuevas[COLUMNAS_VENTAS]
+    if nuevas.empty:
+        raise ReentrenamientoError("El CSV no tiene filas.")
+
+    # Todo lo que después se parsea se valida acá, antes de tocar el histórico:
+    # un error a mitad del reentrenamiento dejaba ventas.csv ya sobrescrito.
+    _exigir(nuevas, pd.to_datetime(nuevas["fecha_completa"], format="%d/%m/%Y", errors="coerce").notna(),
+            "fecha_completa no tiene el formato dd/mm/aaaa")
+    _exigir(nuevas, pd.to_datetime(nuevas["hora_exacta"], format="%H:%M", errors="coerce").notna(),
+            "hora_exacta no tiene el formato hh:mm")
+    cantidad = pd.to_numeric(nuevas["cantidad_vendida"], errors="coerce")
+    precio = pd.to_numeric(nuevas["precio_unitario"], errors="coerce")
+    _exigir(nuevas, cantidad > 0, "cantidad_vendida debe ser un número mayor que 0")
+    _exigir(nuevas, precio >= 0, "precio_unitario debe ser un número no negativo")
+    _exigir(nuevas, nuevas["producto"].notna() & nuevas["categoria"].notna(),
+            "producto y categoria no pueden estar vacíos")
+    return nuevas
+
+
+def _exigir(df: pd.DataFrame, ok: pd.Series, mensaje: str) -> None:
+    if not ok.all():
+        filas = (df.index[~ok][:5] + 2).tolist()  # +2: encabezado y numeración desde 1
+        raise ReentrenamientoError(f"{mensaje} (filas {filas} del CSV).")
+
+
+def _escribir_atomico(path: Path, contenido: str) -> None:
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(contenido)
+    os.replace(tmp, path)
 
 
 def reentrenar_con_csv(contenido_csv: bytes) -> dict:
@@ -75,10 +104,6 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
             "El CSV no aportó filas nuevas (todas las filas ya existían en el histórico)."
         )
 
-    backup_path = DATA_RAW_DIR / f"ventas_backup_{datetime.now():%Y%m%d_%H%M%S}.csv"
-    actuales.to_csv(backup_path, index=False)
-    combinado.to_csv(VENTAS_PATH, index=False)
-
     ventas = combinado.copy()
     ventas["fecha"] = pd.to_datetime(ventas["fecha_completa"], format="%d/%m/%Y")
     df = agregar_targets(construir_dataset_diario(ventas))
@@ -88,6 +113,8 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
     feature_cols_svc_iso = metadata["feature_cols_svc_iso"]
     hparams = metadata["mejores_hiperparametros"]
 
+    # Se entrena todo en memoria; nada se escribe a disco hasta el final.
+    artefactos: dict[str, object] = {}
     metricas: dict[str, dict] = {}
     residuales: dict[str, dict] = {}
     test_h1, pred_h1, pipe_h1 = None, None, None
@@ -113,7 +140,7 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
         p10, p50, p90 = np.quantile(y_test - pred_test, [0.10, 0.50, 0.90])
         residuales[str(h)] = {"p10": round(float(p10), 3), "p50": round(float(p50), 3), "p90": round(float(p90), 3)}
 
-        dump(pipe, MODELS_DIR / f"svr_h{h}.joblib")
+        artefactos[f"svr_h{h}.joblib"] = pipe
         if h == 1:
             test_h1, pred_h1, pipe_h1 = test.copy(), pred_test, pipe
 
@@ -133,12 +160,12 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
     ])
     svc_alerta.fit(X_train_clf, y_train_clf)
     auc = roc_auc_score(y_test_clf, svc_alerta.predict_proba(X_test_clf)[:, 1])
-    dump(svc_alerta, MODELS_DIR / "svc_alerta.joblib")
+    artefactos["svc_alerta.joblib"] = svc_alerta
 
     isolation_forest = IsolationForest(n_estimators=200, contamination=0.05, random_state=RNG, n_jobs=1)
     isolation_forest.fit(X_train_clf)
     n_anomalias = int((isolation_forest.predict(X_test_clf) == -1).sum())
-    dump(isolation_forest, MODELS_DIR / "isolation_forest.joblib")
+    artefactos["isolation_forest.joblib"] = isolation_forest
 
     # Métrica de negocio (ingresos en riesgo t+1) — mismo cálculo del notebook 3
     precio_por_producto = df.groupby("product_id")["precio_promedio"].mean()
@@ -177,8 +204,6 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
         "filas_totales_ventas": int(len(combinado)),
         "nota": "Hiperparámetros reutilizados de la búsqueda original (GridSearchCV) — no re-buscados.",
     }
-    (MODELS_DIR / "metadata.json").write_text(json.dumps(metadata, indent=2, ensure_ascii=False))
-    (MODELS_DIR / "residuales.json").write_text(json.dumps(residuales, indent=2))
 
     metrics_json = json.loads(METRICS_PATH.read_text())
     metrics_json["generado_en"] = ahora.isoformat(timespec="seconds")
@@ -199,7 +224,18 @@ def reentrenar_con_csv(contenido_csv: bytes) -> dict:
         "nota": "precio_unitario real, sin márgenes inventados — recalculado tras reentrenamiento.",
     }
     metrics_json["importancia_variables_top5"] = importancia.head(5).round(4).to_dict()
-    METRICS_PATH.write_text(json.dumps(metrics_json, indent=2, ensure_ascii=False))
+
+    # Persistencia: respaldo, histórico nuevo y artefactos, recién ahora.
+    backup_path = DATA_RAW_DIR / f"ventas_backup_{ahora:%Y%m%d_%H%M%S}.csv"
+    actuales.to_csv(backup_path, index=False)
+    _escribir_atomico(VENTAS_PATH, combinado.to_csv(index=False))
+    for nombre, modelo in artefactos.items():
+        tmp = MODELS_DIR / f"{nombre}.tmp"
+        dump(modelo, tmp)
+        os.replace(tmp, MODELS_DIR / nombre)
+    _escribir_atomico(MODELS_DIR / "metadata.json", json.dumps(metadata, indent=2, ensure_ascii=False))
+    _escribir_atomico(MODELS_DIR / "residuales.json", json.dumps(residuales, indent=2))
+    _escribir_atomico(METRICS_PATH, json.dumps(metrics_json, indent=2, ensure_ascii=False))
 
     return {
         "filas_nuevas_agregadas": int(filas_nuevas),
