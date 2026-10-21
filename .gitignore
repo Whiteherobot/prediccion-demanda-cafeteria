@@ -12,3 +12,17 @@ jmeter/results/*.jtl
 jmeter/results/report/
 
 .ipynb_checkpoints/
+jmeter.log
+
+# Respaldos que deja el reentrenamiento (POST /admin/reentrenar)
+data/raw/ventas_backup_*.csv
+data/raw/*_downloads.csv
+
+# Entregables de la materia (se suben al AVAC, no al repo)
+*.zip
+*.mp4
+*.pdf
+!reports/Reporte.pdf
+entrega_avac/
+_revisar_versiones_downloads/
+reports/prediccion_*.csv
