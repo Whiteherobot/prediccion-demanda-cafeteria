@@ -84,7 +84,7 @@ que necesiten mucho más volumen de datos.
 La selección de features del notebook 2 (`permutation_importance`) se corre sobre
 el **SVR** (predecir la cantidad exacta) y descarta las que no aportan ahí. Se
 verificó empíricamente que reusar ese conjunto podado para el **SVC de alerta**
-degradaba su AUC a 0.47 (peor que azar) — features irrelevantes para predecir una
+bajaba su AUC de 0.62 a 0.57 (con los datos sin grilla de calendario llegó a 0.47) — features irrelevantes para predecir una
 cantidad pueden ser relevantes para clasificar "día alto vs normal". Por eso
 `metadata.json` guarda dos listas (`feature_cols_svr` y `feature_cols_svc_iso`) y
 `inference.py` construye un vector de entrada distinto para cada modelo.
@@ -109,7 +109,7 @@ SHAP** (`shap.KernelExplainer`) sobre el pipeline `StandardScaler + SVR`:
   model-agnostic, solo necesita `predict()`.
 - El costo es cómputo: cada instancia explicada corre ~200 evaluaciones del
   modelo contra una muestra de referencia (`background`, 50 filas del train).
-  Con 9 features y 4 instancias de ejemplo, toma segundos — no escalaría a
+  Con 10 features y 4 instancias de ejemplo, toma segundos — no escalaría a
   explicar todo el dataset de test así, pero no hace falta para la guía.
 - El proceso completo (6 pasos) queda documentado en la sección 8 del
   notebook, y aplicado a 2 pares de productos contrastantes (perecible/no

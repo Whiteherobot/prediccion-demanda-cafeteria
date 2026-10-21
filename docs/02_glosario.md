@@ -45,7 +45,7 @@ El notebook 2 guarda **dos** listas de features en `metadata.json`, no una:
   SVR — las que sí ayudan a predecir la cantidad exacta.
 - `feature_cols_svc_iso`: las 24 candidatas completas, usadas por el SVC de
   alerta y el `IsolationForest`. Se comprobó que reusar `feature_cols_svr` para
-  el SVC bajaba su AUC a 0.47 (peor que azar) — la poda optimizada para
+  el SVC bajaba su AUC de 0.62 a 0.57 — la poda optimizada para
   regresión no sirve para clasificación (ver `docs/01_arquitectura.md`).
 
 `src/practica3/inference.py` arma un vector de entrada distinto para cada modelo

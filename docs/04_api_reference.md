@@ -38,7 +38,7 @@ curl http://localhost:8000/model/info
                     "dia_semana_sin", "dia_semana_cos", "precio_promedio"],
   "features_svc_iso": ["cantidad_vendida", "dia_semana", "mes", "...", "n_tickets_dia"],
   "horizontes_soportados": [1, 3, 7],
-  "metricas": {"1": {"rmse": 10.94, "mae": 7.75, "r2": 0.46}, "3": {...}, "7": {...}},
+  "metricas": {"1": {"rmse": 11.27, "mae": 7.99, "r2": 0.43}, "3": {...}, "7": {...}},
   "calidad_datos_por_producto": {"1": true, "2": true, "...": "..."}
 }
 ```

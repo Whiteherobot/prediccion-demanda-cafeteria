@@ -11,7 +11,7 @@ features del notebook 2 se hace vía `permutation_importance` sobre el SVR — p
 features que no ayudan a predecir la cantidad exacta, pero esas mismas features sí
 pueden ayudar a distinguir "día de alta demanda" o "contexto atípico" (tareas
 distintas). Reusar el conjunto podado para las tres tareas midió empíricamente peor
-(AUC del SVC caía a 0.47, peor que azar) — por eso SVC/IsolationForest usan las
+(AUC del SVC bajaba de 0.62 a 0.57) — por eso SVC/IsolationForest usan las
 features candidatas completas.
 """
 
