@@ -53,9 +53,11 @@ export class PredictionService {
   }
 
   /** Sube un CSV de ventas nuevas y reentrena los modelos (multipart/form-data). */
-  reentrenar(file: File): Observable<ReentrenarResponse> {
+  reentrenar(file: File, claveAdmin: string): Observable<ReentrenarResponse> {
     const form = new FormData();
     form.append('file', file);
-    return this.http.post<ReentrenarResponse>(`${this.baseUrl}/admin/reentrenar`, form);
+    return this.http.post<ReentrenarResponse>(`${this.baseUrl}/admin/reentrenar`, form, {
+      headers: { 'X-Admin-Token': claveAdmin },
+    });
   }
 }

@@ -97,6 +97,15 @@
   <!-- Reentrenar con datos nuevos -->
   <div class="mb-5 rounded-2xl border border-brand-primary/20 bg-white p-4 shadow-sm">
     <div class="flex flex-wrap items-center gap-3">
+      <input
+        type="password"
+        placeholder="Clave de administrador"
+        autocomplete="off"
+        class="rounded-xl border border-brand-primary/30 px-3 py-2.5 text-sm"
+        [value]="claveAdmin()"
+        (input)="claveAdmin.set($any($event.target).value)"
+        [disabled]="reentrenando()"
+      />
       <label
         class="cursor-pointer rounded-xl border border-brand-primary/40 px-4 py-2.5 text-sm font-semibold text-brand-secondary transition hover:bg-brand-bg"
         [class.pointer-events-none]="reentrenando()"

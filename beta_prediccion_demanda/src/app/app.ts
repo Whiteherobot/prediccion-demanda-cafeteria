@@ -68,6 +68,8 @@ export class App implements OnInit, OnDestroy {
   readonly reentrenando = signal(false);
   readonly reentrenarResultado = signal<ReentrenarResponse | null>(null);
   readonly reentrenarError = signal<string | null>(null);
+  /** Clave de PRACTICA3_ADMIN_TOKEN; solo vive en memoria mientras la página está abierta. */
+  readonly claveAdmin = signal('');
 
   readonly playing = signal(false);
   private playTimer: ReturnType<typeof setInterval> | null = null;
@@ -242,11 +244,16 @@ export class App implements OnInit, OnDestroy {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
     if (!file) return;
+    if (!this.claveAdmin()) {
+      this.reentrenarError.set('Escribí la clave de administrador antes de cargar el archivo.');
+      input.value = '';
+      return;
+    }
 
     this.reentrenando.set(true);
     this.reentrenarError.set(null);
     this.reentrenarResultado.set(null);
-    this.api.reentrenar(file).subscribe({
+    this.api.reentrenar(file, this.claveAdmin()).subscribe({
       next: (res) => {
         this.reentrenando.set(false);
         this.reentrenarResultado.set(res);
